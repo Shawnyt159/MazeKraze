@@ -21,6 +21,9 @@ public class LoadFileExplorer {
 	private static int q4 = 4;
 	private static int endLocation = 5;
 	private static int wallColorMap = 6;
+	private static int enemy1 = 7;
+	private static int enemy2 = 8;
+	private static int enemy3 = 9;
 	
 	
 	
@@ -38,6 +41,15 @@ public class LoadFileExplorer {
 	private static void LoadMaze(String filePath) throws EOFException {
 		try {
 			ButtonFunctions.GetWallColorMap().clear();
+			EnemyButtonFunctions.DeleteEnemy1();
+			EnemyButtonFunctions.DeleteEnemy2();
+			EnemyButtonFunctions.DeleteEnemy3();
+			if(MazeMainGUI.GetEnemyControls() == null) {
+				MazeMainGUI.SetEnemyControls();
+				int enemiesSelected = 7;
+				MazeMainGUI.SetSelected(enemiesSelected);
+			}
+			EnemyControls.ResetEnemies();
 			FileInputStream in = new FileInputStream(filePath);
 			ObjectInputStream objectIn = new ObjectInputStream(in);
 			JPanel mazePanel = MazeMainGUI.GetMazePanel();
@@ -80,6 +92,15 @@ public class LoadFileExplorer {
 		}
 		else if(currentObject == wallColorMap) {
 			ButtonFunctions.SetWallColorMap((HashMap<Point, Color>) object);
+		}
+		else if(currentObject == enemy1) {
+			EnemyButtonFunctions.SetEnemy1((Enemy) object);
+		}
+		else if(currentObject == enemy2) {
+			EnemyButtonFunctions.SetEnemy2((Enemy) object);
+		}
+		else if(currentObject == enemy3) {
+			EnemyButtonFunctions.SetEnemy3((Enemy) object);
 		}
 	}
 }

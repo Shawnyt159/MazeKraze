@@ -35,6 +35,9 @@ public class SaveFIleExplorer {
 				out.writeObject(ButtonFunctions.GetQ4());
 				out.writeObject(ButtonFunctions.GetEndLabel());
 				out.writeObject(ButtonFunctions.GetWallColorMap());
+				out.writeObject(EnemyButtonFunctions.GetEnemy1());
+				out.writeObject(EnemyButtonFunctions.GetEnemy2());
+				out.writeObject(EnemyButtonFunctions.GetEnemy3());
 				out.writeObject(null);
 				out.close();
 				fileOut.close();
@@ -51,6 +54,9 @@ public class SaveFIleExplorer {
 					out.writeObject(ButtonFunctions.GetQ4());
 					out.writeObject(ButtonFunctions.GetEndLabel());
 					out.writeObject(ButtonFunctions.GetWallColorMap());
+					out.writeObject(EnemyButtonFunctions.GetEnemy1());
+					out.writeObject(EnemyButtonFunctions.GetEnemy2());
+					out.writeObject(EnemyButtonFunctions.GetEnemy3());
 					out.writeObject(null);
 					out.close();
 					fileOut.close();

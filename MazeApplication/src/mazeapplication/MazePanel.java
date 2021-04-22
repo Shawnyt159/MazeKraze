@@ -20,6 +20,10 @@ public class MazePanel extends JPanel{
 	private boolean eraserActive = false;
 	private int eraserThickness;
 	private Point eraserCoordinates;
+	
+	private boolean drawActive = false;
+	private int drawThickness;
+	private Point drawCoordinates;
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -39,6 +43,11 @@ public class MazePanel extends JPanel{
 				g.setColor(Color.red);
 				((Graphics2D) g).setStroke(new BasicStroke(2));
 				g.drawRect((int) eraserCoordinates.getX()-((eraserThickness*2)/2), (int) eraserCoordinates.getY()-((eraserThickness*2)/2), eraserThickness*2, eraserThickness*2);
+			}
+			if(drawActive == true) {
+				g.setColor(Color.blue);
+				((Graphics2D) g).setStroke(new BasicStroke(2));
+				g.drawRect((int) drawCoordinates.getX()-(drawThickness/2), (int) drawCoordinates.getY()-(drawThickness/2), drawThickness, drawThickness);
 			}
 	}
 	
@@ -67,6 +76,18 @@ public class MazePanel extends JPanel{
 		this.eraserCoordinates = eraserCoordinates;
 	}
 	
+	public void SetDrawOn() {
+		this.drawActive = true;
+	}
+	public void SetDrawOff() {
+		this.drawActive = false;
+	}
+	public void SetDrawThickness(int drawThickness) {
+		this.drawThickness = drawThickness;
+	}
+	public void SetDrawCoordinates(Point drawCoordinates) {
+		this.drawCoordinates = drawCoordinates;
+	}
 	// Saving the current panel as an image.
 	public void SaveImage(String path) {
 		BufferedImage image = null;
