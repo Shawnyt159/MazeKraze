@@ -21,10 +21,10 @@ public class EnemyButtonFunctions {
 	public static void PlayerSetEnemy1StartLocation() {
 		if (enemy1.getStartLabel() == null) {
 			enemy1.setStartLabel(new JLabel(""));
-			PlaceEnemyStartOnPanel(MazeMainGUI.GetMazePanel(), enemy1.getStartLabel());
+			PlaceEnemyStartOnPanel(MazeDesignMainGUI.GetMazePanel(), enemy1.getStartLabel());
 			enemy1.SetSpeed(EnemyControls.GetEnemySpeed());
 		} else {
-			JPanel mazePanel = MazeMainGUI.GetMazePanel();
+			JPanel mazePanel = MazeDesignMainGUI.GetMazePanel();
 			Point coordinates = mazePanel.getMousePosition();
 			if (JOptionPane.showConfirmDialog(null,
 					"Are you sure you want to change enemy 1 start location?") == JOptionPane.YES_OPTION) {
@@ -37,10 +37,10 @@ public class EnemyButtonFunctions {
 	public static void PlayerSetEnemy2StartLocation() {
 		if (enemy2.getStartLabel() == null) {
 			enemy2.setStartLabel(new JLabel(""));
-			PlaceEnemyStartOnPanel(MazeMainGUI.GetMazePanel(), enemy2.getStartLabel());
+			PlaceEnemyStartOnPanel(MazeDesignMainGUI.GetMazePanel(), enemy2.getStartLabel());
 			enemy2.SetSpeed(EnemyControls.GetEnemySpeed());
 		} else {
-			JPanel mazePanel = MazeMainGUI.GetMazePanel();
+			JPanel mazePanel = MazeDesignMainGUI.GetMazePanel();
 			Point coordinates = mazePanel.getMousePosition();
 			if (JOptionPane.showConfirmDialog(null,
 					"Are you sure you want to change enemy 2 start location?") == JOptionPane.YES_OPTION) {
@@ -53,10 +53,10 @@ public class EnemyButtonFunctions {
 	public static void PlayerSetEnemy3StartLocation() {
 		if (enemy3.getStartLabel() == null) {
 			enemy3.setStartLabel(new JLabel(""));
-			PlaceEnemyStartOnPanel(MazeMainGUI.GetMazePanel(), enemy3.getStartLabel());
+			PlaceEnemyStartOnPanel(MazeDesignMainGUI.GetMazePanel(), enemy3.getStartLabel());
 			enemy3.SetSpeed(EnemyControls.GetEnemySpeed());
 		} else {
-			JPanel mazePanel = MazeMainGUI.GetMazePanel();
+			JPanel mazePanel = MazeDesignMainGUI.GetMazePanel();
 			Point coordinates = mazePanel.getMousePosition();
 			if (JOptionPane.showConfirmDialog(null,
 					"Are you sure you want to change enemy 3 start location?") == JOptionPane.YES_OPTION) {
@@ -69,10 +69,10 @@ public class EnemyButtonFunctions {
 	private static void PlaceEnemyStartOnPanel(JPanel mazePanel, JLabel enemy) {
 		Point coordinates = mazePanel.getMousePosition();
 		int x = (int) coordinates.getX() - (EnemyControls.GetEnemyWidth() / 2);
-		int y = (int) coordinates.getY() - (EnemyControls.GetEnemyWidth() / 2);
+		int y = (int) coordinates.getY() - (EnemyControls.GetEnemyHeight() / 2);
 		enemy.setBounds(x, y, EnemyControls.GetEnemyWidth(), EnemyControls.GetEnemyHeight());
 		mazePanel.add(enemy);
-		images.set_image_to_label(enemy, "/images/enemy.png");
+		images.set_image_to_label(enemy, EnemyControls.GetEnemyImagePath());
 		enemy.setVisible(true);
 	}
 
@@ -80,11 +80,11 @@ public class EnemyButtonFunctions {
 		int x = (int) coordinates.getX() - (EnemyControls.GetEnemyWidth() / 2);
 		int y = (int) coordinates.getY() - (EnemyControls.GetEnemyWidth() / 2);
 		enemy.setBounds(x, y, EnemyControls.GetEnemyWidth(), EnemyControls.GetEnemyHeight());
-		images.set_image_to_label(enemy, "/images/enemy.png");
+		images.set_image_to_label(enemy, EnemyControls.GetEnemyImagePath());
 		if (enemyObject.getEndLocation() != null) {
-			MazeMainGUI.GetMazePanel().remove(enemyObject.getEndLocation());
+			MazeDesignMainGUI.GetMazePanel().remove(enemyObject.getEndLocation());
 			enemyObject.setEndLocation(null);
-			MazeMainGUI.GetMazePanel().repaint();
+			MazeDesignMainGUI.GetMazePanel().repaint();
 		}
 	}
 
@@ -102,9 +102,9 @@ public class EnemyButtonFunctions {
 		if (enemy1.getStartLabel() != null) {
 			if (enemy1.getEndLocation() == null) {
 				enemy1.setEndLocation(new JLabel(""));
-				PlaceEnemyEndOnPanel(MazeMainGUI.GetMazePanel(), enemy1.getEndLocation(), enemy1.getStartLabel());
+				PlaceEnemyEndOnPanel(MazeDesignMainGUI.GetMazePanel(), enemy1.getEndLocation(), enemy1.getStartLabel());
 			} else {
-				JPanel mazePanel = MazeMainGUI.GetMazePanel();
+				JPanel mazePanel = MazeDesignMainGUI.GetMazePanel();
 				Point coordinates = mazePanel.getMousePosition();
 				if (JOptionPane.showConfirmDialog(null,
 						"Are you sure you want to change enemy 1 end location?") == JOptionPane.YES_OPTION) {
@@ -120,9 +120,9 @@ public class EnemyButtonFunctions {
 		if (enemy2.getStartLabel() != null) {
 			if (enemy2.getEndLocation() == null) {
 				enemy2.setEndLocation(new JLabel(""));
-				PlaceEnemyEndOnPanel(MazeMainGUI.GetMazePanel(), enemy2.getEndLocation(), enemy2.getStartLabel());
+				PlaceEnemyEndOnPanel(MazeDesignMainGUI.GetMazePanel(), enemy2.getEndLocation(), enemy2.getStartLabel());
 			} else {
-				JPanel mazePanel = MazeMainGUI.GetMazePanel();
+				JPanel mazePanel = MazeDesignMainGUI.GetMazePanel();
 				Point coordinates = mazePanel.getMousePosition();
 				if (JOptionPane.showConfirmDialog(null,
 						"Are you sure you want to change enemy 2 end location?") == JOptionPane.YES_OPTION) {
@@ -138,9 +138,9 @@ public class EnemyButtonFunctions {
 		if (enemy3.getStartLabel() != null) {
 			if (enemy3.getEndLocation() == null) {
 				enemy3.setEndLocation(new JLabel(""));
-				PlaceEnemyEndOnPanel(MazeMainGUI.GetMazePanel(), enemy3.getEndLocation(), enemy3.getStartLabel());
+				PlaceEnemyEndOnPanel(MazeDesignMainGUI.GetMazePanel(), enemy3.getEndLocation(), enemy3.getStartLabel());
 			} else {
-				JPanel mazePanel = MazeMainGUI.GetMazePanel();
+				JPanel mazePanel = MazeDesignMainGUI.GetMazePanel();
 				Point coordinates = mazePanel.getMousePosition();
 				if (JOptionPane.showConfirmDialog(null,
 						"Are you sure you want to change enemy 3 end location?") == JOptionPane.YES_OPTION) {
@@ -152,7 +152,7 @@ public class EnemyButtonFunctions {
 		}
 	}
 
-	private static void PlaceEnemyEndOnPanel(JPanel mazePanel, JLabel enemy, JLabel enemyStart) {
+	private static void PlaceEnemyEndOnPanel(JPanel mazePanel, JLabel enemyEndLocation, JLabel enemyStart) {
 		Point coordinates = mazePanel.getMousePosition();
 		int x = 0;
 		int y = 0;
@@ -163,10 +163,10 @@ public class EnemyButtonFunctions {
 			x = enemyStart.getX();
 			y = (int) coordinates.getY();
 		}
-		enemy.setBounds(x, y, 5, 5);
-		mazePanel.add(enemy);
-		images.set_image_to_label(enemy, "/images/end location.png");
-		enemy.setVisible(true);
+		enemyEndLocation.setBounds(x, y, 10, 10);
+		mazePanel.add(enemyEndLocation);
+		images.set_image_to_label(enemyEndLocation, "/images/end location.png");
+		enemyEndLocation.setVisible(true);
 	}
 
 	private static void ChangeEnemyEndLocation(JPanel mazePanel, JLabel enemy, Point coordinates, JLabel enemyStart) {
@@ -179,7 +179,7 @@ public class EnemyButtonFunctions {
 			x = enemyStart.getX();
 			y = (int) coordinates.getY();
 		}
-		enemy.setBounds(x, y, 5, 5);
+		enemy.setBounds(x, y, 10, 10);
 		images.set_image_to_label(enemy, "/images/end location.png");
 	}
 
@@ -206,7 +206,7 @@ public class EnemyButtonFunctions {
 	}
 
 	public static void DeleteEnemy1() {
-		JPanel mazePanel = MazeMainGUI.GetMazePanel();
+		JPanel mazePanel = MazeDesignMainGUI.GetMazePanel();
 		if (enemy1.getStartLabel() != null) {
 			mazePanel.remove(enemy1.getStartLabel());
 			enemy1.setStartLabel(null);
@@ -220,7 +220,7 @@ public class EnemyButtonFunctions {
 	}
 
 	public static void DeleteEnemy2() {
-		JPanel mazePanel = MazeMainGUI.GetMazePanel();
+		JPanel mazePanel = MazeDesignMainGUI.GetMazePanel();
 		if (enemy2.getStartLabel() != null) {
 			mazePanel.remove(enemy2.getStartLabel());
 			enemy2.setStartLabel(null);
@@ -234,7 +234,7 @@ public class EnemyButtonFunctions {
 	}
 
 	public static void DeleteEnemy3() {
-		JPanel mazePanel = MazeMainGUI.GetMazePanel();
+		JPanel mazePanel = MazeDesignMainGUI.GetMazePanel();
 		if (enemy3.getStartLabel() != null) {
 			mazePanel.remove(enemy3.getStartLabel());
 			enemy3.setStartLabel(null);
@@ -255,6 +255,7 @@ public class EnemyButtonFunctions {
 			enemy1.getStartLabel().setBounds(enemy1.getStartLabel().getX(), enemy1.getStartLabel().getY(),
 					EnemyControls.GetEnemyWidth(), EnemyControls.GetEnemyHeight());
 			enemy1.SetSpeed(EnemyControls.GetEnemySpeed());
+			images.set_image_to_label(enemy1.getStartLabel(), EnemyControls.GetEnemyImagePath());
 		}
 	}
 
@@ -263,6 +264,7 @@ public class EnemyButtonFunctions {
 			enemy2.getStartLabel().setBounds(enemy2.getStartLabel().getX(), enemy2.getStartLabel().getY(),
 					EnemyControls.GetEnemyWidth(), EnemyControls.GetEnemyHeight());
 			enemy2.SetSpeed(EnemyControls.GetEnemySpeed());
+			images.set_image_to_label(enemy2.getStartLabel(), EnemyControls.GetEnemyImagePath());
 		}
 	}
 
@@ -271,6 +273,7 @@ public class EnemyButtonFunctions {
 			enemy3.getStartLabel().setBounds(enemy3.getStartLabel().getX(), enemy3.getStartLabel().getY(),
 					EnemyControls.GetEnemyWidth(), EnemyControls.GetEnemyHeight());
 			enemy3.SetSpeed(EnemyControls.GetEnemySpeed());
+			images.set_image_to_label(enemy3.getStartLabel(), EnemyControls.GetEnemyImagePath());
 		}
 	}
 
@@ -357,33 +360,33 @@ public class EnemyButtonFunctions {
 	public static void SetEnemy1(Enemy enemy1) {
 		EnemyButtonFunctions.enemy1 = enemy1;
 		if (EnemyButtonFunctions.enemy1.getStartLabel() != null) {
-			LoadEnemyStartLocation(MazeMainGUI.GetMazePanel(), EnemyButtonFunctions.enemy1.getStartLabel());
+			LoadEnemyStartLocation(MazeDesignMainGUI.GetMazePanel(), EnemyButtonFunctions.enemy1.getStartLabel());
 			EnemyControls.AddEnemy1();
 		}
 		if (EnemyButtonFunctions.enemy1.getEndLocation() != null) {
-			LoadEnemyEndLocation(MazeMainGUI.GetMazePanel(), EnemyButtonFunctions.enemy1.getEndLocation());
+			LoadEnemyEndLocation(MazeDesignMainGUI.GetMazePanel(), EnemyButtonFunctions.enemy1.getEndLocation());
 		}
 	}
 
 	public static void SetEnemy2(Enemy enemy2) {
 		EnemyButtonFunctions.enemy2 = enemy2;
 		if (EnemyButtonFunctions.enemy2.getStartLabel() != null) {
-			LoadEnemyStartLocation(MazeMainGUI.GetMazePanel(), EnemyButtonFunctions.enemy2.getStartLabel());
+			LoadEnemyStartLocation(MazeDesignMainGUI.GetMazePanel(), EnemyButtonFunctions.enemy2.getStartLabel());
 			EnemyControls.AddEnemy2();
 		}
 		if (EnemyButtonFunctions.enemy2.getEndLocation() != null) {
-			LoadEnemyEndLocation(MazeMainGUI.GetMazePanel(), EnemyButtonFunctions.enemy2.getEndLocation());
+			LoadEnemyEndLocation(MazeDesignMainGUI.GetMazePanel(), EnemyButtonFunctions.enemy2.getEndLocation());
 		}
 	}
 
 	public static void SetEnemy3(Enemy enemy3) {
 		EnemyButtonFunctions.enemy3 = enemy3;
 		if (EnemyButtonFunctions.enemy3.getStartLabel() != null) {
-			LoadEnemyStartLocation(MazeMainGUI.GetMazePanel(), EnemyButtonFunctions.enemy3.getStartLabel());
+			LoadEnemyStartLocation(MazeDesignMainGUI.GetMazePanel(), EnemyButtonFunctions.enemy3.getStartLabel());
 			EnemyControls.AddEnemy3();
 		}
 		if (EnemyButtonFunctions.enemy3.getEndLocation() != null) {
-			LoadEnemyEndLocation(MazeMainGUI.GetMazePanel(), EnemyButtonFunctions.enemy3.getEndLocation());
+			LoadEnemyEndLocation(MazeDesignMainGUI.GetMazePanel(), EnemyButtonFunctions.enemy3.getEndLocation());
 		}
 	}
 

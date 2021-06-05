@@ -1,13 +1,27 @@
 package mazeapplication;
 
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.geom.Area;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.Map;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class Player {
+	/**
+	 * c1 = Top Right Corner of Wall
+	 * c2 = Bottom Right Corner of Wall
+	 * c3 = Top Left Corner of Wall
+	 * c4 = Bottom Left Corner of Wall
+	 * uc1 = Top Right Corner of Player
+	 * uc2 = Bottom Right Corner of Player
+	 * uc3 = Top Left Corner of Player
+	 * uc4 = Bottom Left Corner of Player
+	 */
+	
 	// Global to set an image to a JLabel. 
 	private static SetImageToLabel images = new SetImageToLabel();
 	private static int playerZ = 5;
@@ -21,8 +35,11 @@ public class Player {
 	
 	public static void MoveDown(JLabel player) {
 		Point user = new Point(player.getX(), player.getY());
-		if(CheckValidMove(user, down) == true) {
+		if(CheckValidMove(user, down, player) == true) {
 			player.setBounds(player.getX(), player.getY()+1, playerZ, playerZ);
+		}
+		if(BlackoutMaze.isActive() == true) {
+			MazeDesignMainGUI.GetMazePanel().repaint();
 		}
 		if(CheckForWin(player)) {
 			JOptionPane.showMessageDialog(null, "You Win!");
@@ -31,8 +48,11 @@ public class Player {
 	
 	public static void MoveUp(JLabel player) {
 		Point user = new Point(player.getX(), player.getY());
-		if(CheckValidMove(user, up) == true) {
+		if(CheckValidMove(user, up, player) == true) {
 			player.setBounds(player.getX(), player.getY()-1, playerZ, playerZ);
+		}
+		if(BlackoutMaze.isActive() == true) {
+			MazeDesignMainGUI.GetMazePanel().repaint();
 		}
 		if(CheckForWin(player)) {
 			JOptionPane.showMessageDialog(null, "You Win!");
@@ -41,8 +61,11 @@ public class Player {
 	
 	public static void MoveLeft(JLabel player) {
 		Point user = new Point(player.getX(), player.getY());
-		if(CheckValidMove(user, left)) {
+		if(CheckValidMove(user, left, player)) {
 			player.setBounds(player.getX()-1, player.getY(), playerZ, playerZ);
+		}
+		if(BlackoutMaze.isActive() == true) {
+			MazeDesignMainGUI.GetMazePanel().repaint();
 		}
 		if(CheckForWin(player)) {
 			JOptionPane.showMessageDialog(null, "You Win!");
@@ -51,32 +74,93 @@ public class Player {
 	
 	public static void MoveRight(JLabel player) {
 		Point user = new Point(player.getX(), player.getY());
-		if(CheckValidMove(user, right)) {
+		if(CheckValidMove(user, right, player)) {
 			player.setBounds(player.getX()+1, player.getY(), playerZ, playerZ);
+		}
+		if(BlackoutMaze.isActive() == true) {
+			MazeDesignMainGUI.GetMazePanel().repaint();
 		}
 		if(CheckForWin(player)) {
 			JOptionPane.showMessageDialog(null, "You Win!");
 		}
 	}
 	
-	private static boolean CheckValidMove(Point user, int direction) {
+	private static boolean CheckValidMove(Point user, int direction, JLabel player) {
 		HashMap<Point, Integer> qmap = ButtonFunctions.GetCorrectQuadrantMap(user);
 		if(CheckForOutOfBounds(user, direction) == false) {
 			return false;
 		}
+		if(CheckQuadrantMapForCollision(qmap, user, direction) == false) {
+			return false;
+		}
+		LinkedList<DecorationNode> decorationList = MazeDesignMainGUI.getDecorationList();
+		ListIterator<DecorationNode> iterator = (ListIterator<DecorationNode>) decorationList.iterator();
+		while(iterator.hasNext()) {
+			if(CollisionWithDecoration(player, iterator.next().getDecorationNode(), direction) == true) {
+				return false;
+			}
+		}
+		
+		if(direction == down) {
+			Point testCoordinates = new Point((int) user.getX(), (int) user.getY() + (playerZ + 4));
+			if(qmap == ButtonFunctions.GetCorrectQuadrantMap(testCoordinates)) {
+				return true;
+			}
+			else {
+				if(CheckQuadrantMapForCollision(ButtonFunctions.GetCorrectQuadrantMap(testCoordinates), user, direction) == false) {
+					return false;
+				}
+			}
+		}
+		else if(direction == right) {
+			Point testCoordinates = new Point((int) user.getX() + (playerZ+4), (int) user.getY());
+			if(qmap == ButtonFunctions.GetCorrectQuadrantMap(testCoordinates)) {
+				return true;
+			}
+			else {
+				if(CheckQuadrantMapForCollision(ButtonFunctions.GetCorrectQuadrantMap(testCoordinates), user, direction) == false) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	private static boolean CheckQuadrantMapForCollision(HashMap<Point, Integer> qmap, Point user, int direction) {
 		for(Map.Entry<Point, Integer> entery : qmap.entrySet()) {
 			Point coordinate = entery.getKey();
 			int z = entery.getValue();
-			if(z < 3) {
+			if(z == 1) {
 			}
-			else if(z >= 3 && z <=5) {
+			else if(z == 2) {
+				z = z-1;
+			}
+			else if(z == 3) {
 				z = z-2;
 			}
-			else if(z >= 6 && z <=8) {
-				z = z-2;
+			else if(z == 4) {
+				z = z-3;
+			}
+			else if (z == 5) {
+				z = z-3;
+			}
+			else if(z == 6) {
+				z = z-4;
+			}
+			else if(z == 7) {
+				z = z-4;
+			}
+			else if(z == 8) {
+				z = z-5;
+			}
+			else if(z == 9) {
+				z = z-6;
+			}
+			else if(z == 10) {
+				z = z-7;
 			}
 			else {
-				z = z-4;
+				z = z-5;
 			}
 			if(direction == down) {
 				if(CheckNoCollisionDownOnPoint(coordinate, z, user) == false) {
@@ -205,6 +289,33 @@ public class Player {
 			return true;
 		}
 		return false;
+	}
+	
+	private static boolean CollisionWithDecoration(JLabel player, JLabel decoration, int direction) {
+		int height = player.getHeight();
+		int width = player.getWidth();
+		int x = player.getX();
+		int y = player.getY();
+		if(direction == up) {
+			y = y-1;
+		}
+		else if(direction == down) {
+			y = y+1;
+		}
+		else if(direction == left) {
+			x = x-1;
+		}
+		else if(direction == right) {
+			x = x+1;
+		}
+		Rectangle playerRect = new Rectangle(x,y,width,height);
+		Area playerArea = new Area(playerRect);
+		return CheckCollisionWithDecoration(playerArea, decoration);
+	}
+	
+	private static boolean CheckCollisionWithDecoration(Area area1, JLabel decoration) {
+		Area decorationArea = new Area(decoration.getBounds());
+		return decorationArea.intersects(area1.getBounds());
 	}
 	
 	private static boolean CheckForWin(JLabel player) {

@@ -1,0 +1,12 @@
+/images/smileyPizza.jpeg
+/images/theDude.jpeg
+/images/Castle.jpeg
+/images/beach day.jpeg
+/images/chem maze.jpeg
+/images/circle.jpeg
+/images/boxedLines.jpeg
+/images/the grid.jpeg
+/images/theGridE.jpeg
+/images/theGridEB.jpeg
+/images/Rainbow Curves 2.0.jpeg
+/images/multiMaze.jpg

@@ -133,9 +133,9 @@ public class MoveEnemy {
 	
 	private static void CheckCollisionWithPlayer(JLabel enemyLabel) {
 		Area a = new Area(enemyLabel.getBounds());
-		Area b = new Area(MazeMainGUI.GetPlayerLabel().getBounds());
+		Area b = new Area(MazeDesignMainGUI.GetPlayerLabel().getBounds());
 		if(a.intersects(b.getBounds2D()) == true) {
-			MazeMainGUI.GetPlayerLabel().setBounds(ButtonFunctions.GetStartLabel().getBounds());
+			MazeDesignMainGUI.GetPlayerLabel().setBounds(ButtonFunctions.GetStartLabel().getBounds());
 		}
 	}
 	

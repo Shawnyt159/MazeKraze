@@ -13,9 +13,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.JComboBox;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.Toolkit;
 
 public class EnemyControls {
 
@@ -27,6 +32,7 @@ public class EnemyControls {
 	private static JSlider enemySpeedSlider;
 	private static int enemySelected = 0;
 	private static JComboBox<String> enemyComboBox;
+	private static JComboBox<String> enemyImageComboBox;
 	/**
 	 * Create the application.
 	 */
@@ -39,6 +45,7 @@ public class EnemyControls {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(EnemyControls.class.getResource("/images/logo.png")));
 		frame.getContentPane().setBackground(UIManager.getColor("InternalFrame.inactiveTitleGradient"));
 		frame.setBounds(100, 100, 540, 366);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -65,10 +72,12 @@ public class EnemyControls {
 		particularEnemySettings.add(currentEnemyControlLabel);
 		
 		JButton enemyStartLocationButton = new JButton("Start Location");
+		enemyStartLocationButton.setToolTipText("Set current enemy start location.");
 		enemyStartLocationButton.setBounds(10, 28, 128, 21);
 		particularEnemySettings.add(enemyStartLocationButton);
 		
 		JButton enemyEndLocationButtonHorizontal = new JButton("End Location Horizontal");
+		enemyEndLocationButtonHorizontal.setToolTipText("Set current enemy end location left or right.");
 		enemyEndLocationButtonHorizontal.setBounds(10, 59, 194, 21);
 		particularEnemySettings.add(enemyEndLocationButtonHorizontal);
 		
@@ -100,6 +109,7 @@ public class EnemyControls {
 		particularEnemySettings.add(enemyWidthLabel);
 		
 		JButton enemyEndLocationButtonVertical = new JButton("End Location Vertical");
+		enemyEndLocationButtonVertical.setToolTipText("Set current enemy end location up or down");
 		enemyEndLocationButtonVertical.setBounds(10, 90, 194, 21);
 		particularEnemySettings.add(enemyEndLocationButtonVertical);
 		
@@ -108,6 +118,7 @@ public class EnemyControls {
 		particularEnemySettings.add(enemySpeedLabel);
 		
 		enemySpeedSlider = new JSlider(SwingConstants.HORIZONTAL, 1, 10, 5);
+		enemySpeedSlider.setToolTipText("Changes the speed of the current enemy.");
 		enemySpeedSlider.setPaintTicks(true);
 		enemySpeedSlider.setPaintLabels(true);
 		enemySpeedSlider.setMinorTickSpacing(1);
@@ -115,19 +126,28 @@ public class EnemyControls {
 		enemySpeedSlider.setBounds(276, 190, 200, 52);
 		particularEnemySettings.add(enemySpeedSlider);
 		
-		JButton updateEnemyButton = new JButton("Add Changes To Enemy");
-		updateEnemyButton.setBounds(10, 218, 194, 21);
-		particularEnemySettings.add(updateEnemyButton);
+		enemyImageComboBox = new JComboBox<String>();
+		enemyImageComboBox.setToolTipText("Set enemy type");
+		enemyImageComboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Origional Enemy"}));
+		enemyImageComboBox.setBounds(10, 141, 194, 21);
+		particularEnemySettings.add(enemyImageComboBox);
+		
+		JLabel enemyTypeLabel = new JLabel("Enemy Type:");
+		enemyTypeLabel.setBounds(10, 118, 81, 13);
+		particularEnemySettings.add(enemyTypeLabel);
 		
 		enemyComboBox = new JComboBox<String>();
+		enemyComboBox.setToolTipText("Current enemy.");
 		enemyComboBox.setBounds(10, 10, 138, 21);
 		controlPanel.add(enemyComboBox);
 		
 		JButton addEnemyButton = new JButton("Add Enemy");
+		addEnemyButton.setToolTipText("Add enemy to list.");
 		addEnemyButton.setBounds(158, 10, 123, 21);
 		controlPanel.add(addEnemyButton);
 		
 		JButton deleteEnemyButton = new JButton("Delete Enemy");
+		deleteEnemyButton.setToolTipText("Delete enemy from list.");
 		deleteEnemyButton.setBounds(291, 10, 115, 21);
 		controlPanel.add(deleteEnemyButton);
 		
@@ -137,26 +157,30 @@ public class EnemyControls {
 		addEnemyButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				RemoveChangeListeners();
 				if(currentNumberOfEnemies < 3) {
 					AddEnemiesToComboBox(enemyComboBox);
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "You have the max number of enemies!");
 				}
+				AddChangeListeners();
 			}
-			
 		});
 		
 		deleteEnemyButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				RemoveChangeListeners();
 				if(currentNumberOfEnemies > 0) {
 					SetEnemyForDeletion(enemyComboBox);
 					enemies.remove(enemyComboBox.getSelectedItem().toString());
 					currentNumberOfEnemies--;
 					enemyComboBox.removeItem(enemyComboBox.getSelectedItem());
 					EnemyButtonFunctions.DeleteEnemy();
+					SetEnemyForStartLocation(enemyComboBox);
 				}
+				AddChangeListeners();
 			}
 			
 		});
@@ -170,7 +194,6 @@ public class EnemyControls {
 				enemyEndLocationButtonHorizontal.setForeground(Color.black);
 				enemyEndLocationButtonVertical.setForeground(Color.black);
 			}
-			
 		});
 		
 		enemyEndLocationButtonHorizontal.addActionListener(new ActionListener() {
@@ -197,13 +220,41 @@ public class EnemyControls {
 			
 		});
 		
-		updateEnemyButton.addActionListener(new ActionListener() {
+		enemyComboBox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				UpdateCurrentEnemy(enemyComboBox);
+				RemoveChangeListeners();
+				SetBorderForSelectedEnemy((String) enemyComboBox.getSelectedItem());
+				UpdateCurrentEnemyStats(enemyComboBox);
+				AddChangeListeners();
 			}
 			
 		});
+		
+		heightSlider.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				UpdateCurrentEnemy(enemyComboBox);
+				
+			}
+		});
+		
+		widthSlider.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				UpdateCurrentEnemy(enemyComboBox);
+				
+			}
+		});
+		
+		enemySpeedSlider.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				UpdateCurrentEnemy(enemyComboBox);
+				
+			}
+		});
+		
 		frame.setVisible(true);
 	}
 	
@@ -234,11 +285,13 @@ public class EnemyControls {
 		for(int i = 0; i < currentNumberOfEnemies; i++) {
 			enemyComboBox.addItem(enemies.get(i));
 		}
+		
 	}
 	
 	public static void ResetEnemies() {
 		enemies.clear();
 		enemyComboBox.removeAllItems();
+		currentNumberOfEnemies = 0;
 	}
 	
 	public static void AddEnemy1() {
@@ -261,6 +314,10 @@ public class EnemyControls {
 	
 	private void SetEnemyForStartLocation(JComboBox<String> enemyComboBox) {
 		String enemy = (String) enemyComboBox.getSelectedItem();
+		if(enemy == null) {
+			enemySelected = 0; 
+			return;
+		}
 		if(enemy.equals("enemy 1")) {
 			enemySelected = 1;
 		}
@@ -274,6 +331,10 @@ public class EnemyControls {
 	
 	private void SetEnemyForEndLocation(JComboBox<String> enemyComboBox) {
 		String enemy = (String) enemyComboBox.getSelectedItem();
+		if(enemy == null) {
+			enemySelected = 0;
+			return;
+		}
 		if(enemy.equals("enemy 1")) {
 			enemySelected = 1;
 		}
@@ -299,6 +360,9 @@ public class EnemyControls {
 	}
 	
 	private void UpdateCurrentEnemy(JComboBox<String> enemyComboBox) {
+		if(enemyComboBox.getSelectedItem() == null) {
+			return;
+		}
 		if(enemyComboBox.getSelectedItem().equals("enemy 1")) {
 			EnemyButtonFunctions.UpdateEnemy1();
 		}
@@ -311,6 +375,116 @@ public class EnemyControls {
 		else {
 			
 		}
+	}
+	
+	private void RemoveChangeListeners() {
+		ChangeListener[] heightListener = heightSlider.getChangeListeners();
+		for(int i = 0; i < heightListener.length; i++) {
+			heightSlider.removeChangeListener(heightListener[i]);
+		}
+		ChangeListener[] widthListener = widthSlider.getChangeListeners();
+		for(int i = 0; i < widthListener.length; i++) {
+			widthSlider.removeChangeListener(widthListener[i]);
+		}
+		ChangeListener[] speedListener = enemySpeedSlider.getChangeListeners();
+		for(int i = 0; i < speedListener.length; i++) {
+			enemySpeedSlider.removeChangeListener(speedListener[0]);
+		}
+	}
+	
+	private void AddChangeListeners() {
+		heightSlider.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				UpdateCurrentEnemy(enemyComboBox);
+				
+			}
+		});
+		
+		widthSlider.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				UpdateCurrentEnemy(enemyComboBox);
+				
+			}
+		});
+		
+		enemySpeedSlider.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				UpdateCurrentEnemy(enemyComboBox);
+				
+			}
+		});
+	}
+	
+	private void UpdateCurrentEnemyStats(JComboBox<String> enemyComboBox) {
+		if(enemyComboBox.getSelectedItem() == null) {
+			return;
+		}
+		if(enemyComboBox.getSelectedItem().equals("enemy 1")) {
+			SetStats(EnemyButtonFunctions.GetEnemy1());
+		}
+		else if(enemyComboBox.getSelectedItem().equals("enemy 2")) {
+			SetStats(EnemyButtonFunctions.GetEnemy2());
+		}
+		else if(enemyComboBox.getSelectedItem().equals("enemy 3")) {
+			SetStats(EnemyButtonFunctions.GetEnemy3());
+		}
+	}
+	
+	private void SetBorderForSelectedEnemy(String selectedEnemy) {
+		if(EnemyButtonFunctions.GetEnemy1() != null) {
+			SetEnemyBorderNull(EnemyButtonFunctions.GetEnemy1());
+		}
+		if(EnemyButtonFunctions.GetEnemy2() != null) {
+			SetEnemyBorderNull(EnemyButtonFunctions.GetEnemy2());
+		}
+		if(EnemyButtonFunctions.GetEnemy3() != null) {
+			SetEnemyBorderNull(EnemyButtonFunctions.GetEnemy3());
+		}
+		if(selectedEnemy != null) {
+			if(selectedEnemy.equals("enemy 1")) {
+				AddBorderToEnemy(EnemyButtonFunctions.GetEnemy1());
+			}
+			else if(selectedEnemy.equals("enemy 2")) {
+				AddBorderToEnemy(EnemyButtonFunctions.GetEnemy2());
+			}
+			else if(selectedEnemy.equals("enemy 3")) {
+				AddBorderToEnemy(EnemyButtonFunctions.GetEnemy3());
+			}
+		}
+	}
+	
+	private void SetEnemyBorderNull(Enemy currentEnemy) {
+		if(currentEnemy.getStartLabel() != null) {
+			currentEnemy.getStartLabel().setBorder(null);
+		}
+	}
+	
+	private void AddBorderToEnemy(Enemy currentEnemy) {
+		if(currentEnemy.getStartLabel() != null) {
+			currentEnemy.getStartLabel().setBorder(new LineBorder(Color.green, 2));
+		}
+	}
+	
+	private void SetStats(Enemy enemy) {
+		if(enemy.getStartLabel() != null) {
+			heightSlider.setValue(enemy.getStartLabel().getHeight());
+			widthSlider.setValue(enemy.getStartLabel().getWidth());
+			enemySpeedSlider.setValue(enemy.GetUserSpeed());
+		}
+	}
+	
+	public static String GetEnemyImagePath() {
+		String[] enemyImagePaths = new String[] {"/images/enemy.png"};
+		int currentIndex = enemyImageComboBox.getSelectedIndex();
+		return enemyImagePaths[currentIndex];
+		
+	}
+	
+	public static void ReduceNumberOfEnemies() {
+		currentNumberOfEnemies--;
 	}
 	
 	public static int GetEnemyWidth() {
@@ -327,6 +501,10 @@ public class EnemyControls {
 	
 	public static int GetEnemySelected() {
 		return enemySelected;
+	}
+	
+	public static JComboBox<String> getEnemyComboBox(){
+		return enemyComboBox;
 	}
 	
 	public void setVisible() {

@@ -1,0 +1,4 @@
+1.) Make new maze button in the "LevelMenu" class. Put the maze button programming wise in the correct order.
+2.) Add the new maze preview image to the "images"->"mazesInOrder.txt" in the correct order.
+3.) Ensure the name of the maze and the name of the maze image are the same without the extesions being the same 
+ex.) "theGrid.ser" == "theGrid.jpeg" 

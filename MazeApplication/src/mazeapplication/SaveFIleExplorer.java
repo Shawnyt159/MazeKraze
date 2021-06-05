@@ -9,16 +9,34 @@ import java.io.ObjectOutputStream;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.LookAndFeel;
+import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class SaveFIleExplorer {
+public class SaveFileExplorer {
 	public static void Load() {
+		LookAndFeel old = UIManager.getLookAndFeel();
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		}catch(Exception e) {
+			e.printStackTrace();
+			old = null;
+		}
+		
 		JFileChooser chooser = new JFileChooser();
 	    FileNameExtensionFilter filter = new FileNameExtensionFilter("Mazes", "ser");
 	    chooser.setFileFilter(filter);
 	    int returnVal = chooser.showSaveDialog(null);
 	    if(returnVal == JFileChooser.APPROVE_OPTION) {
 	       SaveMaze(chooser.getSelectedFile().toString());
+	    }
+	    
+	    if(old != null) {
+	    	 try {
+	 	    	UIManager.setLookAndFeel(old);
+	 	    }catch(Exception e) {
+	 	    	e.printStackTrace();
+	 	    }
 	    }
 	}
 	
@@ -38,9 +56,13 @@ public class SaveFIleExplorer {
 				out.writeObject(EnemyButtonFunctions.GetEnemy1());
 				out.writeObject(EnemyButtonFunctions.GetEnemy2());
 				out.writeObject(EnemyButtonFunctions.GetEnemy3());
+				out.writeObject(MazeDesignMainGUI.GetMazePanel().getBackground());
+				out.writeObject(MazeDesignMainGUI.getDecorationList());
+				out.writeObject(MazeDesignMainGUI.GetBlackoutMazeSetting());
 				out.writeObject(null);
 				out.close();
 				fileOut.close();
+				MazeDesignMainGUI.SetLoadedMazeFileLocation(mazeFilePath + ".ser");
 				return true;
 			}
 			else {
@@ -57,9 +79,13 @@ public class SaveFIleExplorer {
 					out.writeObject(EnemyButtonFunctions.GetEnemy1());
 					out.writeObject(EnemyButtonFunctions.GetEnemy2());
 					out.writeObject(EnemyButtonFunctions.GetEnemy3());
+					out.writeObject(MazeDesignMainGUI.GetMazePanel().getBackground());
+					out.writeObject(MazeDesignMainGUI.getDecorationList());
+					out.writeObject(MazeDesignMainGUI.GetBlackoutMazeSetting());
 					out.writeObject(null);
 					out.close();
 					fileOut.close();
+					MazeDesignMainGUI.SetLoadedMazeFileLocation(mazeFilePath + ".ser");
 					return true;
 				}
 				else {

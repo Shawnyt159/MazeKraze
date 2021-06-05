@@ -2,10 +2,17 @@ package mazeapplication;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 public class ButtonFunctions {
 	// Global to set an image to a JLabel. 
@@ -155,6 +162,9 @@ public class ButtonFunctions {
 	public static void DrawLineFunction(JPanel mazePanel, int lineThickness, Color lineColor) {
 		Point coordinates = GetMouseCoordinates(mazePanel);
 		HashMap<Point, Integer> qmap = GetCorrectQuadrantMap(coordinates);
+		if(qmap == null) {
+			return;
+		}
 		// New point to draw.
 		if(!qmap.containsKey(coordinates)) {
 			DrawCoordinate(mazePanel, lineThickness, coordinates, qmap, lineColor);
@@ -173,17 +183,20 @@ public class ButtonFunctions {
 	
 	public static void DrawHorizontalLineFunction(JPanel mazePanel, int lineThickness, Color lineColor) {
 		Point coordinates = GetMouseCoordinates(mazePanel);
-		Point horizontialPoint = new Point((int) coordinates.getX(), horizontialLineY);
-		HashMap<Point, Integer> qmap = GetCorrectQuadrantMap(horizontialPoint);
+		if(coordinates == null) {
+			return;
+		}
+		Point horizontalPoint = new Point((int) coordinates.getX(), horizontialLineY);
+		HashMap<Point, Integer> qmap = GetCorrectQuadrantMap(horizontalPoint);
 		// New point to draw.
-		if(!qmap.containsKey(horizontialPoint)) {
-			DrawCoordinate(mazePanel, lineThickness, horizontialPoint, qmap, lineColor);
+		if(!qmap.containsKey(horizontalPoint)) {
+			DrawCoordinate(mazePanel, lineThickness, horizontalPoint, qmap, lineColor);
 		}
 		// Replace the point.
 		else {
-			int currentLineThickness = qmap.get(horizontialPoint);
+			int currentLineThickness = qmap.get(horizontalPoint);
 			if(currentLineThickness != lineThickness) {
-				DrawCoordinate(mazePanel, lineThickness, horizontialPoint, qmap, lineColor);
+				DrawCoordinate(mazePanel, lineThickness, horizontalPoint, qmap, lineColor);
 			}
 			else {
 				// Do nothing.
@@ -193,6 +206,9 @@ public class ButtonFunctions {
 	
 	public static void DrawVerticalLineFunction(JPanel mazePanel, int lineThickness, Color lineColor) {
 		Point coordinates = GetMouseCoordinates(mazePanel);
+		if(coordinates == null) {
+			return;
+		}
 		Point verticalPoint = new Point(verticalLineX, (int) coordinates.getY());
 		HashMap<Point, Integer> qmap = GetCorrectQuadrantMap(verticalPoint);
 		// New point to draw.
@@ -217,6 +233,7 @@ public class ButtonFunctions {
 	private static void DrawCoordinate(JPanel mazePanel, int lineThickness, Point coordinates, HashMap<Point, Integer> qmap, Color color) {
 		qmap.put(coordinates, lineThickness);
 		AddCoordinateAndColorToColorMap(coordinates, color);
+		UndoStructure.AddPointToNewLineArrayList(coordinates);
 		mazePanel.repaint();
 	}
 	
@@ -229,6 +246,9 @@ public class ButtonFunctions {
 	 */
 	public static void EraseCoordinate(JPanel mazePanel, int thickness) {
 		Point coordinates = GetMouseCoordinates(mazePanel);
+		if(coordinates == null) {
+			return;
+		}
 		HashMap<Point, Integer> qmap = GetCorrectQuadrantMap(coordinates);
 		thickness = thickness * 2;
 		int negativeThickness = thickness * -1;
@@ -236,6 +256,11 @@ public class ButtonFunctions {
 			for(int y = negativeThickness; y < thickness; y++) {
 				Point newCoordinate = new Point((int) coordinates.getX() + x, (int) coordinates.getY() + y);
 				if(qmap.containsKey(newCoordinate)) {
+					Color lineColor = Color.black;
+					if(wallColorMap.containsKey(newCoordinate)) {
+						lineColor = wallColorMap.get(newCoordinate);
+					}
+					RedoErasedLineStructure.AddPointToRedoStacks(newCoordinate, qmap.get(newCoordinate), lineColor);
 					qmap.remove(newCoordinate);
 					wallColorMap.remove(newCoordinate);
 					mazePanel.repaint();
@@ -243,6 +268,81 @@ public class ButtonFunctions {
 			}
 		}
 	}
+	
+	/**
+	 * DELETE DECORATION FUNCTIONS.
+	 */
+	public static void AddBordersToDecorations(LinkedList<DecorationNode> decorationList, JPanel mazePanel) {
+		Iterator<DecorationNode> iterator = decorationList.iterator();
+		Border border = new LineBorder(Color.green, 2);
+		while(iterator.hasNext()) {
+			iterator.next().getDecorationNode().setBorder(border);
+		}
+	}
+	public static void RemoveBordersFromDecorations(LinkedList<DecorationNode> decorationList, JPanel mazePanel) {
+		Iterator<DecorationNode> iterator = decorationList.iterator();
+		while(iterator.hasNext()) {
+			iterator.next().getDecorationNode().setBorder(null);
+		}
+	}
+	public static void AddMouseListenerToDecorations(LinkedList<DecorationNode> decorationList, JPanel mazePanel) {
+		Iterator<DecorationNode> iterator = decorationList.iterator();
+		while(iterator.hasNext()) {
+			iterator.next().getDecorationNode().addMouseListener(new MouseListener() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					JLabel currentDecoration = (JLabel) arg0.getComponent();
+					mazePanel.remove(currentDecoration);
+					for(int i = 0; i < decorationList.size(); i++) {
+						DecorationNode currentNode = decorationList.get(i);
+						if(currentNode.getDecorationNode() == currentDecoration) {
+							decorationList.remove(currentNode);
+							break;
+						}
+					}
+					mazePanel.repaint();
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent arg0) {
+					JLabel currentDecoration = (JLabel) arg0.getComponent();
+					currentDecoration.setBorder(new LineBorder(Color.red, 2));
+				}
+
+				@Override
+				public void mouseExited(MouseEvent arg0) {
+					JLabel currentDecoration = (JLabel) arg0.getComponent();
+					currentDecoration.setBorder(new LineBorder(Color.green, 2));
+					
+				}
+
+				@Override
+				public void mousePressed(MouseEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mouseReleased(MouseEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+			});
+		}
+	}
+	public static void RemoveMouseListenersFromDecorations(LinkedList<DecorationNode> decorationList, JPanel mazePanel) {
+		Iterator<DecorationNode> iterator = decorationList.iterator();
+		while(iterator.hasNext()) {
+			JLabel currentDecoration = iterator.next().getDecorationNode();
+			MouseListener[] listeners = currentDecoration.getMouseListeners();
+			for(int i = 0; i < listeners.length; i++) {
+				currentDecoration.removeMouseListener(listeners[i]);
+			}
+		}
+	}
+	
+	
 	
 	/**
 	 * MUTUAL FUNCTIONS:
@@ -260,24 +360,27 @@ public class ButtonFunctions {
 	 * Getting the correct quadrant map based on the users current location.
 	 */
 	public static HashMap<Point, Integer> GetCorrectQuadrantMap(Point coordinates){
-		int x = (int) coordinates.getX();
-		int y = (int) coordinates.getY();
-		if(x <= 354) {
-			if(y <= 324) {
-				return q1WallCoordinates;
+		if(coordinates != null) {
+			int x = (int) coordinates.getX();
+			int y = (int) coordinates.getY();
+			if(x <= 354) {
+				if(y <= 324) {
+					return q1WallCoordinates;
+				}
+				else {
+					return q3WallCoordinates;
+				}
 			}
 			else {
-				return q3WallCoordinates;
+				if(y <= 324) {
+					return q2WallCoordinates;
+				}
+				else {
+					return q4WallCoordinates;
+				}
 			}
 		}
-		else {
-			if(y <= 324) {
-				return q2WallCoordinates;
-			}
-			else {
-				return q4WallCoordinates;
-			}
-		}
+		return null;
 	}
 	
 	public static void SetQ1(HashMap<Point, Integer> newq1WallCoordinates) {

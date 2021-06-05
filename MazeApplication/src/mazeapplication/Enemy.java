@@ -40,6 +40,11 @@ public class Enemy implements Serializable{
 		return speed;
 	}
 	
+	public int GetUserSpeed() {
+		long userSpeed = 100/this.speed;
+		return (int) userSpeed;
+	}
+	
 	
 	
 	

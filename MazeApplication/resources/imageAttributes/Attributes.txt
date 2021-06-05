@@ -1,0 +1,34 @@
+player
+5
+5
+O.png
+
+endLocation
+10
+10
+X.png
+
+Test Tree
+20
+20
+testTree.png
+
+Test Tree 2
+10
+10
+testTree2.png
+
+bush
+10
+10
+bush.png
+
+Mud Hut
+20
+20
+mudHut.jpg
+
+enemyEndLocation
+10
+10
+end location.png
