@@ -5,6 +5,8 @@
 /images/chem maze.jpeg
 /images/circle.jpeg
 /images/boxedLines.jpeg
+/images/Grassland.jpg
+/images/Headache.jpeg
 /images/the grid.jpeg
 /images/theGridE.jpeg
 /images/theGridEB.jpeg

@@ -1,3 +1,6 @@
-Test Tree
-Test Tree 2
-bush
+Tree S
+Tree M
+Tree L
+Fire S
+Fire M
+Fire L

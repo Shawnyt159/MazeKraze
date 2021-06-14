@@ -65,6 +65,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 	private static LinkedList<DecorationNode> decorationList = new LinkedList<DecorationNode>();
 	private static String loadedMazeFileLocation = null;
 	private static JRadioButton blackoutRadioButton;
+	private static JButton stopMazeButton = null;
 
 	/*
 	 * selected: 0-9 1: start location 2: end location 3: free draw line 4: eraser
@@ -194,6 +195,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		colorComboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Black", "Red", "Yellow", "Orange",
 				"Pink", "Purple", "Blue", "Gray", "Dark Gray", "Green", "Brown", "Lavender", "Navy Blue", "Army Green",
 				"Plum", "Turquoise", "Maroon", "Storm", "Salmon" }));
+		colorComboBox.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
 
 		JLabel lblLineColor = new JLabel("Line Color:");
 		lblLineColor.setFocusable(false);
@@ -205,6 +207,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 				new String[] { "White", "Sky Blue", "Sand", "Grass", "Mud", "Glacier", "Swamp", "Storm Gray" }));
 		backgroundColorComboBox.setBounds(10, 360, 85, 21);
 		backgroundColorComboBox.setFocusable(false);
+		backgroundColorComboBox.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
 
 		JLabel backgroundColorLabel = new JLabel("Background Color:");
 		backgroundColorLabel.setFocusable(false);
@@ -245,6 +248,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 				new String[] { "Plain", "Sky Blue", "Sand", "Grass", "Mud", "Glacier", "Swamp", "Storm Gray" }));
 		typeOfDecorationComboBox.setFocusable(false);
 		typeOfDecorationComboBox.setBounds(10, 69, 151, 21);
+		typeOfDecorationComboBox.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
 
 		JLabel typeOfDecorationLabel = new JLabel("Type of Decoration:");
 		typeOfDecorationLabel.setFocusable(false);
@@ -253,6 +257,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		specificDecorations = new JComboBox<String>();
 		specificDecorations.setFocusable(false);
 		specificDecorations.setBounds(10, 100, 151, 21);
+		specificDecorations.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
 
 		JButton deleteDecorationButton = new JButton("Delete Decoration");
 		deleteDecorationButton.setFocusable(false);
@@ -562,7 +567,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		startMazeButton.setToolTipText("Starts the maze, makes your player moveable.");
 		startMazeButton.setFocusable(false);
 
-		JButton stopMazeButton = new JButton("Stop Maze");
+		stopMazeButton = new JButton("Stop Maze");
 		stopMazeButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
 		stopMazeButton.setForeground(new Color(255, 255, 255));
 		stopMazeButton.setBounds(10, 538, 158, 20);
@@ -684,6 +689,9 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 					EnemyStartAndStopMazeFunctions.StartEnemies();
 					if (blackoutRadioButton.isSelected()) {
 						BlackoutMaze.InitiateBlackout(player, mazePanel);
+						if(MainMenuGUI.isLevelMazeActive() == true) {
+							LevelMenu.disposeActiveMaze();
+						}
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Maze can only start with designated start and end locations!");
@@ -699,6 +707,8 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 					changingOptionsPanel.add(startLocationButton);
 					changingOptionsPanel.add(endLocationButton);
 					changingOptionsPanel.repaint();
+					
+					frame.requestFocusInWindow();
 				} else if (drawingRadioButton.isSelected()) {
 					changingOptionsPanel.removeAll();
 
@@ -731,6 +741,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 
 					changingOptionsPanel.revalidate();
 					changingOptionsPanel.repaint();
+					frame.requestFocusInWindow();
 				} else if (decorationsRadioButton.isSelected()) {
 					changingOptionsPanel.removeAll();
 
@@ -747,6 +758,8 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 
 					changingOptionsPanel.revalidate();
 					changingOptionsPanel.repaint();
+					
+					frame.requestFocusInWindow();
 				} else if (backgroundRadioButton.isSelected()) {
 					changingOptionsPanel.removeAll();
 
@@ -759,6 +772,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 
 					changingOptionsPanel.revalidate();
 					changingOptionsPanel.repaint();
+					frame.requestFocusInWindow();
 				}
 			}
 		};
@@ -1658,6 +1672,14 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 
 	public static void SetBlackoutMazeSetting(boolean setting) {
 		blackoutRadioButton.setSelected(setting);
+	}
+	
+	public boolean mazeActive() {
+		return mazeStarted;
+	}
+	
+	public static void stopMaze() {
+		stopMazeButton.doClick();
 	}
 
 	@Override

@@ -33,6 +33,7 @@ public class EnemyControls {
 	private static int enemySelected = 0;
 	private static JComboBox<String> enemyComboBox;
 	private static JComboBox<String> enemyImageComboBox;
+	private SetImageToLabel images = new SetImageToLabel();
 	/**
 	 * Create the application.
 	 */
@@ -82,20 +83,19 @@ public class EnemyControls {
 		particularEnemySettings.add(enemyEndLocationButtonHorizontal);
 		
 		final int minHeightOrWidth = 5;
-		final int maxHeightOrWidth = 20;
 		final int initialHeightOrWidth = 5;
-		heightSlider = new JSlider(JSlider.HORIZONTAL, minHeightOrWidth, maxHeightOrWidth, initialHeightOrWidth);
+		heightSlider = new JSlider(JSlider.HORIZONTAL, minHeightOrWidth, 30, initialHeightOrWidth);
 		heightSlider.setBounds(276, 28, 200, 52);
 		heightSlider.setMinorTickSpacing(1);
-		heightSlider.setMajorTickSpacing(3);
+		heightSlider.setMajorTickSpacing(5);
 		heightSlider.setPaintTicks(true);
 		heightSlider.setPaintLabels(true);
 		particularEnemySettings.add(heightSlider);
 		
-		widthSlider = new JSlider(JSlider.HORIZONTAL, minHeightOrWidth, maxHeightOrWidth, initialHeightOrWidth);
+		widthSlider = new JSlider(JSlider.HORIZONTAL, minHeightOrWidth, 30, initialHeightOrWidth);
 		widthSlider.setBounds(276, 113, 200, 52);
 		widthSlider.setMinorTickSpacing(1);
-		widthSlider.setMajorTickSpacing(3);
+		widthSlider.setMajorTickSpacing(5);
 		widthSlider.setPaintLabels(true);
 		widthSlider.setPaintTicks(true);
 		particularEnemySettings.add(widthSlider);
@@ -128,13 +128,17 @@ public class EnemyControls {
 		
 		enemyImageComboBox = new JComboBox<String>();
 		enemyImageComboBox.setToolTipText("Set enemy type");
-		enemyImageComboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Origional Enemy"}));
+		enemyImageComboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Violet Orb", "Purple Orb", "Werewolf", "Cute Wolf"}));
 		enemyImageComboBox.setBounds(10, 141, 194, 21);
 		particularEnemySettings.add(enemyImageComboBox);
 		
 		JLabel enemyTypeLabel = new JLabel("Enemy Type:");
 		enemyTypeLabel.setBounds(10, 118, 81, 13);
 		particularEnemySettings.add(enemyTypeLabel);
+		
+		JButton updateImageButton = new JButton("Update Enemy Image");
+		updateImageButton.setBounds(10, 171, 194, 21);
+		particularEnemySettings.add(updateImageButton);
 		
 		enemyComboBox = new JComboBox<String>();
 		enemyComboBox.setToolTipText("Current enemy.");
@@ -253,6 +257,38 @@ public class EnemyControls {
 				UpdateCurrentEnemy(enemyComboBox);
 				
 			}
+		});
+		
+		updateImageButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				getSelectedEnemy();
+			}
+
+			private void getSelectedEnemy() {
+				if(enemyComboBox.getSelectedItem() == null) {
+					
+				}
+				else if(enemyComboBox.getSelectedItem().equals("enemy 1")) {
+					Enemy enemy1 = EnemyButtonFunctions.GetEnemy1();
+					if(enemy1.getStartLabel() != null) {
+						images.set_image_to_label(enemy1.getStartLabel(), GetEnemyImagePath());
+					}
+				}
+				else if(enemyComboBox.getSelectedItem().equals("enemy 2")) {
+					Enemy enemy2 = EnemyButtonFunctions.GetEnemy2();
+					if(enemy2.getStartLabel() != null) {
+						images.set_image_to_label(enemy2.getStartLabel(), GetEnemyImagePath());
+					}
+				}
+				else if(enemyComboBox.getSelectedItem().equals("enemy 3")) {
+					Enemy enemy3 = EnemyButtonFunctions.GetEnemy3();
+					if(enemy3.getStartLabel() != null) {
+						images.set_image_to_label(enemy3.getStartLabel(), GetEnemyImagePath());
+					}
+				}
+			}
+			
 		});
 		
 		frame.setVisible(true);
@@ -477,10 +513,9 @@ public class EnemyControls {
 	}
 	
 	public static String GetEnemyImagePath() {
-		String[] enemyImagePaths = new String[] {"/images/enemy.png"};
+		String[] enemyImagePaths = new String[] {"/images/violet orb.png", "/images/purple orb.png", "/images/werewolf.png", "/images/cute wolf.png"};
 		int currentIndex = enemyImageComboBox.getSelectedIndex();
 		return enemyImagePaths[currentIndex];
-		
 	}
 	
 	public static void ReduceNumberOfEnemies() {

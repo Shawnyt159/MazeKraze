@@ -24,8 +24,8 @@ public class levelPlayMazePanel extends JPanel{
 			Point playerCenter = new Point(BlackoutMaze.getBlackoutPlayer().getX()+2, BlackoutMaze.getBlackoutPlayer().getY()+2);
 			HashSet<Point> visibleAreaMap = new HashSet<Point>();
 			
-			for(int x = -30; x < 30; x++) {
-				for(int y = -30; y < 30; y++) {
+			for(int x = -45; x < 45; x++) {
+				for(int y = -45; y < 45; y++) {
 					Point coordinates = new Point((int) playerCenter.getX()+x, (int) playerCenter.getY()+y);
 					visibleAreaMap.add(coordinates);
 				}

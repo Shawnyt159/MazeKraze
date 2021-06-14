@@ -45,6 +45,7 @@ public class HoverImage {
 			mazePanel.add(hoverLabel);
 			hoverLabel.setVisible(true);
 			HoverImage.imageFile = imageFile;
+			mazePanel.repaint();
 		}
 	}
 	

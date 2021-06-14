@@ -30,9 +30,11 @@ public class LevelMenu implements ActionListener{
 	private JLabel mazePreviewImageLabel;
 	private String currentSelectedMaze = null;
 	private LoadSerMazeFromResources loadMaze = new LoadSerMazeFromResources();
-	private MazeLevelPlayGUI mazeGUI;
+	private static MazeLevelPlayGUI mazeGUI;
 
 	public LevelMenu(){
+		// Loading the maze image paths to the mazeImages ArrayList.
+		LoadMazeImagesToArray();
 		initialize();
 	}
 
@@ -46,12 +48,9 @@ public class LevelMenu implements ActionListener{
 		frmMazekrazeLevelPlay.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmMazekrazeLevelPlay.getContentPane().setLayout(null);
 		
-		// Loading the maze image paths to the mazeImages ArrayList.
-		LoadMazeImagesToArray();
-		
 		JPanel levelPanel = new JPanel();
 		levelPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		levelPanel.setBackground(Color.WHITE);
+		levelPanel.setBackground(new Color(255, 255, 255));
 		levelPanel.setBounds(10, 49, 791, 504);
 		frmMazekrazeLevelPlay.getContentPane().add(levelPanel);
 		levelPanel.setLayout(null);
@@ -83,7 +82,7 @@ public class LevelMenu implements ActionListener{
 		castleMazeButton.setForeground(Color.BLACK);
 		castleMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		castleMazeButton.setBackground(new Color(127, 255, 0));
-		castleMazeButton.setBounds(200, 63, 85, 21);
+		castleMazeButton.setBounds(200, 64, 85, 21);
 		levelPanel.add(castleMazeButton);
 		
 		JLabel noviceMazesLabel = new JLabel("Novice Mazes:");
@@ -127,6 +126,18 @@ public class LevelMenu implements ActionListener{
 		boxedLinesMazeButton.setBackground(new Color(64, 224, 208));
 		boxedLinesMazeButton.setBounds(295, 180, 85, 21);
 		levelPanel.add(boxedLinesMazeButton);
+		
+		JButton grasslandMazeButton = new JButton("Grassland");
+		grasslandMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		grasslandMazeButton.setBackground(new Color(64, 224, 208));
+		grasslandMazeButton.setBounds(390, 180, 85, 21);
+		levelPanel.add(grasslandMazeButton);
+		
+		JButton headacheMazeButton = new JButton("Headache");
+		headacheMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		headacheMazeButton.setBackground(new Color(64, 224, 208));
+		headacheMazeButton.setBounds(10, 211, 85, 21);
+		levelPanel.add(headacheMazeButton);
 		
 		JLabel mediumMazesLabel = new JLabel("Medium Mazes:");
 		mediumMazesLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -173,7 +184,7 @@ public class LevelMenu implements ActionListener{
 		JButton multiMazeButton = new JButton("Multi Maze");
 		multiMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		multiMazeButton.setBackground(Color.RED);
-		multiMazeButton.setBounds(105, 411, 85, 21);
+		multiMazeButton.setBounds(105, 412, 85, 21);
 		levelPanel.add(multiMazeButton);
 		
 		JPanel optionsPanel = new JPanel();
@@ -206,6 +217,9 @@ public class LevelMenu implements ActionListener{
 			public void actionPerformed(ActionEvent arg0) {
 				//Loads the maze attributes.
 				if(currentSelectedMaze != null) {
+					if(MainMenuGUI.isMazeDesignMazeActive() == true) {
+						MazeDesignMainGUI.stopMaze();
+					}
 					LevelPlayLoadedMazeAttributes.resetEverything();
 					loadMaze.Load(currentSelectedMaze);
 					if(mazeGUI == null) {
@@ -247,6 +261,19 @@ public class LevelMenu implements ActionListener{
 	
 	public void setVisible(boolean visibility) {
 		frmMazekrazeLevelPlay.setVisible(visibility);
+	}
+	
+	public static boolean MazeActive() {
+		if(mazeGUI == null) {
+			return true;
+		}
+		else {
+			return mazeGUI.isActive();
+		}
+	}
+	
+	public static void disposeActiveMaze() {
+		mazeGUI.dispose();
 	}
 	
 	private void PutMazePathInCorrectFormat(String mazeImagePath) {

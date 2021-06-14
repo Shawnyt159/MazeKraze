@@ -1,0 +1,27 @@
+Pegasus S
+Pegasus M
+Pegasus L
+Zeus S
+Zeus M
+Zeus L
+Lightning Bolt S
+Lightning Bolt M
+Lightning Bolt L
+Cloud S
+Cloud M
+Cloud L
+Golden Dragon S
+Golden Dragon M
+Golden Dragon L
+Black Dragon S
+Black Dragon M
+Black Dragon L
+Red Dragon S
+Red Dragon M
+Red Dragon L
+Gargoyal 1 S
+Gargoyal 1 M
+Gargoyal 1 L
+Gargoyal 2 S
+Gargoyal 2 M
+Gargoyal 2 L

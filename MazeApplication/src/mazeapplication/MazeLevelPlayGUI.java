@@ -280,6 +280,14 @@ public class MazeLevelPlayGUI implements KeyListener{
 	public static JLabel GetPlayerLabel() {
 		return player;
 	}
+	
+	public boolean isActive() {
+		return mazePanel.isVisible();
+	}
+	
+	public void dispose() {
+		frame.setVisible(false);
+	}
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {

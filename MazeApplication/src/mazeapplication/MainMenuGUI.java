@@ -21,8 +21,8 @@ public class MainMenuGUI {
 
 	private JFrame frmMazekraze;
 	private JTextField emailTextBox;
-	private MazeDesignMainGUI freeDrawMazeGUI = null;
-	private LevelMenu levelMenu = null;
+	private static MazeDesignMainGUI freeDrawMazeGUI = null;
+	private static LevelMenu levelMenu = null;
 	private SetImageToLabel images = new SetImageToLabel();
 	private JTextField instagramField;
 	private JTextField websiteAddress;
@@ -93,12 +93,6 @@ public class MainMenuGUI {
 		emailTextBox.setText("mazekrazesubmit@gmail.com");
 		emailTextBox.setColumns(10);
 		
-		JLabel copyInstructionsLabel = new JLabel("ctrl c (to copy email address)");
-		copyInstructionsLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		copyInstructionsLabel.setBounds(192, 20, 132, 29);
-		informationPanel.add(copyInstructionsLabel);
-		copyInstructionsLabel.setForeground(new Color(0, 0, 0));
-		
 		JLabel emailInformationlabel = new JLabel("<html>Email your completed mazes here for a chance to get them on the website!</html>");
 		emailInformationlabel.setBounds(10, 57, 307, 44);
 		informationPanel.add(emailInformationlabel);
@@ -110,12 +104,6 @@ public class MainMenuGUI {
 		informationPanel.add(instagramLabel);
 		instagramLabel.setForeground(new Color(0, 0, 0));
 		instagramLabel.setFont(new Font("Rockwell", Font.PLAIN, 18));
-		
-		JLabel instagramCopyInstructionsLabel = new JLabel("ctrl c (to copy instagram)");
-		instagramCopyInstructionsLabel.setBounds(575, 20, 117, 29);
-		informationPanel.add(instagramCopyInstructionsLabel);
-		instagramCopyInstructionsLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		instagramCopyInstructionsLabel.setForeground(new Color(0, 0, 0));
 		
 		instagramField = new JTextField();
 		instagramField.setForeground(new Color(220, 20, 60));
@@ -219,8 +207,6 @@ public class MainMenuGUI {
 		
 		images.set_image_to_label(imageLabel, "/images/theGridBackgroundGlacier.jpeg");
 		
-		//updatesAndNews.getUpdates();
-		
 		//Button Actions.
 		freeDrawButton.addActionListener(new ActionListener() {
 			@Override
@@ -232,5 +218,28 @@ public class MainMenuGUI {
 			}
 			
 		});
+	}
+	
+	public static boolean isLevelMazeActive() {
+		if(levelMenu == null) {
+			return false;
+		}
+		else {
+			if(LevelMenu.MazeActive() == true) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+	}
+	
+	public static boolean isMazeDesignMazeActive() {
+		if(freeDrawMazeGUI == null) {
+			return false;
+		}
+		else {
+			return freeDrawMazeGUI.mazeActive();
+		}
 	}
 }

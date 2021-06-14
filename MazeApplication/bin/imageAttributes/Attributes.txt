@@ -1,3 +1,4 @@
+# PLAYER & END POINT ATTRIBUTES #
 player
 5
 5
@@ -8,26 +9,423 @@ endLocation
 10
 X.png
 
-Test Tree
-20
-20
-testTree.png
-
-Test Tree 2
+# PLAIN DECORATION ATTRIBUTES #
+Tree S
 10
 10
-testTree2.png
+tree.png
 
-bush
-10
-10
-bush.png
-
-Mud Hut
+Tree M
 20
 20
-mudHut.jpg
+tree.png
 
+Tree L
+30
+30
+tree.png
+
+Fire S
+10
+10
+fire.png
+
+Fire M
+20
+20
+fire.png
+
+Fire L
+30
+30
+fire.png
+
+# SKY BLUE ATTRIBUTES #
+Airplane S
+10
+10
+airplane.png
+
+Airplane M
+20
+20
+airplane.png
+
+Airplane L
+30
+30
+airplane.png
+
+# GLACIER ATTRIBUTES # 
+Penguin S
+10
+10
+penguin.png
+
+Penguin M
+20
+20
+penguin.png
+
+Penguin L
+30
+30
+penguin.png
+
+# GRASS ATTRIBUTES #
+
+# SAND ATTRIBUTES #
+Surf Board S
+10
+10
+surfboard.png
+
+Surf Board M
+20
+20
+surfboard.png
+
+Surf Board L
+30
+30
+surfboard.png
+
+Coral Flowers S
+10
+10
+coral flowers.png
+
+Coral Flowers M
+20
+20
+coral flowers.png
+
+Coral Flowers L
+30
+30
+coral flowers.png
+
+Pink Flower S
+10
+10
+pink flower.png
+
+Pink Flower M
+20
+20
+pink flower.png
+
+Pink Flower L
+30
+30
+pink flower.png
+
+Hula Penguin S
+10
+10
+hula penguin.png
+
+Hula Penguin M
+20
+20
+hula penguin.png
+
+Hula Penguin L
+30
+30
+hula penguin.png
+
+Tiki 1 S
+20
+20
+tiki 1.png
+
+Tiki 1 M
+30
+30
+tiki 1.png
+
+Tiki 1 L
+40
+40
+tiki 1.png
+
+Tiki 2 S
+20
+20
+tiki 2.png
+
+Tiki 2 M
+30
+30
+tiki 2.png
+
+Tiki 2 L
+40
+40
+tiki 2.png
+
+Tiki 3 S
+20
+20
+tiki 3.png
+
+Tiki 3 M
+30
+30
+tiki 3.png
+
+Tiki 3 L
+40
+40
+tiki 3.png
+
+Tiki Bar 1 S
+20
+20
+tiki bar 1.png
+
+Tiki Bar 1 M
+30
+30
+tiki bar 1.png
+
+Tiki Bar 1 L
+40
+40
+tiki bar 1.png
+
+Tiki Bar 2 S
+20
+20
+tiki bar 2.png
+
+Tiki Bar 2 M
+30
+30
+tiki bar 2.png
+
+Tiki Bar 2 L
+40
+40
+tiki bar 2.png
+
+Dolphin S
+10
+10
+dolphin.png
+
+Dolphin M
+20
+20
+dolphin.png
+
+Dolphin L
+30
+30
+dolphin.png
+
+Whale S
+20
+20
+whale.png
+
+Whale M
+30
+30
+whale.png
+
+Whale L
+40
+40
+whale.png
+
+Beast S
+10
+10
+beast.png
+
+Beast M
+20
+20
+beast.png
+
+Beast L
+30
+30
+beast.png
+
+Umbrella S
+10
+10
+umbrella.png
+
+Umbrella M
+20
+20
+umbrella.png
+
+Umbrella L
+30
+30
+umbrella.png
+
+
+# STORM GRAY ATTRIBUTES #
+Pegasus S
+10
+10
+pegasus.png
+
+Pegasus M
+20
+20
+pegasus.png
+
+Pegasus L
+30
+30
+pegasus.png
+
+Zeus S
+10
+10
+zeus.png
+
+Zeus M
+20
+20
+zeus.png
+
+Zeus L
+30
+30
+zeus.png
+
+Lightning Bolt S
+10
+10
+lightning bolt.png
+
+Lightning Bolt M
+20
+20
+lightning bolt.png
+
+Lightning Bolt L
+30
+30
+lightning bolt.png
+
+Cloud S
+10
+10
+cloud.png
+
+Cloud M
+20
+20
+cloud.png
+
+Cloud L
+30
+30
+cloud.png
+
+Golden Dragon S
+10
+10
+gold dragon.png
+
+Golden Dragon M
+20
+20
+gold dragon.png
+
+Golden Dragon L
+30
+30
+gold dragon.png
+
+Black Dragon S
+10
+10
+black dragon.png
+
+Black Dragon M
+20
+20
+black dragon.png
+
+Black Dragon L
+30
+30
+black dragon.png
+
+Red Dragon S
+10
+10
+red dragon.png
+
+Red Dragon M
+20
+20
+red dragon.png
+
+Red Dragon L
+30
+30
+red dragon.png
+
+Gargoyal 1 S
+10
+10
+gargoyal 1.png
+
+Gargoyal 1 M
+20
+20
+gargoyal 1.png
+
+Gargoyal 1 L
+30
+30
+gargoyal 1.png
+
+Gargoyal 2 S
+10
+10
+gargoyal 2.png
+
+Gargoyal 2 M
+20
+20
+gargoyal 2.png
+
+Gargoyal 2 L
+30
+30
+gargoyal 2.png
+
+# SWAMP ATTRIBUTES #
+
+# MUD DECORATION ATTRIBUTES # 
+Mud Hut S
+10
+10
+mud hut.png
+
+Mud Hut M
+20
+20
+mud hut.png
+
+Mud Hut L
+30
+30
+mud hut.png
+
+# ENEMY END LOCATION ATTRIBUTES # 
 enemyEndLocation
 10
 10
