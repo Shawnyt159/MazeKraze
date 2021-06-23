@@ -1,0 +1,30 @@
+centaur S
+centaur M
+centaur L
+deep troll S
+deep troll M
+deep troll L
+ettin S
+ettin M
+ettin L
+golden dragon S
+golden dragon M
+golden dragon L
+juggernaut S
+juggernaut M
+juggernaut L
+minotaur S
+minotaur M
+minotaur L
+mold S
+mold M
+mold L
+naga S
+naga M
+naga L
+spider S
+spider M
+spider L
+thing S
+thing M
+thing L

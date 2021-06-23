@@ -62,7 +62,7 @@ public class EnemyControls {
 		Border blackBorder = BorderFactory.createLineBorder(Color.black);
 		
 		JPanel particularEnemySettings = new JPanel();
-		particularEnemySettings.setBackground(new Color(176,192,222));
+		particularEnemySettings.setBackground(new Color(255, 215, 0));
 		particularEnemySettings.setBounds(10, 47, 486, 252);
 		particularEnemySettings.setBorder(blackBorder);
 		controlPanel.add(particularEnemySettings);
@@ -73,11 +73,15 @@ public class EnemyControls {
 		particularEnemySettings.add(currentEnemyControlLabel);
 		
 		JButton enemyStartLocationButton = new JButton("Start Location");
+		enemyStartLocationButton.setForeground(new Color(255, 255, 255));
+		enemyStartLocationButton.setBackground(new Color(0, 191, 255));
 		enemyStartLocationButton.setToolTipText("Set current enemy start location.");
 		enemyStartLocationButton.setBounds(10, 28, 128, 21);
 		particularEnemySettings.add(enemyStartLocationButton);
 		
 		JButton enemyEndLocationButtonHorizontal = new JButton("End Location Horizontal");
+		enemyEndLocationButtonHorizontal.setForeground(new Color(255, 255, 255));
+		enemyEndLocationButtonHorizontal.setBackground(new Color(0, 191, 255));
 		enemyEndLocationButtonHorizontal.setToolTipText("Set current enemy end location left or right.");
 		enemyEndLocationButtonHorizontal.setBounds(10, 59, 194, 21);
 		particularEnemySettings.add(enemyEndLocationButtonHorizontal);
@@ -85,6 +89,7 @@ public class EnemyControls {
 		final int minHeightOrWidth = 5;
 		final int initialHeightOrWidth = 5;
 		heightSlider = new JSlider(JSlider.HORIZONTAL, minHeightOrWidth, 30, initialHeightOrWidth);
+		heightSlider.setBorder(new LineBorder(new Color(0, 0, 0)));
 		heightSlider.setBounds(276, 28, 200, 52);
 		heightSlider.setMinorTickSpacing(1);
 		heightSlider.setMajorTickSpacing(5);
@@ -93,6 +98,7 @@ public class EnemyControls {
 		particularEnemySettings.add(heightSlider);
 		
 		widthSlider = new JSlider(JSlider.HORIZONTAL, minHeightOrWidth, 30, initialHeightOrWidth);
+		widthSlider.setBorder(new LineBorder(new Color(0, 0, 0)));
 		widthSlider.setBounds(276, 113, 200, 52);
 		widthSlider.setMinorTickSpacing(1);
 		widthSlider.setMajorTickSpacing(5);
@@ -109,6 +115,8 @@ public class EnemyControls {
 		particularEnemySettings.add(enemyWidthLabel);
 		
 		JButton enemyEndLocationButtonVertical = new JButton("End Location Vertical");
+		enemyEndLocationButtonVertical.setForeground(new Color(255, 255, 255));
+		enemyEndLocationButtonVertical.setBackground(new Color(0, 191, 255));
 		enemyEndLocationButtonVertical.setToolTipText("Set current enemy end location up or down");
 		enemyEndLocationButtonVertical.setBounds(10, 90, 194, 21);
 		particularEnemySettings.add(enemyEndLocationButtonVertical);
@@ -118,6 +126,7 @@ public class EnemyControls {
 		particularEnemySettings.add(enemySpeedLabel);
 		
 		enemySpeedSlider = new JSlider(SwingConstants.HORIZONTAL, 1, 10, 5);
+		enemySpeedSlider.setBorder(new LineBorder(new Color(0, 0, 0)));
 		enemySpeedSlider.setToolTipText("Changes the speed of the current enemy.");
 		enemySpeedSlider.setPaintTicks(true);
 		enemySpeedSlider.setPaintLabels(true);
@@ -128,7 +137,7 @@ public class EnemyControls {
 		
 		enemyImageComboBox = new JComboBox<String>();
 		enemyImageComboBox.setToolTipText("Set enemy type");
-		enemyImageComboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Violet Orb", "Purple Orb", "Werewolf", "Cute Wolf"}));
+		enemyImageComboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"alien 1", "alien 2", "alien 3", "angry fly", "balrug", "beast", "crawler", "cursed skull", "eyeball creature", "ghoul", "hell sentinel", "hellwing", "imp", "king", "lich", "mad block", "mummy priest", "spectral warrior", "tornado"}));
 		enemyImageComboBox.setBounds(10, 141, 194, 21);
 		particularEnemySettings.add(enemyImageComboBox);
 		
@@ -137,6 +146,8 @@ public class EnemyControls {
 		particularEnemySettings.add(enemyTypeLabel);
 		
 		JButton updateImageButton = new JButton("Update Enemy Image");
+		updateImageButton.setForeground(new Color(255, 255, 255));
+		updateImageButton.setBackground(new Color(0, 191, 255));
 		updateImageButton.setBounds(10, 171, 194, 21);
 		particularEnemySettings.add(updateImageButton);
 		
@@ -146,13 +157,15 @@ public class EnemyControls {
 		controlPanel.add(enemyComboBox);
 		
 		JButton addEnemyButton = new JButton("Add Enemy");
+		addEnemyButton.setBackground(new Color(244, 164, 96));
 		addEnemyButton.setToolTipText("Add enemy to list.");
-		addEnemyButton.setBounds(158, 10, 123, 21);
+		addEnemyButton.setBounds(158, 2, 338, 21);
 		controlPanel.add(addEnemyButton);
 		
 		JButton deleteEnemyButton = new JButton("Delete Enemy");
+		deleteEnemyButton.setBackground(new Color(244, 164, 96));
 		deleteEnemyButton.setToolTipText("Delete enemy from list.");
-		deleteEnemyButton.setBounds(291, 10, 115, 21);
+		deleteEnemyButton.setBounds(158, 24, 338, 21);
 		controlPanel.add(deleteEnemyButton);
 		
 		/**
@@ -513,7 +526,11 @@ public class EnemyControls {
 	}
 	
 	public static String GetEnemyImagePath() {
-		String[] enemyImagePaths = new String[] {"/images/violet orb.png", "/images/purple orb.png", "/images/werewolf.png", "/images/cute wolf.png"};
+		String[] enemyImagePaths = new String[enemyImageComboBox.getItemCount()];
+		for(int i = 0; i < enemyImageComboBox.getItemCount(); i++) {
+			String enemyPath = "/images/enemies/" + enemyImageComboBox.getItemAt(i) + ".png";
+			enemyImagePaths[i] = enemyPath;
+		}
 		int currentIndex = enemyImageComboBox.getSelectedIndex();
 		return enemyImagePaths[currentIndex];
 	}

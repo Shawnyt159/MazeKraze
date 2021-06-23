@@ -9,423 +9,1640 @@ endLocation
 10
 X.png
 
-# PLAIN DECORATION ATTRIBUTES #
-Tree S
+################### START PLAIN ###################
+apple S
 10
 10
-tree.png
-
-Tree M
+Plain/apple.png
+apple M
 20
 20
-tree.png
-
-Tree L
+Plain/apple.png
+apple L
 30
 30
-tree.png
-
-Fire S
+Plain/apple.png
+backpack S
 10
 10
-fire.png
-
-Fire M
+Plain/backpack.png
+backpack M
 20
 20
-fire.png
-
-Fire L
+Plain/backpack.png
+backpack L
 30
 30
-fire.png
-
-# SKY BLUE ATTRIBUTES #
-Airplane S
+Plain/backpack.png
+balloon green S
 10
 10
-airplane.png
-
-Airplane M
+Plain/balloon green.png
+balloon green M
 20
 20
-airplane.png
-
-Airplane L
+Plain/balloon green.png
+balloon green L
 30
 30
-airplane.png
-
-# GLACIER ATTRIBUTES # 
-Penguin S
+Plain/balloon green.png
+balloon red S
 10
 10
-penguin.png
-
-Penguin M
+Plain/balloon red.png
+balloon red M
 20
 20
-penguin.png
-
-Penguin L
+Plain/balloon red.png
+balloon red L
 30
 30
-penguin.png
-
-# GRASS ATTRIBUTES #
-
-# SAND ATTRIBUTES #
-Surf Board S
+Plain/balloon red.png
+balloon yellow S
 10
 10
-surfboard.png
-
-Surf Board M
+Plain/balloon yellow.png
+balloon yellow M
 20
 20
-surfboard.png
-
-Surf Board L
+Plain/balloon yellow.png
+balloon yellow L
 30
 30
-surfboard.png
-
-Coral Flowers S
+Plain/balloon yellow.png
+blue book S
 10
 10
-coral flowers.png
-
-Coral Flowers M
+Plain/blue book.png
+blue book M
 20
 20
-coral flowers.png
-
-Coral Flowers L
+Plain/blue book.png
+blue book L
 30
 30
-coral flowers.png
-
-Pink Flower S
+Plain/blue book.png
+brown brick tile S
 10
 10
-pink flower.png
-
-Pink Flower M
+Plain/brown brick tile.png
+brown brick tile M
 20
 20
-pink flower.png
-
-Pink Flower L
+Plain/brown brick tile.png
+brown brick tile L
 30
 30
-pink flower.png
-
-Hula Penguin S
+Plain/brown brick tile.png
+bush S
 10
 10
-hula penguin.png
-
-Hula Penguin M
+Plain/bush.png
+bush M
 20
 20
-hula penguin.png
-
-Hula Penguin L
+Plain/bush.png
+bush L
 30
 30
-hula penguin.png
-
-Tiki 1 S
-20
-20
-tiki 1.png
-
-Tiki 1 M
-30
-30
-tiki 1.png
-
-Tiki 1 L
-40
-40
-tiki 1.png
-
-Tiki 2 S
-20
-20
-tiki 2.png
-
-Tiki 2 M
-30
-30
-tiki 2.png
-
-Tiki 2 L
-40
-40
-tiki 2.png
-
-Tiki 3 S
-20
-20
-tiki 3.png
-
-Tiki 3 M
-30
-30
-tiki 3.png
-
-Tiki 3 L
-40
-40
-tiki 3.png
-
-Tiki Bar 1 S
-20
-20
-tiki bar 1.png
-
-Tiki Bar 1 M
-30
-30
-tiki bar 1.png
-
-Tiki Bar 1 L
-40
-40
-tiki bar 1.png
-
-Tiki Bar 2 S
-20
-20
-tiki bar 2.png
-
-Tiki Bar 2 M
-30
-30
-tiki bar 2.png
-
-Tiki Bar 2 L
-40
-40
-tiki bar 2.png
-
-Dolphin S
+Plain/bush.png
+cloth book S
 10
 10
-dolphin.png
-
-Dolphin M
+Plain/cloth book.png
+cloth book M
 20
 20
-dolphin.png
-
-Dolphin L
+Plain/cloth book.png
+cloth book L
 30
 30
-dolphin.png
-
-Whale S
-20
-20
-whale.png
-
-Whale M
-30
-30
-whale.png
-
-Whale L
-40
-40
-whale.png
-
-Beast S
+Plain/cloth book.png
+crystal tile S
 10
 10
-beast.png
-
-Beast M
+Plain/crystal tile.png
+crystal tile M
 20
 20
-beast.png
-
-Beast L
+Plain/crystal tile.png
+crystal tile L
 30
 30
-beast.png
-
-Umbrella S
+Plain/crystal tile.png
+hell tile S
 10
 10
-umbrella.png
-
-Umbrella M
+Plain/hell tile.png
+hell tile M
 20
 20
-umbrella.png
-
-Umbrella L
+Plain/hell tile.png
+hell tile L
 30
 30
-umbrella.png
-
-
-# STORM GRAY ATTRIBUTES #
-Pegasus S
+Plain/hell tile.png
+key S
 10
 10
-pegasus.png
-
-Pegasus M
+Plain/key.png
+key M
 20
 20
-pegasus.png
-
-Pegasus L
+Plain/key.png
+key L
 30
 30
-pegasus.png
-
-Zeus S
+Plain/key.png
+knight 1 S
 10
 10
-zeus.png
-
-Zeus M
+Plain/knight 1.png
+knight 1 M
 20
 20
-zeus.png
-
-Zeus L
+Plain/knight 1.png
+knight 1 L
 30
 30
-zeus.png
-
-Lightning Bolt S
+Plain/knight 1.png
+knight 2 S
 10
 10
-lightning bolt.png
-
-Lightning Bolt M
+Plain/knight 2.png
+knight 2 M
 20
 20
-lightning bolt.png
-
-Lightning Bolt L
+Plain/knight 2.png
+knight 2 L
 30
 30
-lightning bolt.png
-
-Cloud S
+Plain/knight 2.png
+knight 3 S
 10
 10
-cloud.png
-
-Cloud M
+Plain/knight 3.png
+knight 3 M
 20
 20
-cloud.png
-
-Cloud L
+Plain/knight 3.png
+knight 3 L
 30
 30
-cloud.png
-
-Golden Dragon S
+Plain/knight 3.png
+light blue book S
 10
 10
-gold dragon.png
-
-Golden Dragon M
+Plain/light blue book.png
+light blue book M
 20
 20
-gold dragon.png
-
-Golden Dragon L
+Plain/light blue book.png
+light blue book L
 30
 30
-gold dragon.png
-
-Black Dragon S
+Plain/light blue book.png
+marble tile S
 10
 10
-black dragon.png
-
-Black Dragon M
+Plain/marble tile.png
+marble tile M
 20
 20
-black dragon.png
-
-Black Dragon L
+Plain/marble tile.png
+marble tile L
 30
 30
-black dragon.png
-
-Red Dragon S
+Plain/marble tile.png
+orange S
 10
 10
-red dragon.png
-
-Red Dragon M
+Plain/orange.png
+orange M
 20
 20
-red dragon.png
-
-Red Dragon L
+Plain/orange.png
+orange L
 30
 30
-red dragon.png
-
-Gargoyal 1 S
+Plain/orange.png
+painting S
 10
 10
-gargoyal 1.png
-
-Gargoyal 1 M
+Plain/painting.png
+painting M
 20
 20
-gargoyal 1.png
-
-Gargoyal 1 L
+Plain/painting.png
+painting L
 30
 30
-gargoyal 1.png
-
-Gargoyal 2 S
+Plain/painting.png
+potted_plant S
 10
 10
-gargoyal 2.png
-
-Gargoyal 2 M
+Plain/potted_plant.png
+potted_plant M
 20
 20
-gargoyal 2.png
-
-Gargoyal 2 L
+Plain/potted_plant.png
+potted_plant L
 30
 30
-gargoyal 2.png
-
-# SWAMP ATTRIBUTES #
-
-# MUD DECORATION ATTRIBUTES # 
-Mud Hut S
+Plain/potted_plant.png
+red book S
 10
 10
-mud hut.png
-
-Mud Hut M
+Plain/red book.png
+red book M
 20
 20
-mud hut.png
-
-Mud Hut L
+Plain/red book.png
+red book L
 30
 30
-mud hut.png
+Plain/red book.png
+red brick tile S
+10
+10
+Plain/red brick tile.png
+red brick tile M
+20
+20
+Plain/red brick tile.png
+red brick tile L
+30
+30
+Plain/red brick tile.png
+red rock tile S
+10
+10
+Plain/red rock tile.png
+red rock tile M
+20
+20
+Plain/red rock tile.png
+red rock tile L
+30
+30
+Plain/red rock tile.png
+rock 1 S
+10
+10
+Plain/rock 1.png
+rock 1 M
+20
+20
+Plain/rock 1.png
+rock 1 L
+30
+30
+Plain/rock 1.png
+rock 2 S
+10
+10
+Plain/rock 2.png
+rock 2 M
+20
+20
+Plain/rock 2.png
+rock 2 L
+30
+30
+Plain/rock 2.png
+rock 3 S
+10
+10
+Plain/rock 3.png
+rock 3 M
+20
+20
+Plain/rock 3.png
+rock 3 L
+30
+30
+Plain/rock 3.png
+rock 4 S
+10
+10
+Plain/rock 4.png
+rock 4 M
+20
+20
+Plain/rock 4.png
+rock 4 L
+30
+30
+Plain/rock 4.png
+rocket S
+10
+10
+Plain/rocket.png
+rocket M
+20
+20
+Plain/rocket.png
+rocket L
+30
+30
+Plain/rocket.png
+rocky tile S
+10
+10
+Plain/rocky tile.png
+rocky tile M
+20
+20
+Plain/rocky tile.png
+rocky tile L
+30
+30
+Plain/rocky tile.png
+sandstone tile 1 S
+10
+10
+Plain/sandstone tile 1.png
+sandstone tile 1 M
+20
+20
+Plain/sandstone tile 1.png
+sandstone tile 1 L
+30
+30
+Plain/sandstone tile 1.png
+sandstone tile 2 S
+10
+10
+Plain/sandstone tile 2.png
+sandstone tile 2 M
+20
+20
+Plain/sandstone tile 2.png
+sandstone tile 2 L
+30
+30
+Plain/sandstone tile 2.png
+shovel S
+10
+10
+Plain/shovel.png
+shovel M
+20
+20
+Plain/shovel.png
+shovel L
+30
+30
+Plain/shovel.png
+sign S
+10
+10
+Plain/sign.png
+sign M
+20
+20
+Plain/sign.png
+sign L
+30
+30
+Plain/sign.png
+silver brick tile S
+10
+10
+Plain/silver brick tile.png
+silver brick tile M
+20
+20
+Plain/silver brick tile.png
+silver brick tile L
+30
+30
+Plain/silver brick tile.png
+slime tile S
+10
+10
+Plain/slime tile.png
+slime tile M
+20
+20
+Plain/slime tile.png
+slime tile L
+30
+30
+Plain/slime tile.png
+soccer ball S
+10
+10
+Plain/soccer ball.png
+soccer ball M
+20
+20
+Plain/soccer ball.png
+soccer ball L
+30
+30
+Plain/soccer ball.png
+stone brick tile S
+10
+10
+Plain/stone brick tile.png
+stone brick tile M
+20
+20
+Plain/stone brick tile.png
+stone brick tile L
+30
+30
+Plain/stone brick tile.png
+stone brown tile S
+10
+10
+Plain/stone brown tile.png
+stone brown tile M
+20
+20
+Plain/stone brown tile.png
+stone brown tile L
+30
+30
+Plain/stone brown tile.png
+stone gray tile S
+10
+10
+Plain/stone gray tile.png
+stone gray tile M
+20
+20
+Plain/stone gray tile.png
+stone gray tile L
+30
+30
+Plain/stone gray tile.png
+tree 1 S
+10
+10
+Plain/tree 1.png
+tree 1 M
+20
+20
+Plain/tree 1.png
+tree 1 L
+30
+30
+Plain/tree 1.png
+tree 2 S
+10
+10
+Plain/tree 2.png
+tree 2 M
+20
+20
+Plain/tree 2.png
+tree 2 L
+30
+30
+Plain/tree 2.png
+tree 3 S
+10
+10
+Plain/tree 3.png
+tree 3 M
+20
+20
+Plain/tree 3.png
+tree 3 L
+30
+30
+Plain/tree 3.png
+wizard 1 S
+10
+10
+Plain/wizard 1.png
+wizard 1 M
+20
+20
+Plain/wizard 1.png
+wizard 1 L
+30
+30
+Plain/wizard 1.png
+wizard 2 S
+10
+10
+Plain/wizard 2.png
+wizard 2 M
+20
+20
+Plain/wizard 2.png
+wizard 2 L
+30
+30
+Plain/wizard 2.png
+wizard 3 S
+10
+10
+Plain/wizard 3.png
+wizard 3 M
+20
+20
+Plain/wizard 3.png
+wizard 3 L
+30
+30
+Plain/wizard 3.png
+################### END PLAIN ###################
 
-# ENEMY END LOCATION ATTRIBUTES # 
+################### START SKY BLUE ###################
+cloud S
+10
+10
+Sky Blue/cloud.png
+cloud M
+20
+20
+Sky Blue/cloud.png
+cloud L
+30
+30
+Sky Blue/cloud.png
+################### END SKY BLUE ###################
+
+################### START GLACIER ###################
+Crystal S
+10
+10
+Glacier/Crystal.png
+Crystal M
+20
+20
+Glacier/Crystal.png
+Crystal L
+30
+30
+Glacier/Crystal.png
+Igloo S
+10
+10
+Glacier/Igloo.png
+Igloo M
+20
+20
+Glacier/Igloo.png
+Igloo L
+30
+30
+Glacier/Igloo.png
+penguin S
+10
+10
+Glacier/penguin.png
+penguin M
+20
+20
+Glacier/penguin.png
+penguin L
+30
+30
+Glacier/penguin.png
+Snow man S
+10
+10
+Glacier/Snow man.png
+Snow man M
+20
+20
+Glacier/Snow man.png
+Snow man L
+30
+30
+Glacier/Snow man.png
+Snow Tree S
+10
+10
+Glacier/Snow Tree.png
+Snow Tree M
+20
+20
+Glacier/Snow Tree.png
+Snow Tree L
+30
+30
+Glacier/Snow Tree.png
+Stone S
+10
+10
+Glacier/Stone.png
+Stone M
+20
+20
+Glacier/Stone.png
+Stone L
+30
+30
+Glacier/Stone.png
+################### END GLACIER ###################
+
+################### START GRASS ###################
+bear S
+10
+10
+Grass/bear.png
+bear M
+20
+20
+Grass/bear.png
+bear L
+30
+30
+Grass/bear.png
+bomb S
+10
+10
+Grass/bomb.png
+bomb M
+20
+20
+Grass/bomb.png
+bomb L
+30
+30
+Grass/bomb.png
+cactus S
+10
+10
+Grass/cactus.png
+cactus M
+20
+20
+Grass/cactus.png
+cactus L
+30
+30
+Grass/cactus.png
+flagBlue S
+10
+10
+Grass/flagBlue.png
+flagBlue M
+20
+20
+Grass/flagBlue.png
+flagBlue L
+30
+30
+Grass/flagBlue.png
+flagGreen2 S
+10
+10
+Grass/flagGreen2.png
+flagGreen2 M
+20
+20
+Grass/flagGreen2.png
+flagGreen2 L
+30
+30
+Grass/flagGreen2.png
+flagYellow S
+10
+10
+Grass/flagYellow.png
+flagYellow M
+20
+20
+Grass/flagYellow.png
+flagYellow L
+30
+30
+Grass/flagYellow.png
+fox S
+10
+10
+Grass/fox.png
+fox M
+20
+20
+Grass/fox.png
+fox L
+30
+30
+Grass/fox.png
+gopher S
+10
+10
+Grass/gopher.png
+gopher M
+20
+20
+Grass/gopher.png
+gopher L
+30
+30
+Grass/gopher.png
+leprechaun S
+10
+10
+Grass/leprechaun.png
+leprechaun M
+20
+20
+Grass/leprechaun.png
+leprechaun L
+30
+30
+Grass/leprechaun.png
+monkey S
+10
+10
+Grass/monkey.png
+monkey M
+20
+20
+Grass/monkey.png
+monkey L
+30
+30
+Grass/monkey.png
+mushroom S
+10
+10
+Grass/mushroom.png
+mushroom M
+20
+20
+Grass/mushroom.png
+mushroom L
+30
+30
+Grass/mushroom.png
+unicorn S
+10
+10
+Grass/unicorn.png
+unicorn M
+20
+20
+Grass/unicorn.png
+unicorn L
+30
+30
+Grass/unicorn.png
+yak S
+10
+10
+Grass/yak.png
+yak M
+20
+20
+Grass/yak.png
+yak L
+30
+30
+Grass/yak.png
+zebra S
+10
+10
+Grass/zebra.png
+zebra M
+20
+20
+Grass/zebra.png
+zebra L
+30
+30
+Grass/zebra.png
+################### END GRASS ###################
+
+################### START SAND ###################
+cannon S
+10
+10
+Sand/cannon.png
+cannon M
+20
+20
+Sand/cannon.png
+cannon L
+30
+30
+Sand/cannon.png
+compass S
+10
+10
+Sand/compass.png
+compass M
+20
+20
+Sand/compass.png
+compass L
+30
+30
+Sand/compass.png
+flag S
+10
+10
+Sand/flag.png
+flag M
+20
+20
+Sand/flag.png
+flag L
+30
+30
+Sand/flag.png
+jellyfish S
+10
+10
+Sand/jellyfish.png
+jellyfish M
+20
+20
+Sand/jellyfish.png
+jellyfish L
+30
+30
+Sand/jellyfish.png
+palm tree S
+10
+10
+Sand/palm tree.png
+palm tree M
+20
+20
+Sand/palm tree.png
+palm tree L
+30
+30
+Sand/palm tree.png
+pirate ship 1 S
+10
+10
+Sand/pirate ship 1.png
+pirate ship 1 M
+20
+20
+Sand/pirate ship 1.png
+pirate ship 1 L
+30
+30
+Sand/pirate ship 1.png
+pirate ship 2 S
+10
+10
+Sand/pirate ship 2.png
+pirate ship 2 M
+20
+20
+Sand/pirate ship 2.png
+pirate ship 2 L
+30
+30
+Sand/pirate ship 2.png
+pirate ship 3 S
+10
+10
+Sand/pirate ship 3.png
+pirate ship 3 M
+20
+20
+Sand/pirate ship 3.png
+pirate ship 3 L
+30
+30
+Sand/pirate ship 3.png
+sword S
+10
+10
+Sand/sword.png
+sword M
+20
+20
+Sand/sword.png
+sword L
+30
+30
+Sand/sword.png
+treasure chest closed S
+10
+10
+Sand/treasure chest closed.png
+treasure chest closed M
+20
+20
+Sand/treasure chest closed.png
+treasure chest closed L
+30
+30
+Sand/treasure chest closed.png
+treasure chest open S
+10
+10
+Sand/treasure chest open.png
+treasure chest open M
+20
+20
+Sand/treasure chest open.png
+treasure chest open L
+30
+30
+Sand/treasure chest open.png
+turtle S
+10
+10
+Sand/turtle.png
+turtle M
+20
+20
+Sand/turtle.png
+turtle L
+30
+30
+Sand/turtle.png
+waves S
+10
+10
+Sand/waves.png
+waves M
+20
+20
+Sand/waves.png
+waves L
+30
+30
+Sand/waves.png
+wine bottle S
+10
+10
+Sand/wine bottle.png
+wine bottle M
+20
+20
+Sand/wine bottle.png
+wine bottle L
+30
+30
+Sand/wine bottle.png
+################### END SAND ###################
+
+################### START STORM GRAY ###################
+abyssal stair S
+10
+10
+Storm Gray/abyssal stair.png
+abyssal stair M
+20
+20
+Storm Gray/abyssal stair.png
+abyssal stair L
+30
+30
+Storm Gray/abyssal stair.png
+blood 1 S
+10
+10
+Storm Gray/blood 1.png
+blood 1 M
+20
+20
+Storm Gray/blood 1.png
+blood 1 L
+30
+30
+Storm Gray/blood 1.png
+blood 2 S
+10
+10
+Storm Gray/blood 2.png
+blood 2 M
+20
+20
+Storm Gray/blood 2.png
+blood 2 L
+30
+30
+Storm Gray/blood 2.png
+blood 3 S
+10
+10
+Storm Gray/blood 3.png
+blood 3 M
+20
+20
+Storm Gray/blood 3.png
+blood 3 L
+30
+30
+Storm Gray/blood 3.png
+blood 4 S
+10
+10
+Storm Gray/blood 4.png
+blood 4 M
+20
+20
+Storm Gray/blood 4.png
+blood 4 L
+30
+30
+Storm Gray/blood 4.png
+blood fountain S
+10
+10
+Storm Gray/blood fountain.png
+blood fountain M
+20
+20
+Storm Gray/blood fountain.png
+blood fountain L
+30
+30
+Storm Gray/blood fountain.png
+dry fountain S
+10
+10
+Storm Gray/dry fountain.png
+dry fountain M
+20
+20
+Storm Gray/dry fountain.png
+dry fountain L
+30
+30
+Storm Gray/dry fountain.png
+hell gate S
+10
+10
+Storm Gray/hell gate.png
+hell gate M
+20
+20
+Storm Gray/hell gate.png
+hell gate L
+30
+30
+Storm Gray/hell gate.png
+missile 1 S
+10
+10
+Storm Gray/missile 1.png
+missile 1 M
+20
+20
+Storm Gray/missile 1.png
+missile 1 L
+30
+30
+Storm Gray/missile 1.png
+missile 2 S
+10
+10
+Storm Gray/missile 2.png
+missile 2 M
+20
+20
+Storm Gray/missile 2.png
+missile 2 L
+30
+30
+Storm Gray/missile 2.png
+missile 3 S
+10
+10
+Storm Gray/missile 3.png
+missile 3 M
+20
+20
+Storm Gray/missile 3.png
+missile 3 L
+30
+30
+Storm Gray/missile 3.png
+portal S
+10
+10
+Storm Gray/portal.png
+portal M
+20
+20
+Storm Gray/portal.png
+portal L
+30
+30
+Storm Gray/portal.png
+satellite 1 S
+10
+10
+Storm Gray/satellite 1.png
+satellite 1 M
+20
+20
+Storm Gray/satellite 1.png
+satellite 1 L
+30
+30
+Storm Gray/satellite 1.png
+satellite 2 S
+10
+10
+Storm Gray/satellite 2.png
+satellite 2 M
+20
+20
+Storm Gray/satellite 2.png
+satellite 2 L
+30
+30
+Storm Gray/satellite 2.png
+snake lair S
+10
+10
+Storm Gray/snake lair.png
+snake lair M
+20
+20
+Storm Gray/snake lair.png
+snake lair L
+30
+30
+Storm Gray/snake lair.png
+spaceship 1 S
+10
+10
+Storm Gray/spaceship 1.png
+spaceship 1 M
+20
+20
+Storm Gray/spaceship 1.png
+spaceship 1 L
+30
+30
+Storm Gray/spaceship 1.png
+spaceship 2 S
+10
+10
+Storm Gray/spaceship 2.png
+spaceship 2 M
+20
+20
+Storm Gray/spaceship 2.png
+spaceship 2 L
+30
+30
+Storm Gray/spaceship 2.png
+spaceship 3 S
+10
+10
+Storm Gray/spaceship 3.png
+spaceship 3 M
+20
+20
+Storm Gray/spaceship 3.png
+spaceship 3 L
+30
+30
+Storm Gray/spaceship 3.png
+spaceship 4 S
+10
+10
+Storm Gray/spaceship 4.png
+spaceship 4 M
+20
+20
+Storm Gray/spaceship 4.png
+spaceship 4 L
+30
+30
+Storm Gray/spaceship 4.png
+spaceship 5 S
+10
+10
+Storm Gray/spaceship 5.png
+spaceship 5 M
+20
+20
+Storm Gray/spaceship 5.png
+spaceship 5 L
+30
+30
+Storm Gray/spaceship 5.png
+spaceship 6 S
+10
+10
+Storm Gray/spaceship 6.png
+spaceship 6 M
+20
+20
+Storm Gray/spaceship 6.png
+spaceship 6 L
+30
+30
+Storm Gray/spaceship 6.png
+sparkling fountain S
+10
+10
+Storm Gray/sparkling fountain.png
+sparkling fountain M
+20
+20
+Storm Gray/sparkling fountain.png
+sparkling fountain L
+30
+30
+Storm Gray/sparkling fountain.png
+spider lair S
+10
+10
+Storm Gray/spider lair.png
+spider lair M
+20
+20
+Storm Gray/spider lair.png
+spider lair L
+30
+30
+Storm Gray/spider lair.png
+statue cat S
+10
+10
+Storm Gray/statue cat.png
+statue cat M
+20
+20
+Storm Gray/statue cat.png
+statue cat L
+30
+30
+Storm Gray/statue cat.png
+statue centaur S
+10
+10
+Storm Gray/statue centaur.png
+statue centaur M
+20
+20
+Storm Gray/statue centaur.png
+statue centaur L
+30
+30
+Storm Gray/statue centaur.png
+statue dwarf S
+10
+10
+Storm Gray/statue dwarf.png
+statue dwarf M
+20
+20
+Storm Gray/statue dwarf.png
+statue dwarf L
+30
+30
+Storm Gray/statue dwarf.png
+statue elephant S
+10
+10
+Storm Gray/statue elephant.png
+statue elephant M
+20
+20
+Storm Gray/statue elephant.png
+statue elephant L
+30
+30
+Storm Gray/statue elephant.png
+statue hydra S
+10
+10
+Storm Gray/statue hydra.png
+statue hydra M
+20
+20
+Storm Gray/statue hydra.png
+statue hydra L
+30
+30
+Storm Gray/statue hydra.png
+statue imp S
+10
+10
+Storm Gray/statue imp.png
+statue imp M
+20
+20
+Storm Gray/statue imp.png
+statue imp L
+30
+30
+Storm Gray/statue imp.png
+statue iron S
+10
+10
+Storm Gray/statue iron.png
+statue iron M
+20
+20
+Storm Gray/statue iron.png
+statue iron L
+30
+30
+Storm Gray/statue iron.png
+statue mermaid S
+10
+10
+Storm Gray/statue mermaid.png
+statue mermaid M
+20
+20
+Storm Gray/statue mermaid.png
+statue mermaid L
+30
+30
+Storm Gray/statue mermaid.png
+statue naga S
+10
+10
+Storm Gray/statue naga.png
+statue naga M
+20
+20
+Storm Gray/statue naga.png
+statue naga L
+30
+30
+Storm Gray/statue naga.png
+statue orb guardian S
+10
+10
+Storm Gray/statue orb guardian.png
+statue orb guardian M
+20
+20
+Storm Gray/statue orb guardian.png
+statue orb guardian L
+30
+30
+Storm Gray/statue orb guardian.png
+statue orb S
+10
+10
+Storm Gray/statue orb.png
+statue orb M
+20
+20
+Storm Gray/statue orb.png
+statue orb L
+30
+30
+Storm Gray/statue orb.png
+statue princess S
+10
+10
+Storm Gray/statue princess.png
+statue princess M
+20
+20
+Storm Gray/statue princess.png
+statue princess L
+30
+30
+Storm Gray/statue princess.png
+statue sigmund S
+10
+10
+Storm Gray/statue sigmund.png
+statue sigmund M
+20
+20
+Storm Gray/statue sigmund.png
+statue sigmund L
+30
+30
+Storm Gray/statue sigmund.png
+statue snail S
+10
+10
+Storm Gray/statue snail.png
+statue snail M
+20
+20
+Storm Gray/statue snail.png
+statue snail L
+30
+30
+Storm Gray/statue snail.png
+statue sword S
+10
+10
+Storm Gray/statue sword.png
+statue sword M
+20
+20
+Storm Gray/statue sword.png
+statue sword L
+30
+30
+Storm Gray/statue sword.png
+statue tengu S
+10
+10
+Storm Gray/statue tengu.png
+statue tengu M
+20
+20
+Storm Gray/statue tengu.png
+statue tengu L
+30
+30
+Storm Gray/statue tengu.png
+statue triangle S
+10
+10
+Storm Gray/statue triangle.png
+statue triangle M
+20
+20
+Storm Gray/statue triangle.png
+statue triangle L
+30
+30
+Storm Gray/statue triangle.png
+statue twins S
+10
+10
+Storm Gray/statue twins.png
+statue twins M
+20
+20
+Storm Gray/statue twins.png
+statue twins L
+30
+30
+Storm Gray/statue twins.png
+statue wraith S
+10
+10
+Storm Gray/statue wraith.png
+statue wraith M
+20
+20
+Storm Gray/statue wraith.png
+statue wraith L
+30
+30
+Storm Gray/statue wraith.png
+stone arch S
+10
+10
+Storm Gray/stone arch.png
+stone arch M
+20
+20
+Storm Gray/stone arch.png
+stone arch L
+30
+30
+Storm Gray/stone arch.png
+torch S
+10
+10
+Storm Gray/torch.png
+torch M
+20
+20
+Storm Gray/torch.png
+torch L
+30
+30
+Storm Gray/torch.png
+################### END STORM GRAY ###################
+
+################### START SWAMP ###################
+centaur S
+10
+10
+Swamp/centaur.png
+centaur M
+20
+20
+Swamp/centaur.png
+centaur L
+30
+30
+Swamp/centaur.png
+deep troll S
+10
+10
+Swamp/deep troll.png
+deep troll M
+20
+20
+Swamp/deep troll.png
+deep troll L
+30
+30
+Swamp/deep troll.png
+ettin S
+10
+10
+Swamp/ettin.png
+ettin M
+20
+20
+Swamp/ettin.png
+ettin L
+30
+30
+Swamp/ettin.png
+golden dragon S
+10
+10
+Swamp/golden dragon.png
+golden dragon M
+20
+20
+Swamp/golden dragon.png
+golden dragon L
+30
+30
+Swamp/golden dragon.png
+juggernaut S
+10
+10
+Swamp/juggernaut.png
+juggernaut M
+20
+20
+Swamp/juggernaut.png
+juggernaut L
+30
+30
+Swamp/juggernaut.png
+minotaur S
+10
+10
+Swamp/minotaur.png
+minotaur M
+20
+20
+Swamp/minotaur.png
+minotaur L
+30
+30
+Swamp/minotaur.png
+mold S
+10
+10
+Swamp/mold.png
+mold M
+20
+20
+Swamp/mold.png
+mold L
+30
+30
+Swamp/mold.png
+naga S
+10
+10
+Swamp/naga.png
+naga M
+20
+20
+Swamp/naga.png
+naga L
+30
+30
+Swamp/naga.png
+spider S
+10
+10
+Swamp/spider.png
+spider M
+20
+20
+Swamp/spider.png
+spider L
+30
+30
+Swamp/spider.png
+thing S
+10
+10
+Swamp/thing.png
+thing M
+20
+20
+Swamp/thing.png
+thing L
+30
+30
+Swamp/thing.png
+################### END SWAMP ###################
+
+################### START MUD ###################
+
+################### END MUD ###################
+
+################### ENEMY END LOCATION ATTRIBUTES ###################
 enemyEndLocation
 10
 10

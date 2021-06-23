@@ -1,3 +1,18 @@
-Penguin S
-Penguin M
-Penguin L
+Crystal S
+Crystal M
+Crystal L
+Igloo S
+Igloo M
+Igloo L
+penguin S
+penguin M
+penguin L
+Snow man S
+Snow man M
+Snow man L
+Snow Tree S
+Snow Tree M
+Snow Tree L
+Stone S
+Stone M
+Stone L

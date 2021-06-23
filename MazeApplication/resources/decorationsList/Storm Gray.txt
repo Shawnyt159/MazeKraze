@@ -1,27 +1,132 @@
-Pegasus S
-Pegasus M
-Pegasus L
-Zeus S
-Zeus M
-Zeus L
-Lightning Bolt S
-Lightning Bolt M
-Lightning Bolt L
-Cloud S
-Cloud M
-Cloud L
-Golden Dragon S
-Golden Dragon M
-Golden Dragon L
-Black Dragon S
-Black Dragon M
-Black Dragon L
-Red Dragon S
-Red Dragon M
-Red Dragon L
-Gargoyal 1 S
-Gargoyal 1 M
-Gargoyal 1 L
-Gargoyal 2 S
-Gargoyal 2 M
-Gargoyal 2 L
+abyssal stair S
+abyssal stair M
+abyssal stair L
+blood 1 S
+blood 1 M
+blood 1 L
+blood 2 S
+blood 2 M
+blood 2 L
+blood 3 S
+blood 3 M
+blood 3 L
+blood 4 S
+blood 4 M
+blood 4 L
+blood fountain S
+blood fountain M
+blood fountain L
+dry fountain S
+dry fountain M
+dry fountain L
+hell gate S
+hell gate M
+hell gate L
+missile 1 S
+missile 1 M
+missile 1 L
+missile 2 S
+missile 2 M
+missile 2 L
+missile 3 S
+missile 3 M
+missile 3 L
+portal S
+portal M
+portal L
+satellite 1 S
+satellite 1 M
+satellite 1 L
+satellite 2 S
+satellite 2 M
+satellite 2 L
+snake lair S
+snake lair M
+snake lair L
+spaceship 1 S
+spaceship 1 M
+spaceship 1 L
+spaceship 2 S
+spaceship 2 M
+spaceship 2 L
+spaceship 3 S
+spaceship 3 M
+spaceship 3 L
+spaceship 4 S
+spaceship 4 M
+spaceship 4 L
+spaceship 5 S
+spaceship 5 M
+spaceship 5 L
+spaceship 6 S
+spaceship 6 M
+spaceship 6 L
+sparkling fountain S
+sparkling fountain M
+sparkling fountain L
+spider lair S
+spider lair M
+spider lair L
+statue cat S
+statue cat M
+statue cat L
+statue centaur S
+statue centaur M
+statue centaur L
+statue dwarf S
+statue dwarf M
+statue dwarf L
+statue elephant S
+statue elephant M
+statue elephant L
+statue hydra S
+statue hydra M
+statue hydra L
+statue imp S
+statue imp M
+statue imp L
+statue iron S
+statue iron M
+statue iron L
+statue mermaid S
+statue mermaid M
+statue mermaid L
+statue naga S
+statue naga M
+statue naga L
+statue orb guardian S
+statue orb guardian M
+statue orb guardian L
+statue orb S
+statue orb M
+statue orb L
+statue princess S
+statue princess M
+statue princess L
+statue sigmund S
+statue sigmund M
+statue sigmund L
+statue snail S
+statue snail M
+statue snail L
+statue sword S
+statue sword M
+statue sword L
+statue tengu S
+statue tengu M
+statue tengu L
+statue triangle S
+statue triangle M
+statue triangle L
+statue twins S
+statue twins M
+statue twins L
+statue wraith S
+statue wraith M
+statue wraith L
+stone arch S
+stone arch M
+stone arch L
+torch S
+torch M
+torch L

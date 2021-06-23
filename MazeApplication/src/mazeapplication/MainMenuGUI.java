@@ -26,7 +26,7 @@ public class MainMenuGUI {
 	private SetImageToLabel images = new SetImageToLabel();
 	private JTextField instagramField;
 	private JTextField websiteAddress;
-	//private UpdatesAndNews updatesAndNews = new UpdatesAndNews();
+	private UpdatesAndNews updatesAndNews = new UpdatesAndNews();
 	
 	/**
 	 * Launch the application.
@@ -48,13 +48,14 @@ public class MainMenuGUI {
 	 * Create the application.
 	 */
 	public MainMenuGUI() {
-		initialize();
+		String updates = updatesAndNews.getUpdates();
+		initialize(updates);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(String updates) {
 		frmMazekraze = new JFrame();
 		frmMazekraze.setIconImage(Toolkit.getDefaultToolkit().getImage(MainMenuGUI.class.getResource("/images/logo.png")));
 		frmMazekraze.setTitle("MazeKraze");
@@ -71,7 +72,7 @@ public class MainMenuGUI {
 		mainPanel.setLayout(null);
 		
 		JPanel informationPanel = new JPanel();
-		informationPanel.setBounds(7, 196, 702, 165);
+		informationPanel.setBounds(7, 196, 702, 205);
 		mainPanel.add(informationPanel);
 		informationPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		informationPanel.setBackground(new Color(255, 215, 0));
@@ -144,6 +145,13 @@ public class MainMenuGUI {
 		separator_2.setBackground(new Color(0, 0, 0));
 		separator_2.setBounds(382, 127, 310, 2);
 		informationPanel.add(separator_2);
+		
+		JLabel updatesLabel = new JLabel("");
+		updatesLabel.setForeground(new Color(220, 20, 60));
+		updatesLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		updatesLabel.setBounds(10, 160, 682, 35);
+		updatesLabel.setText(updates);
+		informationPanel.add(updatesLabel);
 		
 		JPanel modeButtonPanel = new JPanel();
 		modeButtonPanel.setOpaque(false);

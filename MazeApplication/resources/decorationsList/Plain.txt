@@ -1,6 +1,135 @@
-Tree S
-Tree M
-Tree L
-Fire S
-Fire M
-Fire L
+apple S
+apple M
+apple L
+backpack S
+backpack M
+backpack L
+balloon green S
+balloon green M
+balloon green L
+balloon red S
+balloon red M
+balloon red L
+balloon yellow S
+balloon yellow M
+balloon yellow L
+blue book S
+blue book M
+blue book L
+brown brick tile S
+brown brick tile M
+brown brick tile L
+bush S
+bush M
+bush L
+cloth book S
+cloth book M
+cloth book L
+crystal tile S
+crystal tile M
+crystal tile L
+hell tile S
+hell tile M
+hell tile L
+key S
+key M
+key L
+knight 1 S
+knight 1 M
+knight 1 L
+knight 2 S
+knight 2 M
+knight 2 L
+knight 3 S
+knight 3 M
+knight 3 L
+light blue book S
+light blue book M
+light blue book L
+marble tile S
+marble tile M
+marble tile L
+orange S
+orange M
+orange L
+painting S
+painting M
+painting L
+potted_plant S
+potted_plant M
+potted_plant L
+red book S
+red book M
+red book L
+red brick tile S
+red brick tile M
+red brick tile L
+red rock tile S
+red rock tile M
+red rock tile L
+rock 1 S
+rock 1 M
+rock 1 L
+rock 2 S
+rock 2 M
+rock 2 L
+rock 3 S
+rock 3 M
+rock 3 L
+rock 4 S
+rock 4 M
+rock 4 L
+rocket S
+rocket M
+rocket L
+rocky tile S
+rocky tile M
+rocky tile L
+sandstone tile 1 S
+sandstone tile 1 M
+sandstone tile 1 L
+sandstone tile 2 S
+sandstone tile 2 M
+sandstone tile 2 L
+shovel S
+shovel M
+shovel L
+sign S
+sign M
+sign L
+silver brick tile S
+silver brick tile M
+silver brick tile L
+slime tile S
+slime tile M
+slime tile L
+soccer ball S
+soccer ball M
+soccer ball L
+stone brick tile S
+stone brick tile M
+stone brick tile L
+stone brown tile S
+stone brown tile M
+stone brown tile L
+stone gray tile S
+stone gray tile M
+stone gray tile L
+tree 1 S
+tree 1 M
+tree 1 L
+tree 2 S
+tree 2 M
+tree 2 L
+tree 3 S
+tree 3 M
+tree 3 L
+wizard 1 S
+wizard 1 M
+wizard 1 L
+wizard 2 S
+wizard 2 M
+wizard 2 L
+wizard 3 S
+wizard 3 M
+wizard 3 L

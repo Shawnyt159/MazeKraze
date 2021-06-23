@@ -68,9 +68,16 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 	private static JButton stopMazeButton = null;
 
 	/*
-	 * selected: 0-9 1: start location 2: end location 3: free draw line 4: eraser
-	 * 5: horizontal line 6: vertical line 7: Enemies Option Panel 8: Add
-	 * Decorations 9: Delete Decorations
+	 * selected: 0-9 
+	 * 1: start location 
+	 * 2: end location 
+	 * 3: free draw line 
+	 * 4: eraser
+	 * 5: horizontal line 
+	 * 6: vertical line 
+	 * 7: Enemies Option Panel 
+	 * 8: Add Decorations 
+	 * 9: Delete Decorations
 	 */
 
 	private static int selected = 0;
@@ -341,6 +348,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		startLocationButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				pressedKeys.clear();
 				selected = startLocationSelected;
 				SetSelectedButtonForegroundAndRemoveDecorationDeletEffectsIfNotSelected(startLocationButton,
 						freeDrawButton, endLocationButton, eraserButton, verticalLineButton, horizontalLineButton,
@@ -494,8 +502,10 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 								mazeFramePressedKeys.remove(KeyEvent.VK_Z);
 							} else if (nextKey == KeyEvent.VK_S) {
 								if (loadedMazeFileLocation == null) {
+									RemoveBordersFromMazeComponents();
 									SaveMazeAs();
 								} else {
+									RemoveBordersFromMazeComponents();
 									SaveLoadedMaze();
 									JOptionPane.showMessageDialog(null, "Maze Saved");
 								}
@@ -584,7 +594,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		panel.setLayout(null);
 
 		JButton loadMazeButton = new JButton("Load Maze");
-		loadMazeButton.setBounds(143, 2, 179, 20);
+		loadMazeButton.setBounds(161, 2, 179, 20);
 		panel.add(loadMazeButton);
 		loadMazeButton.setBackground(new Color(255, 215, 0));
 		loadMazeButton.setToolTipText("Load a previously saved maze.");
@@ -592,7 +602,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		loadMazeButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
 
 		JButton saveMazeAsImageButton = new JButton("Save Maze As Image");
-		saveMazeAsImageButton.setBounds(329, 2, 179, 20);
+		saveMazeAsImageButton.setBounds(345, 2, 179, 20);
 		panel.add(saveMazeAsImageButton);
 		saveMazeAsImageButton.setBackground(new Color(255, 215, 0));
 		saveMazeAsImageButton.setToolTipText("Save the maze as a printable image");
@@ -600,7 +610,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		saveMazeAsImageButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
 
 		JButton saveMazeButton = new JButton("Save Maze");
-		saveMazeButton.setBounds(518, 2, 179, 20);
+		saveMazeButton.setBounds(529, 2, 179, 20);
 		panel.add(saveMazeButton);
 		saveMazeButton.setBackground(new Color(255, 215, 0));
 		saveMazeButton.setToolTipText("Save maze to send to your friends or for later use");
@@ -631,14 +641,19 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 										UndoStructure.Undo(mazePanel);
 										mazeFramePressedKeys.remove(KeyEvent.VK_Z);
 									} else if (nextKey == KeyEvent.VK_S) {
-										System.out.println(loadedMazeFileLocation);
 										if (loadedMazeFileLocation == null) {
+											RemoveBordersFromMazeComponents();
 											SaveMazeAs();
 										} else {
+											RemoveBordersFromMazeComponents();
 											SaveLoadedMaze();
 											JOptionPane.showMessageDialog(null, "Maze Saved");
 										}
 										mazeFramePressedKeys.remove(KeyEvent.VK_S);
+									}
+									else if (nextKey == KeyEvent.VK_R) {
+										RedoErasedLineStructure.Redo(mazePanel);
+										mazeFramePressedKeys.remove(KeyEvent.VK_R);
 									}
 								}
 							}
