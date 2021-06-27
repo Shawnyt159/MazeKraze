@@ -32,11 +32,8 @@ public class UpdatesAndNews {
 			sc.close();
 			return updates;
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("No Internet");
 		}
 		return null;
 	}

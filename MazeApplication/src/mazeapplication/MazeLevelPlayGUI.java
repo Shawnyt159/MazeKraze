@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.HashSet;
 import java.util.Iterator;
 import javax.swing.JFrame;
@@ -59,6 +61,51 @@ public class MazeLevelPlayGUI implements KeyListener{
 		frame.setLocation(dim.width / 2 - frame.getSize().width / 2, dim.height / 2 - frame.getSize().height / 2);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		frame.addWindowListener(new WindowListener() {
+
+			@Override
+			public void windowActivated(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowClosed(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				BackgroundMusic.PlayCorrectAudioContinuously(Color.black);
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowIconified(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
 		mazePanel = new levelPlayMazePanel();
 		mazePanel.setBounds(10, 10, 708, 648);
@@ -139,7 +186,8 @@ public class MazeLevelPlayGUI implements KeyListener{
 		playMusicButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				BackgroundMusic.Play();
+				BackgroundMusic.PlayCorrectAudioContinuously(mazePanel.getBackground());
+				BackgroundMusic.setPaused(false);
 			}
 		});
 		
@@ -147,6 +195,7 @@ public class MazeLevelPlayGUI implements KeyListener{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				BackgroundMusic.Pause();
+				BackgroundMusic.setPaused(true);
 			}
 		});
 		
@@ -201,11 +250,15 @@ public class MazeLevelPlayGUI implements KeyListener{
 		Color backgroundColor = LevelPlayLoadedMazeAttributes.getBackgroundColor();
 		if(backgroundColor == null) {
 			mazePanel.setBackground(Color.white);
-			BackgroundMusic.PlayCorrectAudioContinuously(Color.white);
+			if(BackgroundMusic.isPaused() == false) {
+				BackgroundMusic.PlayCorrectAudioContinuously(Color.white);
+			}
 		}
 		else {
 			mazePanel.setBackground(backgroundColor);
-			BackgroundMusic.PlayCorrectAudioContinuously(backgroundColor);
+			if(BackgroundMusic.isPaused() == false) {
+				BackgroundMusic.PlayCorrectAudioContinuously(backgroundColor);
+			}
 		}
 		if(LevelPlayLoadedMazeAttributes.getDecorationList() != null) {
 			Iterator<DecorationNode> iterator = LevelPlayLoadedMazeAttributes.getDecorationList().iterator();

@@ -15,6 +15,7 @@ public class BackgroundMusic {
 	private static AudioInputStream audioStream;
 	private static AudioFileRetriver audioRetriver = new AudioFileRetriver();
 	private static Clip clip;
+	private static boolean paused = false;
 	
 	public static void PlayCorrectAudioContinuously(Color backgroundColor) {
 		URL musicStream = audioRetriver.GetAudioFileAsResourceStream(backgroundColor);
@@ -59,5 +60,12 @@ public class BackgroundMusic {
 			clip.setFramePosition(0);
 			clip.start();
 		}
+	}
+	public static boolean isPaused() {
+		return paused;
+	}
+	
+	public static void setPaused(boolean isPaused) {
+		paused = isPaused;
 	}
 }

@@ -1,12 +1,12 @@
 package mazeapplication;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Dimension;
+
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -28,21 +28,21 @@ public class MainMenuGUI {
 	private JTextField websiteAddress;
 	private UpdatesAndNews updatesAndNews = new UpdatesAndNews();
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainMenuGUI window = new MainMenuGUI();
-					window.frmMazekraze.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	/**
+//	 * Launch the application.
+//	 */
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					MainMenuGUI window = new MainMenuGUI();
+//					window.frmMazekraze.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -72,7 +72,7 @@ public class MainMenuGUI {
 		mainPanel.setLayout(null);
 		
 		JPanel informationPanel = new JPanel();
-		informationPanel.setBounds(7, 196, 702, 205);
+		informationPanel.setBounds(7, 196, 702, 206);
 		mainPanel.add(informationPanel);
 		informationPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		informationPanel.setBackground(new Color(255, 215, 0));
@@ -86,7 +86,7 @@ public class MainMenuGUI {
 		
 		emailTextBox = new JTextField();
 		emailTextBox.setForeground(new Color(220, 20, 60));
-		emailTextBox.setBounds(10, 110, 307, 35);
+		emailTextBox.setBounds(10, 128, 307, 35);
 		informationPanel.add(emailTextBox);
 		emailTextBox.setBackground(new Color(255, 215, 0));
 		emailTextBox.setEditable(false);
@@ -94,8 +94,8 @@ public class MainMenuGUI {
 		emailTextBox.setText("mazekrazesubmit@gmail.com");
 		emailTextBox.setColumns(10);
 		
-		JLabel emailInformationlabel = new JLabel("<html>Email your completed mazes here for a chance to get them on the website!</html>");
-		emailInformationlabel.setBounds(10, 57, 307, 44);
+		JLabel emailInformationlabel = new JLabel("<html>Email your completed mazes here for a chance to get them on the website! Or if you have any questions/ issues!</html>");
+		emailInformationlabel.setBounds(10, 57, 307, 61);
 		informationPanel.add(emailInformationlabel);
 		emailInformationlabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		emailInformationlabel.setForeground(new Color(0, 0, 0));
@@ -150,7 +150,11 @@ public class MainMenuGUI {
 		updatesLabel.setForeground(new Color(220, 20, 60));
 		updatesLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		updatesLabel.setBounds(10, 160, 682, 35);
-		updatesLabel.setText(updates);
+		if(updates != null) {
+			updatesLabel.setText(updates);
+		}else {
+			updatesLabel.setText("Need Internet for Information.");
+		}
 		informationPanel.add(updatesLabel);
 		
 		JPanel modeButtonPanel = new JPanel();
@@ -249,5 +253,9 @@ public class MainMenuGUI {
 		else {
 			return freeDrawMazeGUI.mazeActive();
 		}
+	}
+	
+	public void setVisible(boolean visible) {
+		frmMazekraze.setVisible(visible);
 	}
 }

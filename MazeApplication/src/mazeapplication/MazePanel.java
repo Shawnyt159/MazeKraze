@@ -26,7 +26,6 @@ public class MazePanel extends JPanel{
 	private boolean eraserActive = false;
 	private int eraserThickness;
 	private Point eraserCoordinates;
-	
 	private boolean drawActive = false;
 	private int drawThickness;
 	private Point drawCoordinates;
@@ -57,7 +56,9 @@ public class MazePanel extends JPanel{
 			ListIterator<DecorationNode> iterator = (ListIterator<DecorationNode>) decorationList.iterator();
 			while(iterator.hasNext()) {
 				JLabel decorationLabel = iterator.next().getDecorationNode();
-				Point decorationLocation = decorationLabel.getLocation();
+				int xAddition = decorationLabel.getHeight()/2;
+				int yAddition = decorationLabel.getWidth()/2;
+				Point decorationLocation = new Point(decorationLabel.getX()+xAddition, decorationLabel.getY()+yAddition);
 				if(visibleAreaMap.contains(decorationLocation)) {
 					decorationLabel.setVisible(true);
 				}
@@ -82,15 +83,17 @@ public class MazePanel extends JPanel{
 			if(eraserActive == true) {
 				if(eraserCoordinates != null) {
 					g.setColor(Color.red);
-					((Graphics2D) g).setStroke(new BasicStroke(2));
+					((Graphics2D) g).setStroke(new BasicStroke(1));
 					g.drawRect((int) eraserCoordinates.getX()-((eraserThickness*2)/2), (int) eraserCoordinates.getY()-((eraserThickness*2)/2), eraserThickness*2, eraserThickness*2);
 				}
 			}
 			if(drawActive == true) {
 				if(drawCoordinates != null) {
 					g.setColor(Color.blue);
-					((Graphics2D) g).setStroke(new BasicStroke(2));
-					g.drawRect((int) drawCoordinates.getX()-(drawThickness/2), (int) drawCoordinates.getY()-(drawThickness/2), drawThickness, drawThickness);
+					((Graphics2D) g).setStroke(new BasicStroke(1));
+					int rectangleX = (int) (drawCoordinates.getX()-((drawThickness/2)));
+					int rectangleY = (int) (drawCoordinates.getY()-((drawThickness/2)));
+					g.drawRect(rectangleX, rectangleY, drawThickness, drawThickness);
 				}
 			}
 		}

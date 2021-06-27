@@ -45,7 +45,9 @@ public class levelPlayMazePanel extends JPanel{
 				ListIterator<DecorationNode> iterator = (ListIterator<DecorationNode>) decorationList.iterator();
 				while(iterator.hasNext()) {
 					JLabel decorationLabel = iterator.next().getDecorationNode();
-					Point decorationLocation = decorationLabel.getLocation();
+					int xAddition = decorationLabel.getHeight()/2;
+					int yAddition = decorationLabel.getWidth()/2;
+					Point decorationLocation = new Point(decorationLabel.getX()+xAddition, decorationLabel.getY()+yAddition);
 					if(visibleAreaMap.contains(decorationLocation)) {
 						decorationLabel.setVisible(true);
 					}

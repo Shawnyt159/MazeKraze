@@ -78,26 +78,33 @@ public class LevelMenu implements ActionListener{
 		theDudeMazeButton.setBounds(105, 64, 85, 21);
 		levelPanel.add(theDudeMazeButton);
 		
-		JButton castleMazeButton = new JButton("Castle");
-		castleMazeButton.setForeground(Color.BLACK);
-		castleMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		castleMazeButton.setBackground(new Color(127, 255, 0));
-		castleMazeButton.setBounds(200, 64, 85, 21);
-		levelPanel.add(castleMazeButton);
+		JButton chemistryMazeButton = new JButton("Chemistry");
+		chemistryMazeButton.setForeground(Color.BLACK);
+		chemistryMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		chemistryMazeButton.setBackground(new Color(127, 255, 0));
+		chemistryMazeButton.setBounds(200, 64, 85, 21);
+		levelPanel.add(chemistryMazeButton);
 		
 		JButton brickPathMazeButton = new JButton("Brick Path");
 		brickPathMazeButton.setForeground(Color.BLACK);
 		brickPathMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		brickPathMazeButton.setBackground(new Color(127, 255, 0));
-		brickPathMazeButton.setBounds(295, 63, 85, 21);
+		brickPathMazeButton.setBounds(295, 64, 85, 21);
 		levelPanel.add(brickPathMazeButton);
 		
 		JButton crystalMazeButton = new JButton("Crystal");
 		crystalMazeButton.setForeground(Color.BLACK);
 		crystalMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		crystalMazeButton.setBackground(new Color(127, 255, 0));
-		crystalMazeButton.setBounds(390, 63, 85, 21);
+		crystalMazeButton.setBounds(390, 64, 85, 21);
 		levelPanel.add(crystalMazeButton);
+		
+		JButton beachTimesMazeButton = new JButton("Beach Times");
+		beachTimesMazeButton.setForeground(Color.BLACK);
+		beachTimesMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		beachTimesMazeButton.setBackground(new Color(127, 255, 0));
+		beachTimesMazeButton.setBounds(10, 95, 85, 21);
+		levelPanel.add(beachTimesMazeButton);
 		
 		JLabel noviceMazesLabel = new JLabel("Novice Mazes:");
 		noviceMazesLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -117,34 +124,34 @@ public class LevelMenu implements ActionListener{
 		separator_1.setBounds(10, 168, 479, 2);
 		levelPanel.add(separator_1);
 		
-		JButton beachTimesMazeButton = new JButton("Beach Times");
-		beachTimesMazeButton.setBackground(new Color(64, 224, 208));
-		beachTimesMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		beachTimesMazeButton.setBounds(10, 180, 85, 21);
-		levelPanel.add(beachTimesMazeButton);
+		JButton castleMazeButton = new JButton("Castle");
+		castleMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		castleMazeButton.setBackground(new Color(64, 224, 208));
+		castleMazeButton.setBounds(10, 179, 85, 21);
+		levelPanel.add(castleMazeButton);
 		
-		JButton chemistryMazeButton = new JButton("Chemistry");
-		chemistryMazeButton.setBackground(new Color(64, 224, 208));
-		chemistryMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		chemistryMazeButton.setBounds(105, 180, 85, 21);
-		levelPanel.add(chemistryMazeButton);
+		JButton treasureMapMazeButton = new JButton("Treasure Map");
+		treasureMapMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		treasureMapMazeButton.setBackground(new Color(64, 224, 208));
+		treasureMapMazeButton.setBounds(105, 179, 85, 21);
+		levelPanel.add(treasureMapMazeButton);
 		
 		JButton circleMazeButton = new JButton("Circle");
 		circleMazeButton.setBackground(new Color(64, 224, 208));
 		circleMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		circleMazeButton.setBounds(200, 180, 85, 21);
+		circleMazeButton.setBounds(200, 179, 85, 21);
 		levelPanel.add(circleMazeButton);
 		
 		JButton boxedLinesMazeButton = new JButton("Box Lines");
 		boxedLinesMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		boxedLinesMazeButton.setBackground(new Color(64, 224, 208));
-		boxedLinesMazeButton.setBounds(295, 180, 85, 21);
+		boxedLinesMazeButton.setBounds(295, 179, 85, 21);
 		levelPanel.add(boxedLinesMazeButton);
 		
 		JButton grasslandMazeButton = new JButton("Grassland");
 		grasslandMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		grasslandMazeButton.setBackground(new Color(64, 224, 208));
-		grasslandMazeButton.setBounds(390, 180, 85, 21);
+		grasslandMazeButton.setBounds(390, 179, 85, 21);
 		levelPanel.add(grasslandMazeButton);
 		
 		JButton headacheMazeButton = new JButton("Headache");
@@ -153,16 +160,10 @@ public class LevelMenu implements ActionListener{
 		headacheMazeButton.setBounds(10, 211, 85, 21);
 		levelPanel.add(headacheMazeButton);
 		
-		JButton treasureMapMazeButton = new JButton("Treasure Map");
-		treasureMapMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		treasureMapMazeButton.setBackground(new Color(64, 224, 208));
-		treasureMapMazeButton.setBounds(105, 210, 85, 21);
-		levelPanel.add(treasureMapMazeButton);
-		
 		JButton littleYellowMazeButton = new JButton("Little Yellow");
 		littleYellowMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		littleYellowMazeButton.setBackground(new Color(64, 224, 208));
-		littleYellowMazeButton.setBounds(200, 211, 85, 21);
+		littleYellowMazeButton.setBounds(105, 211, 85, 21);
 		levelPanel.add(littleYellowMazeButton);
 		
 		JLabel mediumMazesLabel = new JLabel("Medium Mazes:");

@@ -23,23 +23,27 @@ public class AudioFileRetriver {
 		}
 		//Grass
 		else if(backgroundColor.equals(new Color(96,128,56))) {
-			return null;
+			URL musicStream = getClass().getResource("/music/Grass.wav");
+			return musicStream;
 		}
 		//Mud
 		else if(backgroundColor.equals(new Color(112,84,62))) {
-			return null;
+			URL musicStream = getClass().getResource("/music/Mud.wav");
+			return musicStream;
 		}
 		//Glacier
-		else if(backgroundColor.equals(new Color(120,177,189))) {
+		else if(backgroundColor.equals(new Color(120,177,199))) {
 			return null;
 		}
 		//Swamp
 		else if(backgroundColor.equals(new Color(160,192,144))) {
-			return null;
+			URL musicStream = getClass().getResource("/music/Swamp.wav");
+			return musicStream;
 		}
-		//Storm Grey
+		//Storm Gray
 		else if(backgroundColor.equals(new Color(211,211,211))) {
-			return null;
+			URL musicStream = getClass().getResource("/music/Storm Gray.wav");
+			return musicStream;
 		}
 		return null;
 	}

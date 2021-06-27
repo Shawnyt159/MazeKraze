@@ -1,15 +1,15 @@
 /images/smileyPizza.jpeg
 /images/theDude.jpeg
-/images/Castle.jpeg
+/images/chem maze.jpeg
 /images/Brick Path.jpg
 /images/Crystal.jpeg
 /images/beach day.jpeg
-/images/chem maze.jpeg
+/images/Castle.jpeg
+/images/Treasure Map.jpeg
 /images/circle.jpeg
 /images/boxedLines.jpeg
 /images/Grassland.jpg
 /images/Headache.jpeg
-/images/Treasure Map.jpeg
 /images/Little Yellow.jpeg
 /images/the grid.jpeg
 /images/theGridE.jpeg

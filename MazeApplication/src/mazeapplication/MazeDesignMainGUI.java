@@ -10,6 +10,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.BufferedReader;
 import java.io.EOFException;
 import java.io.IOException;
@@ -37,6 +39,9 @@ import java.awt.Component;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import java.awt.Font;
 import javax.swing.JRadioButton;
 
@@ -96,6 +101,8 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 	// Display for end coordinates.
 	private JLabel xAndyDisplayCoordinates;
 	private boolean mazeStarted = false;
+	//changesMade: for exit without saving feature. 
+	private boolean changesMade = false;
 
 	public MazeDesignMainGUI() {
 		initialize();
@@ -103,8 +110,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 
 	private void initialize() {
 		frame = new JFrame();
-		frame.setIconImage(
-				Toolkit.getDefaultToolkit().getImage(MazeDesignMainGUI.class.getResource("/images/logo.png")));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MazeDesignMainGUI.class.getResource("/images/logo.png")));
 		frame.getContentPane().setFocusable(false);
 		frame.setBounds(100, 100, 935, 730);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -113,6 +119,63 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().setBackground(new Color(0, 0, 128));
 		frame.setTitle("MazeKraze");
+		frame.addWindowListener(new WindowListener() {
+			boolean exit = false;
+			@Override
+			public void windowActivated(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowClosed(WindowEvent arg0) {
+				if(exit == false) {
+					frame.setVisible(true);
+				}
+				BackgroundMusic.PlayCorrectAudioContinuously(Color.black);
+			}
+
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				if(changesMade == true) {
+					int playerChoice = JOptionPane.showConfirmDialog(null, "Exit without saving?");
+					if(playerChoice == JOptionPane.YES_OPTION) {
+						exit = true;
+					}
+					else {
+						exit = false;
+					}
+				}
+				else {
+					exit = true;
+				}
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowIconified(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 
 		Border blackBorder = BorderFactory.createLineBorder(Color.black);
 
@@ -136,19 +199,28 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		freeDrawButton.setBounds(10, 68, 154, 20);
 		freeDrawButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
 
-		final int minLineThickness = 1;
+		final int minLineThickness = 2;
 		final int maxLineThickness = 10;
-		final int initialLineThickness = 5;
+		final int initialLineThickness = 4;
 		lineThicknessSlider = new JSlider(JSlider.HORIZONTAL, minLineThickness, maxLineThickness, initialLineThickness);
 		lineThicknessSlider.setFocusable(false);
 		lineThicknessSlider.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lineThicknessSlider.setBackground(new Color(255, 255, 224));
 		lineThicknessSlider.setToolTipText("Changes the thickness of the line you draw");
 		lineThicknessSlider.setBounds(10, 220, 154, 54);
-		lineThicknessSlider.setMajorTickSpacing(3);
-		lineThicknessSlider.setMinorTickSpacing(1);
+		lineThicknessSlider.setMajorTickSpacing(2);
 		lineThicknessSlider.setPaintTicks(true);
 		lineThicknessSlider.setPaintLabels(true);
+		lineThicknessSlider.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				if(lineThicknessSlider.getValue() % 2 != 0) {
+					lineThicknessSlider.setValue(lineThicknessSlider.getValue() + 1);
+				}
+				
+			}
+			
+		});
 
 		JLabel lineThicknessLabel = new JLabel("Line Thickness:");
 		lineThicknessLabel.setFocusable(false);
@@ -211,7 +283,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		JComboBox<String> backgroundColorComboBox = new JComboBox<String>();
 		backgroundColorComboBox.setBackground(new Color(255, 255, 255));
 		backgroundColorComboBox.setModel(new DefaultComboBoxModel<String>(
-				new String[] { "White", "Sky Blue", "Sand", "Grass", "Mud", "Glacier", "Swamp", "Storm Gray" }));
+				new String[] {"White", "Sky Blue", "Sand", "Grass", "Mud", "Glacier", "Swamp", "Storm Gray"}));
 		backgroundColorComboBox.setBounds(10, 360, 85, 21);
 		backgroundColorComboBox.setFocusable(false);
 		backgroundColorComboBox.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
@@ -415,9 +487,11 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 			public void actionPerformed(ActionEvent arg0) {
 				int index = backgroundColorComboBox.getSelectedIndex();
 				mazePanel.setBackground(backgroundColors[index]);
-				BackgroundMusic.PlayCorrectAudioContinuously(backgroundColors[index]);
+				if(BackgroundMusic.isPaused() == false) {
+					BackgroundMusic.PlayCorrectAudioContinuously(backgroundColors[index]);
+				}
+				changesMade = true;
 			}
-
 		});
 
 		colorComboBox.addActionListener(new ActionListener() {
@@ -872,7 +946,9 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					LoadFileExplorer.Load();
-					BackgroundMusic.PlayCorrectAudioContinuously(mazePanel.getBackground());
+					if(BackgroundMusic.isPaused() == false) {
+						BackgroundMusic.PlayCorrectAudioContinuously(mazePanel.getBackground());
+					}
 					UndoStructure.clearUndoStack();
 					RedoErasedLineStructure.ClearRedoStack();
 					RemoveBordersFromMazeComponents();
@@ -948,10 +1024,14 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 					}
 					RemoveDecorationsFromMazeAndList();
 					mazePanel.setBackground(Color.white);
+					if(BackgroundMusic.isPaused() == false) {
+						BackgroundMusic.PlayCorrectAudioContinuously(Color.white);
+					}
 					mazePanel.repaint();
 					loadedMazeFileLocation = null;
 					UndoStructure.clearUndoStack();
 					RedoErasedLineStructure.ClearRedoStack();
+					changesMade = false;
 				}
 			}
 
@@ -976,7 +1056,8 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		playMusicButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				BackgroundMusic.Play();
+				BackgroundMusic.PlayCorrectAudioContinuously(mazePanel.getBackground());
+				BackgroundMusic.setPaused(false);
 			}
 
 		});
@@ -985,6 +1066,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				BackgroundMusic.Pause();
+				BackgroundMusic.setPaused(true);
 			}
 		});
 		
@@ -1252,24 +1334,32 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		} else if (selected == startLocationSelected) {
 			JPanel mazePanel = (JPanel) arg0.getComponent();
 			ButtonFunctions.StartLocationFunction(mazePanel);
+			changesMade = true;
 		} else if (selected == endLocationSelected) {
 			JPanel mazePanel = (JPanel) arg0.getComponent();
 			ButtonFunctions.EndLocationFunction(mazePanel);
+			changesMade = true;
 		} else if (selected == enemiesSelected) {
 			int enemySelected = EnemyControls.GetEnemySelected();
 			int enemyControl = EnemyButtonFunctions.GetEnemyControl();
 			if (enemySelected == 1 && enemyControl == 1) {
 				EnemyButtonFunctions.PlayerSetEnemy1StartLocation();
+				changesMade = true;
 			} else if (enemySelected == 2 && enemyControl == 1) {
 				EnemyButtonFunctions.PlayerSetEnemy2StartLocation();
+				changesMade = true;
 			} else if (enemySelected == 3 && enemyControl == 1) {
 				EnemyButtonFunctions.PlayerSetEnemy3StartLocation();
+				changesMade = true;
 			} else if (enemySelected == 1 && (enemyControl == 2 || enemyControl == 3)) {
 				EnemyButtonFunctions.SetEnemy1EndLocation();
+				changesMade = true;
 			} else if (enemySelected == 2 && (enemyControl == 2 || enemyControl == 3)) {
 				EnemyButtonFunctions.SetEnemy2EndLocation();
+				changesMade = true;
 			} else if (enemySelected == 3 && (enemyControl == 2 || enemyControl == 3)) {
 				EnemyButtonFunctions.SetEnemy3EndLocation();
+				changesMade = true;
 			}
 			if (mazeStarted == false) {
 				enemyControls.setVisible();
@@ -1288,6 +1378,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 			images.set_image_to_label(newDecoration, imageURL);
 			DecorationNode decoration = new DecorationNode(newDecoration);
 			decorationList.add(decoration);
+			changesMade = true;
 		}
 	}
 
@@ -1298,18 +1389,22 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		if (selected == freeDrawLineSelected) {
 			ButtonFunctions.DrawLineFunction(mazePanel, lineThickness, GetColorFromColorComboBox());
 			UndoStructure.AddPointToNewLineArrayList(mazePanel.getMousePosition());
+			changesMade = true;
 		} else if (selected == eraserSelected) {
 			ButtonFunctions.EraseCoordinate(mazePanel, eraserThicknessSlider.getValue());
+			changesMade = true;
 		} else if (selected == horizontalLineSelected) {
 			ButtonFunctions.DrawLineFunction(mazePanel, lineThickness, GetColorFromColorComboBox());
 			Point mouseCoordinate = new Point(mazePanel.getMousePosition());
 			ButtonFunctions.SetHorizontialLineY((int) mouseCoordinate.getY());
 			UndoStructure.AddPointToNewLineArrayList(mazePanel.getMousePosition());
+			changesMade = true;
 		} else if (selected == verticalLineSelected) {
 			ButtonFunctions.DrawLineFunction(mazePanel, lineThickness, GetColorFromColorComboBox());
 			Point mouseCoordinate = new Point(mazePanel.getMousePosition());
 			ButtonFunctions.SetVerticalLineX((int) mouseCoordinate.getX());
 			UndoStructure.AddPointToNewLineArrayList(mazePanel.getMousePosition());
+			changesMade = true;
 		}
 	}
 
@@ -1322,18 +1417,22 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 			((MazePanel) mazePanel).SetDrawCoordinates(mazePanel.getMousePosition());
 			UndoStructure.AddPointToNewLineArrayList(mazePanel.getMousePosition());
 			mazePanel.repaint();
+			changesMade = true;
 		} else if (selected == eraserSelected) {
 			((MazePanel) mazePanel).SetEraserCoordinates(mazePanel.getMousePosition());
 			ButtonFunctions.EraseCoordinate(mazePanel, eraserThicknessSlider.getValue());
 			mazePanel.repaint();
+			changesMade = true;
 		} else if (selected == horizontalLineSelected) {
 			ButtonFunctions.DrawHorizontalLineFunction(mazePanel, lineThickness, GetColorFromColorComboBox());
 			((MazePanel) mazePanel).SetDrawCoordinates(mazePanel.getMousePosition());
 			mazePanel.repaint();
+			changesMade = true;
 		} else if (selected == verticalLineSelected) {
 			ButtonFunctions.DrawVerticalLineFunction(mazePanel, lineThickness, GetColorFromColorComboBox());
 			((MazePanel) mazePanel).SetDrawCoordinates(mazePanel.getMousePosition());
 			mazePanel.repaint();
+			changesMade = true;
 		}
 		// ADD COORDINATES TO xAndyDisplayCoordinates
 		SetCoordinatesToXAndYDisplayCoordinates(mazePanel);
@@ -1343,12 +1442,16 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 	public void mouseReleased(MouseEvent arg0) {
 		if (selected == freeDrawLineSelected) {
 			UndoStructure.AddLineUndoStack();
+			changesMade = true;
 		} else if (selected == horizontalLineSelected) {
 			UndoStructure.AddLineUndoStack();
+			changesMade = true;
 		} else if (selected == verticalLineSelected) {
 			UndoStructure.AddLineUndoStack();
+			changesMade = true;
 		} else if (selected == eraserSelected) {
 			RedoErasedLineStructure.AddLineToRedoErasedLineStack();
+			changesMade = true;
 		}
 	}
 
@@ -1668,6 +1771,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		ButtonFunctions.RemoveMouseListenersFromDecorations(decorationList, mazePanel);
 		if (CheckForStartAndEndLocations() == true) {
 			SaveFileExplorer.Load();
+			changesMade = false;
 		} else {
 			JOptionPane.showMessageDialog(null, "Maze needs start and end spots.");
 		}
@@ -1675,6 +1779,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 
 	private void SaveLoadedMaze() {
 		SaveLoadedFile.Save(loadedMazeFileLocation);
+		changesMade = false;
 	}
 
 	public static void SetLoadedMazeFileLocation(String loadedMazeFileLocation) {
