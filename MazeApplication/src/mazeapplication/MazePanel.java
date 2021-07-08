@@ -80,6 +80,15 @@ public class MazePanel extends JPanel{
 			for(Map.Entry<Point, Integer> entery : ButtonFunctions.GetQ4().entrySet()) {
 				DrawCurrentCoordinate(g, entery);
 			}
+			if(MazeDesignMainGUI.mazeActive() == false) {
+				for(Map.Entry<Point, Integer> entry : ButtonFunctions.GetTracemap().entrySet()) {
+					((Graphics2D) g).setStroke(new BasicStroke(entry.getValue()));
+					Point coordinates = entry.getKey();
+					g.setColor(new Color(255, 0, 255));
+					g.drawLine((int) coordinates.getX(), (int) coordinates.getY(), (int) coordinates.getX(), (int) coordinates.getY());
+					g.setColor(Color.black);
+				}
+			}
 			if(eraserActive == true) {
 				if(eraserCoordinates != null) {
 					g.setColor(Color.red);

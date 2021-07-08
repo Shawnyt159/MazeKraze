@@ -34,6 +34,9 @@ public class ButtonFunctions {
 	private static HashMap<Point, Integer> q3WallCoordinates = new HashMap<Point, Integer>();
 	private static HashMap<Point, Integer> q4WallCoordinates = new HashMap<Point, Integer>();
 	
+	//Trace Map for maze.
+	private static HashMap<Point, Integer> traceMap = new HashMap<Point, Integer>();
+	
 	//Wall Color Map.
 	private static HashMap<Point, Color> wallColorMap = new HashMap<Point, Color>();
 	
@@ -237,6 +240,13 @@ public class ButtonFunctions {
 		mazePanel.repaint();
 	}
 	
+	public static void DrawTraceMap(JPanel mazePanel, Point coordinates) {
+		if(coordinates != null) {
+			traceMap.put(coordinates, 3);
+			mazePanel.repaint();
+		}
+	}
+	
 	private static void AddCoordinateAndColorToColorMap(Point coordinates, Color color) {
 		wallColorMap.put(coordinates, color);
 	}
@@ -318,16 +328,10 @@ public class ButtonFunctions {
 
 				@Override
 				public void mousePressed(MouseEvent arg0) {
-					// TODO Auto-generated method stub
-					
 				}
-
 				@Override
 				public void mouseReleased(MouseEvent arg0) {
-					// TODO Auto-generated method stub
-					
 				}
-				
 			});
 		}
 	}
@@ -341,8 +345,6 @@ public class ButtonFunctions {
 			}
 		}
 	}
-	
-	
 	
 	/**
 	 * MUTUAL FUNCTIONS:
@@ -434,7 +436,12 @@ public class ButtonFunctions {
 	public static HashMap<Point, Color> GetWallColorMap(){
 		return wallColorMap;
 	}
-	
+	public static HashMap<Point, Integer> GetTracemap(){
+		return traceMap;
+	}
+	public static void setTraceMap(HashMap<Point, Integer> traceMap) {
+		ButtonFunctions.traceMap = traceMap;
+	}
 	public static void SetHorizontialLineY(int y) {
 		horizontialLineY = y;
 	}

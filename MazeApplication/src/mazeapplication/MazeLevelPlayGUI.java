@@ -27,6 +27,7 @@ public class MazeLevelPlayGUI implements KeyListener{
 	private JFrame frame;
 	private static JLabel player;
 	
+	private JLabel elapsedTimeDisplay;
 	private JLabel startLocation = null;
 	private JLabel endLocation = null;
 	private Enemy enemy1 = null;
@@ -34,6 +35,8 @@ public class MazeLevelPlayGUI implements KeyListener{
 	private Enemy enemy3 = null;
 	private final HashSet<Integer> pressedKeys = new HashSet<Integer>();
 	private static JPanel mazePanel;
+	private Thread timerThread;
+	private boolean keepTimerGoing = true;
 	
 	/**
 	 * Create the application.
@@ -79,6 +82,10 @@ public class MazeLevelPlayGUI implements KeyListener{
 			@Override
 			public void windowClosing(WindowEvent arg0) {
 				BackgroundMusic.PlayCorrectAudioContinuously(Color.black);
+				keepTimerGoing = false;
+				while(timerThread.isAlive()) {
+					
+				}
 			}
 
 			@Override
@@ -179,6 +186,15 @@ public class MazeLevelPlayGUI implements KeyListener{
 		playMusicButton.setFocusable(false);
 		playMusicButton.setBackground(new Color(238, 232, 170));
 		
+		JLabel elapsedTimeLabel = new JLabel("Elapsed Time:");
+		elapsedTimeLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		elapsedTimeLabel.setBounds(10, 395, 130, 27);
+		panel.add(elapsedTimeLabel);
+		
+		elapsedTimeDisplay = new JLabel("");
+		elapsedTimeDisplay.setBounds(10, 421, 132, 13);
+		panel.add(elapsedTimeDisplay);
+		
 		JLabel backgroundImageLabel = new JLabel("");
 		backgroundImageLabel.setBounds(0, 0, 896, 664);
 		frame.getContentPane().add(backgroundImageLabel);
@@ -204,6 +220,22 @@ public class MazeLevelPlayGUI implements KeyListener{
 		frame.setVisible(true);
 	}
 	
+	private void StartNewTimerThread() {
+		timerThread = new Thread() {
+			public void run() {
+				while(keepTimerGoing) {
+					try {
+						elapsedTimeDisplay.setText(LevelPlayTimer.GetTime());
+						Thread.sleep(500);
+					} catch(Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		timerThread.start();
+	}
+	
 	public void ChangeStartLabelToPlayerLabel(JPanel mazePanel) {
 		JLabel startLocation = LevelPlayLoadedMazeAttributes.getPlayerStart();
 		startLocation.setVisible(false);
@@ -215,6 +247,9 @@ public class MazeLevelPlayGUI implements KeyListener{
 	}
 	
 	public void SetMazeAttributes() {
+		keepTimerGoing = true;
+		LevelPlayTimer.StartTimer();
+		StartNewTimerThread();
 		mazePanel.requestFocusInWindow();
 		startLocation = LevelPlayLoadedMazeAttributes.getPlayerStart();
 		endLocation = LevelPlayLoadedMazeAttributes.getEndLocation();

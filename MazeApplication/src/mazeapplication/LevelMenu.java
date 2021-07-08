@@ -166,6 +166,12 @@ public class LevelMenu implements ActionListener{
 		littleYellowMazeButton.setBounds(105, 211, 85, 21);
 		levelPanel.add(littleYellowMazeButton);
 		
+		JButton trapMazeButton = new JButton("Trap");
+		trapMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		trapMazeButton.setBackground(new Color(64, 224, 208));
+		trapMazeButton.setBounds(200, 211, 85, 21);
+		levelPanel.add(trapMazeButton);
+		
 		JLabel mediumMazesLabel = new JLabel("Medium Mazes:");
 		mediumMazesLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 		mediumMazesLabel.setBounds(10, 242, 164, 32);
@@ -181,17 +187,23 @@ public class LevelMenu implements ActionListener{
 		theGridMazeButton.setBounds(10, 296, 85, 21);
 		levelPanel.add(theGridMazeButton);
 		
-		JButton theGridWithEnemiesButton = new JButton("The Grid E");
-		theGridWithEnemiesButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		theGridWithEnemiesButton.setBackground(new Color(255, 165, 0));
-		theGridWithEnemiesButton.setBounds(105, 296, 85, 21);
-		levelPanel.add(theGridWithEnemiesButton);
-		
 		JButton theGridWithEnemiesAndBlackout = new JButton("The Grid EB");
 		theGridWithEnemiesAndBlackout.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		theGridWithEnemiesAndBlackout.setBackground(new Color(255, 165, 0));
-		theGridWithEnemiesAndBlackout.setBounds(200, 296, 85, 21);
+		theGridWithEnemiesAndBlackout.setBounds(105, 296, 85, 21);
 		levelPanel.add(theGridWithEnemiesAndBlackout);
+		
+		JButton maroonLandButton = new JButton("Maroon Land");
+		maroonLandButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		maroonLandButton.setBackground(new Color(255, 165, 0));
+		maroonLandButton.setBounds(200, 296, 85, 21);
+		levelPanel.add(maroonLandButton);
+		
+		JButton rainbowMazeButton = new JButton("Rainbow");
+		rainbowMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		rainbowMazeButton.setBackground(new Color(255, 165, 0));
+		rainbowMazeButton.setBounds(295, 296, 85, 21);
+		levelPanel.add(rainbowMazeButton);
 		
 		JLabel hardMazesLabel = new JLabel("Hard Mazes:");
 		hardMazesLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -202,17 +214,17 @@ public class LevelMenu implements ActionListener{
 		separator_3.setBounds(10, 400, 731, 2);
 		levelPanel.add(separator_3);
 		
-		JButton rainbowCurvesMazeButton = new JButton("Rainbow");
-		rainbowCurvesMazeButton.setBackground(new Color(255, 0, 0));
-		rainbowCurvesMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		rainbowCurvesMazeButton.setBounds(10, 412, 85, 21);
-		levelPanel.add(rainbowCurvesMazeButton);
-		
 		JButton multiMazeButton = new JButton("Multi Maze");
 		multiMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		multiMazeButton.setBackground(Color.RED);
-		multiMazeButton.setBounds(105, 412, 85, 21);
+		multiMazeButton.setBounds(10, 412, 85, 21);
 		levelPanel.add(multiMazeButton);
+		
+		JButton bubblegumMazeButton = new JButton("Bubblegum");
+		bubblegumMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		bubblegumMazeButton.setBackground(Color.RED);
+		bubblegumMazeButton.setBounds(105, 412, 85, 21);
+		levelPanel.add(bubblegumMazeButton);
 		
 		JPanel optionsPanel = new JPanel();
 		optionsPanel.setOpaque(false);

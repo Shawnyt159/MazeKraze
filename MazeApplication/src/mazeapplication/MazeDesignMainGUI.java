@@ -73,16 +73,9 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 	private static JButton stopMazeButton = null;
 
 	/*
-	 * selected: 0-9 
-	 * 1: start location 
-	 * 2: end location 
-	 * 3: free draw line 
-	 * 4: eraser
-	 * 5: horizontal line 
-	 * 6: vertical line 
-	 * 7: Enemies Option Panel 
-	 * 8: Add Decorations 
-	 * 9: Delete Decorations
+	 * selected: 0-10 1: start location 2: end location 3: free draw line 4: eraser
+	 * 5: horizontal line 6: vertical line 7: Enemies Option Panel 8: Add
+	 * Decorations 9: Delete Decorations Trace 10: trace line on maze
 	 */
 
 	private static int selected = 0;
@@ -95,14 +88,17 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 	private int enemiesSelected = 7;
 	private int addDecorationSelected = 8;
 	private int deleteDecorationSelected = 9;
+	private int traceSelected = 10;
 
 	// End of selected.
 	private static JLabel player;
 	// Display for end coordinates.
 	private JLabel xAndyDisplayCoordinates;
-	private boolean mazeStarted = false;
-	//changesMade: for exit without saving feature. 
+	private static boolean mazeStarted = false;
+	// changesMade: for exit without saving feature.
 	private boolean changesMade = false;
+	// Previous value of the draw line slider. 
+	private int previousValue = 0;
 
 	public MazeDesignMainGUI() {
 		initialize();
@@ -110,7 +106,8 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 
 	private void initialize() {
 		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MazeDesignMainGUI.class.getResource("/images/logo.png")));
+		frame.setIconImage(
+				Toolkit.getDefaultToolkit().getImage(MazeDesignMainGUI.class.getResource("/images/logo.png")));
 		frame.getContentPane().setFocusable(false);
 		frame.setBounds(100, 100, 935, 730);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -123,58 +120,39 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 			boolean exit = false;
 			@Override
 			public void windowActivated(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
 			}
-
 			@Override
 			public void windowClosed(WindowEvent arg0) {
-				if(exit == false) {
+				if (exit == false) {
 					frame.setVisible(true);
 				}
 				BackgroundMusic.PlayCorrectAudioContinuously(Color.black);
 			}
-
 			@Override
 			public void windowClosing(WindowEvent arg0) {
-				if(changesMade == true) {
+				if (changesMade == true) {
 					int playerChoice = JOptionPane.showConfirmDialog(null, "Exit without saving?");
-					if(playerChoice == JOptionPane.YES_OPTION) {
+					if (playerChoice == JOptionPane.YES_OPTION) {
 						exit = true;
-					}
-					else {
+					} else {
 						exit = false;
 					}
-				}
-				else {
+				} else {
 					exit = true;
 				}
 			}
-
 			@Override
 			public void windowDeactivated(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
 			}
-
 			@Override
 			public void windowDeiconified(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
 			}
-
 			@Override
 			public void windowIconified(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
 			}
-
 			@Override
 			public void windowOpened(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
 			}
-			
 		});
 
 		Border blackBorder = BorderFactory.createLineBorder(Color.black);
@@ -192,6 +170,20 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		endLocationButton.setToolTipText("Player end location \"X marks the spot\"");
 		endLocationButton.setBounds(10, 38, 154, 20);
 		endLocationButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
+		
+		JButton traceButton = new JButton("Trace");
+		traceButton.setFocusable(false);
+		traceButton.setBackground(new Color(255, 255, 224));
+		traceButton.setToolTipText("Trace your maze to show the solve solution");
+		traceButton.setBounds(10, 66, 154, 20);
+		traceButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
+		
+		JButton clearTraceButton = new JButton("Clear Trace");
+		clearTraceButton.setFocusable(false);
+		clearTraceButton.setBackground(new Color(255, 255, 224));
+		clearTraceButton.setToolTipText("Clear your trace");
+		clearTraceButton.setBounds(10, 94, 154, 20);
+		traceButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
 
 		JButton freeDrawButton = new JButton("Free Draw");
 		freeDrawButton.setFocusable(false);
@@ -211,15 +203,23 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		lineThicknessSlider.setMajorTickSpacing(2);
 		lineThicknessSlider.setPaintTicks(true);
 		lineThicknessSlider.setPaintLabels(true);
+		previousValue = lineThicknessSlider.getValue();
 		lineThicknessSlider.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
-				if(lineThicknessSlider.getValue() % 2 != 0) {
-					lineThicknessSlider.setValue(lineThicknessSlider.getValue() + 1);
+				int value = lineThicknessSlider.getValue();
+				if (value > previousValue) {
+					if (value % 2 != 0) {
+						lineThicknessSlider.setValue(value + 1);
+					}
+				} else if (value < previousValue) {
+					if (value % 2 != 0) {
+						lineThicknessSlider.setValue(value - 1);
+					}
 				}
-				
+				previousValue = lineThicknessSlider.getValue();
 			}
-			
+
 		});
 
 		JLabel lineThicknessLabel = new JLabel("Line Thickness:");
@@ -283,7 +283,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		JComboBox<String> backgroundColorComboBox = new JComboBox<String>();
 		backgroundColorComboBox.setBackground(new Color(255, 255, 255));
 		backgroundColorComboBox.setModel(new DefaultComboBoxModel<String>(
-				new String[] {"White", "Sky Blue", "Sand", "Grass", "Mud", "Glacier", "Swamp", "Storm Gray"}));
+				new String[] { "White", "Sky Blue", "Sand", "Grass", "Mud", "Glacier", "Swamp", "Storm Gray" }));
 		backgroundColorComboBox.setBounds(10, 360, 85, 21);
 		backgroundColorComboBox.setFocusable(false);
 		backgroundColorComboBox.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
@@ -416,6 +416,143 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		optionsPanelTest.add(blackoutRadioButton);
 		blackoutRadioButton.setFocusable(false);
 
+		mazePanel.addMouseListener(this);
+		mazePanel.addMouseMotionListener(this);
+		frame.setVisible(true);
+		SetOrigionalDecorationsList(specificDecorations);
+
+		JRadioButton startAndStopRadioButton = new JRadioButton("Start & Stop Spots");
+		startAndStopRadioButton.setFocusable(false);
+		startAndStopRadioButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
+		startAndStopRadioButton.setForeground(new Color(255, 255, 255));
+		startAndStopRadioButton.setBackground(new Color(0, 191, 255));
+		startAndStopRadioButton.setBounds(6, 6, 168, 21);
+		optionsPanelTest.add(startAndStopRadioButton);
+
+		JRadioButton drawingRadioButton = new JRadioButton("Drawing Walls");
+		drawingRadioButton.setFocusable(false);
+		drawingRadioButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
+		drawingRadioButton.setBackground(new Color(0, 191, 255));
+		drawingRadioButton.setForeground(new Color(255, 255, 255));
+		drawingRadioButton.setBounds(6, 29, 168, 21);
+		optionsPanelTest.add(drawingRadioButton);
+
+		JRadioButton decorationsRadioButton = new JRadioButton("Decorations");
+		decorationsRadioButton.setFocusable(false);
+		decorationsRadioButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
+		decorationsRadioButton.setBackground(new Color(0, 191, 255));
+		decorationsRadioButton.setForeground(new Color(255, 255, 255));
+		decorationsRadioButton.setBounds(6, 52, 168, 21);
+		optionsPanelTest.add(decorationsRadioButton);
+
+		JRadioButton backgroundRadioButton = new JRadioButton("Background");
+		backgroundRadioButton.setFocusable(false);
+		backgroundRadioButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
+		backgroundRadioButton.setBackground(new Color(0, 191, 255));
+		backgroundRadioButton.setForeground(new Color(255, 255, 255));
+		backgroundRadioButton.setBounds(6, 75, 168, 21);
+		optionsPanelTest.add(backgroundRadioButton);
+
+		ButtonGroup optionsRadioButtonGroup = new ButtonGroup();
+		optionsRadioButtonGroup.add(startAndStopRadioButton);
+		optionsRadioButtonGroup.add(drawingRadioButton);
+		optionsRadioButtonGroup.add(decorationsRadioButton);
+		optionsRadioButtonGroup.add(backgroundRadioButton);
+		startMazeButton = new JButton("Start Maze");
+		startMazeButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
+		startMazeButton.setForeground(new Color(255, 255, 255));
+		startMazeButton.setBounds(10, 513, 158, 20);
+		optionsPanelTest.add(startMazeButton);
+		startMazeButton.setBackground(new Color(0, 128, 128));
+		startMazeButton.setToolTipText("Starts the maze, makes your player moveable.");
+		startMazeButton.setFocusable(false);
+
+		stopMazeButton = new JButton("Stop Maze");
+		stopMazeButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
+		stopMazeButton.setForeground(new Color(255, 255, 255));
+		stopMazeButton.setBounds(10, 538, 158, 20);
+		optionsPanelTest.add(stopMazeButton);
+		stopMazeButton.setBackground(new Color(0, 128, 128));
+		stopMazeButton.setToolTipText("Stops the maze and resets.");
+		stopMazeButton.setEnabled(false);
+		stopMazeButton.setFocusable(false);
+
+		JPanel panel = new JPanel();
+		panel.setOpaque(false);
+		panel.setBounds(10, 6, 708, 24);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+
+		JButton loadMazeButton = new JButton("Load Maze");
+		loadMazeButton.setBounds(161, 2, 179, 20);
+		panel.add(loadMazeButton);
+		loadMazeButton.setBackground(new Color(255, 215, 0));
+		loadMazeButton.setToolTipText("Load a previously saved maze.");
+		loadMazeButton.setFocusable(false);
+		loadMazeButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
+
+		JButton saveMazeAsImageButton = new JButton("Save Maze As Image");
+		saveMazeAsImageButton.setBounds(345, 2, 179, 20);
+		panel.add(saveMazeAsImageButton);
+		saveMazeAsImageButton.setBackground(new Color(255, 215, 0));
+		saveMazeAsImageButton.setToolTipText("Save the maze as a printable image");
+		saveMazeAsImageButton.setFocusable(false);
+		saveMazeAsImageButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
+
+		JButton saveMazeButton = new JButton("Save Maze");
+		saveMazeButton.setBounds(529, 2, 179, 20);
+		panel.add(saveMazeButton);
+		saveMazeButton.setBackground(new Color(255, 215, 0));
+		saveMazeButton.setToolTipText("Save maze to send to your friends or for later use");
+		saveMazeButton.setFocusable(false);
+		saveMazeButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
+
+		startAndStopRadioButton.setSelected(true);
+		changingOptionsPanel.add(startLocationButton);
+		changingOptionsPanel.add(endLocationButton);
+		changingOptionsPanel.add(traceButton);
+		changingOptionsPanel.add(clearTraceButton);
+
+		JButton lessonsButton = new JButton("Online Lessons");
+		lessonsButton.setForeground(new Color(255, 255, 255));
+		lessonsButton.setBounds(10, 613, 158, 20);
+		optionsPanelTest.add(lessonsButton);
+		lessonsButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
+		lessonsButton.setFocusable(false);
+		lessonsButton.setBackground(new Color(0, 0, 139));
+
+		JButton downloadTemplatesButton = new JButton("Download Templates");
+		downloadTemplatesButton.setForeground(new Color(255, 255, 255));
+		downloadTemplatesButton.setBounds(10, 638, 158, 20);
+		optionsPanelTest.add(downloadTemplatesButton);
+		downloadTemplatesButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
+		downloadTemplatesButton.setFocusable(false);
+		downloadTemplatesButton.setBackground(new Color(0, 0, 139));
+
+		JButton downloadMazesButton = new JButton("Download Mazes");
+		downloadMazesButton.setForeground(new Color(255, 255, 255));
+		downloadMazesButton.setBounds(10, 663, 158, 20);
+		optionsPanelTest.add(downloadMazesButton);
+		downloadMazesButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
+		downloadMazesButton.setFocusable(false);
+		downloadMazesButton.setBackground(new Color(0, 0, 139));
+
+		JLabel xAndyLabel = new JLabel("X,Y:");
+		xAndyLabel.setBounds(0, 4, 27, 18);
+		panel.add(xAndyLabel);
+		xAndyLabel.setFocusable(false);
+		xAndyLabel.setForeground(Color.PINK);
+
+		xAndyDisplayCoordinates = new JLabel("");
+		xAndyDisplayCoordinates.setBounds(37, 4, 54, 18);
+		panel.add(xAndyDisplayCoordinates);
+		xAndyDisplayCoordinates.setFocusable(false);
+		xAndyDisplayCoordinates.setForeground(Color.PINK);
+
+		JLabel backgroundImageLabel = new JLabel("");
+		backgroundImageLabel.setBounds(0, 2, 921, 688);
+		frame.getContentPane().add(backgroundImageLabel);
+
 		// Button Actions
 		startLocationButton.addActionListener(new ActionListener() {
 			@Override
@@ -424,7 +561,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 				selected = startLocationSelected;
 				SetSelectedButtonForegroundAndRemoveDecorationDeletEffectsIfNotSelected(startLocationButton,
 						freeDrawButton, endLocationButton, eraserButton, verticalLineButton, horizontalLineButton,
-						enemiesButton, addDecorationButton, deleteDecorationButton);
+						enemiesButton, addDecorationButton, deleteDecorationButton, traceButton);
 			}
 		});
 
@@ -434,9 +571,29 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 				selected = endLocationSelected;
 				SetSelectedButtonForegroundAndRemoveDecorationDeletEffectsIfNotSelected(endLocationButton,
 						startLocationButton, freeDrawButton, eraserButton, verticalLineButton, horizontalLineButton,
-						enemiesButton, addDecorationButton, deleteDecorationButton);
+						enemiesButton, addDecorationButton, deleteDecorationButton, traceButton);
 			}
 
+		});
+		
+		traceButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				selected = traceSelected;
+				SetSelectedButtonForegroundAndRemoveDecorationDeletEffectsIfNotSelected(traceButton, endLocationButton,
+						startLocationButton, freeDrawButton, eraserButton, verticalLineButton, horizontalLineButton,
+						enemiesButton, addDecorationButton, deleteDecorationButton);
+			}
+			
+		});
+		
+		clearTraceButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ButtonFunctions.GetTracemap().clear();
+				mazePanel.repaint();
+			}
+			
 		});
 
 		freeDrawButton.addActionListener(new ActionListener() {
@@ -445,7 +602,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 				selected = freeDrawLineSelected;
 				SetSelectedButtonForegroundAndRemoveDecorationDeletEffectsIfNotSelected(freeDrawButton,
 						startLocationButton, endLocationButton, eraserButton, verticalLineButton, horizontalLineButton,
-						enemiesButton, addDecorationButton, deleteDecorationButton);
+						enemiesButton, addDecorationButton, deleteDecorationButton, traceButton);
 			}
 
 		});
@@ -456,7 +613,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 				selected = eraserSelected;
 				SetSelectedButtonForegroundAndRemoveDecorationDeletEffectsIfNotSelected(eraserButton,
 						startLocationButton, endLocationButton, freeDrawButton, verticalLineButton,
-						horizontalLineButton, enemiesButton, addDecorationButton, deleteDecorationButton);
+						horizontalLineButton, enemiesButton, addDecorationButton, deleteDecorationButton, traceButton);
 			}
 
 		});
@@ -467,7 +624,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 				selected = horizontalLineSelected;
 				SetSelectedButtonForegroundAndRemoveDecorationDeletEffectsIfNotSelected(horizontalLineButton,
 						startLocationButton, endLocationButton, freeDrawButton, eraserButton, verticalLineButton,
-						enemiesButton, addDecorationButton, deleteDecorationButton);
+						enemiesButton, addDecorationButton, deleteDecorationButton, traceButton);
 			}
 
 		});
@@ -478,7 +635,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 				selected = verticalLineSelected;
 				SetSelectedButtonForegroundAndRemoveDecorationDeletEffectsIfNotSelected(verticalLineButton,
 						startLocationButton, endLocationButton, freeDrawButton, eraserButton, horizontalLineButton,
-						enemiesButton, addDecorationButton, deleteDecorationButton);
+						enemiesButton, addDecorationButton, deleteDecorationButton, traceButton);
 			}
 		});
 
@@ -487,7 +644,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 			public void actionPerformed(ActionEvent arg0) {
 				int index = backgroundColorComboBox.getSelectedIndex();
 				mazePanel.setBackground(backgroundColors[index]);
-				if(BackgroundMusic.isPaused() == false) {
+				if (BackgroundMusic.isPaused() == false) {
 					BackgroundMusic.PlayCorrectAudioContinuously(backgroundColors[index]);
 				}
 				changesMade = true;
@@ -528,7 +685,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 				selected = addDecorationSelected;
 				SetSelectedButtonForegroundAndRemoveDecorationDeletEffectsIfNotSelected(addDecorationButton,
 						freeDrawButton, endLocationButton, eraserButton, verticalLineButton, horizontalLineButton,
-						enemiesButton, startLocationButton, deleteDecorationButton);
+						enemiesButton, startLocationButton, deleteDecorationButton, traceButton);
 			}
 
 		});
@@ -541,7 +698,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 				ButtonFunctions.AddMouseListenerToDecorations(decorationList, mazePanel);
 				SetSelectedButtonForegroundAndRemoveDecorationDeletEffectsIfNotSelected(deleteDecorationButton,
 						freeDrawButton, endLocationButton, eraserButton, verticalLineButton, horizontalLineButton,
-						enemiesButton, startLocationButton, addDecorationButton);
+						enemiesButton, startLocationButton, addDecorationButton, traceButton);
 			}
 
 		});
@@ -604,93 +761,6 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 
 		});
 
-		mazePanel.addMouseListener(this);
-		mazePanel.addMouseMotionListener(this);
-		frame.setVisible(true);
-		SetOrigionalDecorationsList(specificDecorations);
-
-		JRadioButton startAndStopRadioButton = new JRadioButton("Start & Stop Spots");
-		startAndStopRadioButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
-		startAndStopRadioButton.setForeground(new Color(255, 255, 255));
-		startAndStopRadioButton.setBackground(new Color(0, 191, 255));
-		startAndStopRadioButton.setBounds(6, 6, 168, 21);
-		optionsPanelTest.add(startAndStopRadioButton);
-
-		JRadioButton drawingRadioButton = new JRadioButton("Drawing Walls");
-		drawingRadioButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
-		drawingRadioButton.setBackground(new Color(0, 191, 255));
-		drawingRadioButton.setForeground(new Color(255, 255, 255));
-		drawingRadioButton.setBounds(6, 29, 168, 21);
-		optionsPanelTest.add(drawingRadioButton);
-
-		JRadioButton decorationsRadioButton = new JRadioButton("Decorations");
-		decorationsRadioButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
-		decorationsRadioButton.setBackground(new Color(0, 191, 255));
-		decorationsRadioButton.setForeground(new Color(255, 255, 255));
-		decorationsRadioButton.setBounds(6, 52, 168, 21);
-		optionsPanelTest.add(decorationsRadioButton);
-
-		JRadioButton backgroundRadioButton = new JRadioButton("Background");
-		backgroundRadioButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
-		backgroundRadioButton.setBackground(new Color(0, 191, 255));
-		backgroundRadioButton.setForeground(new Color(255, 255, 255));
-		backgroundRadioButton.setBounds(6, 75, 168, 21);
-		optionsPanelTest.add(backgroundRadioButton);
-
-		ButtonGroup optionsRadioButtonGroup = new ButtonGroup();
-		optionsRadioButtonGroup.add(startAndStopRadioButton);
-		optionsRadioButtonGroup.add(drawingRadioButton);
-		optionsRadioButtonGroup.add(decorationsRadioButton);
-		optionsRadioButtonGroup.add(backgroundRadioButton);
-		startMazeButton = new JButton("Start Maze");
-		startMazeButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
-		startMazeButton.setForeground(new Color(255, 255, 255));
-		startMazeButton.setBounds(10, 513, 158, 20);
-		optionsPanelTest.add(startMazeButton);
-		startMazeButton.setBackground(new Color(0, 128, 128));
-		startMazeButton.setToolTipText("Starts the maze, makes your player moveable.");
-		startMazeButton.setFocusable(false);
-
-		stopMazeButton = new JButton("Stop Maze");
-		stopMazeButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
-		stopMazeButton.setForeground(new Color(255, 255, 255));
-		stopMazeButton.setBounds(10, 538, 158, 20);
-		optionsPanelTest.add(stopMazeButton);
-		stopMazeButton.setBackground(new Color(0, 128, 128));
-		stopMazeButton.setToolTipText("Stops the maze and resets.");
-		stopMazeButton.setEnabled(false);
-		stopMazeButton.setFocusable(false);
-
-		JPanel panel = new JPanel();
-		panel.setOpaque(false);
-		panel.setBounds(10, 6, 708, 24);
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
-
-		JButton loadMazeButton = new JButton("Load Maze");
-		loadMazeButton.setBounds(161, 2, 179, 20);
-		panel.add(loadMazeButton);
-		loadMazeButton.setBackground(new Color(255, 215, 0));
-		loadMazeButton.setToolTipText("Load a previously saved maze.");
-		loadMazeButton.setFocusable(false);
-		loadMazeButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
-
-		JButton saveMazeAsImageButton = new JButton("Save Maze As Image");
-		saveMazeAsImageButton.setBounds(345, 2, 179, 20);
-		panel.add(saveMazeAsImageButton);
-		saveMazeAsImageButton.setBackground(new Color(255, 215, 0));
-		saveMazeAsImageButton.setToolTipText("Save the maze as a printable image");
-		saveMazeAsImageButton.setFocusable(false);
-		saveMazeAsImageButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
-
-		JButton saveMazeButton = new JButton("Save Maze");
-		saveMazeButton.setBounds(529, 2, 179, 20);
-		panel.add(saveMazeButton);
-		saveMazeButton.setBackground(new Color(255, 215, 0));
-		saveMazeButton.setToolTipText("Save maze to send to your friends or for later use");
-		saveMazeButton.setFocusable(false);
-		saveMazeButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
-
 		stopMazeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -698,8 +768,9 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 				EnableButtonsForStopMaze(startLocationButton, endLocationButton, freeDrawButton, startMazeButton,
 						eraserButton, loadMazeButton, saveMazeButton, horizontalLineButton, verticalLineButton,
 						clearMazeButton, saveMazeAsImageButton, colorComboBox, enemiesButton, setBackgroundColorButton,
-						backgroundColorComboBox, addDecorationButton, deleteDecorationButton, undoButton, redoLineButton
-						, blackoutRadioButton);
+						backgroundColorComboBox, addDecorationButton, deleteDecorationButton, undoButton,
+						redoLineButton, blackoutRadioButton, traceButton, startAndStopRadioButton, drawingRadioButton,
+						decorationsRadioButton, backgroundRadioButton);
 				EnemyStartAndStopMazeFunctions.StopEnemies();
 				stopMazeButton.setEnabled(false);
 				frame.addKeyListener(new KeyListener() {
@@ -724,8 +795,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 											JOptionPane.showMessageDialog(null, "Maze Saved");
 										}
 										mazeFramePressedKeys.remove(KeyEvent.VK_S);
-									}
-									else if (nextKey == KeyEvent.VK_R) {
+									} else if (nextKey == KeyEvent.VK_R) {
 										RedoErasedLineStructure.Redo(mazePanel);
 										mazeFramePressedKeys.remove(KeyEvent.VK_R);
 									}
@@ -762,11 +832,13 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 				ButtonFunctions.RemoveMouseListenersFromDecorations(decorationList, mazePanel);
 				if (CheckForStartAndEndLocations() == true) {
 					SetMazePanelSettingsForStartOfMaze(mazePanel);
+					mazePanel.repaint();
 					DisableButtonsForStartMaze(startLocationButton, endLocationButton, freeDrawButton, startMazeButton,
 							eraserButton, loadMazeButton, saveMazeButton, horizontalLineButton, verticalLineButton,
 							clearMazeButton, saveMazeAsImageButton, colorComboBox, enemiesButton,
 							setBackgroundColorButton, backgroundColorComboBox, addDecorationButton,
-							deleteDecorationButton, undoButton, redoLineButton, blackoutRadioButton);
+							deleteDecorationButton, undoButton, redoLineButton, blackoutRadioButton, traceButton, 
+							startAndStopRadioButton, drawingRadioButton, decorationsRadioButton, backgroundRadioButton);
 					stopMazeButton.setEnabled(true);
 					KeyListener[] frameListener = frame.getKeyListeners();
 					for (int i = 0; i < frameListener.length; i++) {
@@ -778,7 +850,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 					EnemyStartAndStopMazeFunctions.StartEnemies();
 					if (blackoutRadioButton.isSelected()) {
 						BlackoutMaze.InitiateBlackout(player, mazePanel);
-						if(MainMenuGUI.isLevelMazeActive() == true) {
+						if (MainMenuGUI.isLevelMazeActive() == true) {
 							LevelMenu.disposeActiveMaze();
 						}
 					}
@@ -795,8 +867,10 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 					changingOptionsPanel.removeAll();
 					changingOptionsPanel.add(startLocationButton);
 					changingOptionsPanel.add(endLocationButton);
+					changingOptionsPanel.add(traceButton);
+					changingOptionsPanel.add(clearTraceButton);
 					changingOptionsPanel.repaint();
-					
+
 					frame.requestFocusInWindow();
 				} else if (drawingRadioButton.isSelected()) {
 					changingOptionsPanel.removeAll();
@@ -847,7 +921,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 
 					changingOptionsPanel.revalidate();
 					changingOptionsPanel.repaint();
-					
+
 					frame.requestFocusInWindow();
 				} else if (backgroundRadioButton.isSelected()) {
 					changingOptionsPanel.removeAll();
@@ -869,50 +943,6 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		drawingRadioButton.addActionListener(optionsRadioButtonListener);
 		decorationsRadioButton.addActionListener(optionsRadioButtonListener);
 		backgroundRadioButton.addActionListener(optionsRadioButtonListener);
-
-		startAndStopRadioButton.setSelected(true);
-		changingOptionsPanel.add(startLocationButton);
-		changingOptionsPanel.add(endLocationButton);
-
-		JButton lessonsButton = new JButton("Online Lessons");
-		lessonsButton.setForeground(new Color(255, 255, 255));
-		lessonsButton.setBounds(10, 613, 158, 20);
-		optionsPanelTest.add(lessonsButton);
-		lessonsButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
-		lessonsButton.setFocusable(false);
-		lessonsButton.setBackground(new Color(0, 0, 139));
-
-		JButton downloadTemplatesButton = new JButton("Download Templates");
-		downloadTemplatesButton.setForeground(new Color(255, 255, 255));
-		downloadTemplatesButton.setBounds(10, 638, 158, 20);
-		optionsPanelTest.add(downloadTemplatesButton);
-		downloadTemplatesButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
-		downloadTemplatesButton.setFocusable(false);
-		downloadTemplatesButton.setBackground(new Color(0, 0, 139));
-
-		JButton downloadMazesButton = new JButton("Download Mazes");
-		downloadMazesButton.setForeground(new Color(255, 255, 255));
-		downloadMazesButton.setBounds(10, 663, 158, 20);
-		optionsPanelTest.add(downloadMazesButton);
-		downloadMazesButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
-		downloadMazesButton.setFocusable(false);
-		downloadMazesButton.setBackground(new Color(0, 0, 139));
-
-		JLabel xAndyLabel = new JLabel("X,Y:");
-		xAndyLabel.setBounds(0, 4, 27, 18);
-		panel.add(xAndyLabel);
-		xAndyLabel.setFocusable(false);
-		xAndyLabel.setForeground(Color.PINK);
-
-		xAndyDisplayCoordinates = new JLabel("");
-		xAndyDisplayCoordinates.setBounds(37, 4, 54, 18);
-		panel.add(xAndyDisplayCoordinates);
-		xAndyDisplayCoordinates.setFocusable(false);
-		xAndyDisplayCoordinates.setForeground(Color.PINK);
-
-		JLabel backgroundImageLabel = new JLabel("");
-		backgroundImageLabel.setBounds(0, 2, 921, 688);
-		frame.getContentPane().add(backgroundImageLabel);
 
 		saveMazeButton.addActionListener(new ActionListener() {
 			@Override
@@ -946,12 +976,14 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					LoadFileExplorer.Load();
-					if(BackgroundMusic.isPaused() == false) {
+					if (BackgroundMusic.isPaused() == false) {
 						BackgroundMusic.PlayCorrectAudioContinuously(mazePanel.getBackground());
 					}
 					UndoStructure.clearUndoStack();
 					RedoErasedLineStructure.ClearRedoStack();
 					RemoveBordersFromMazeComponents();
+					ButtonFunctions.GetTracemap().clear();
+					mazePanel.repaint();
 				} catch (EOFException e) {
 					e.printStackTrace();
 				}
@@ -1024,13 +1056,15 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 					}
 					RemoveDecorationsFromMazeAndList();
 					mazePanel.setBackground(Color.white);
-					if(BackgroundMusic.isPaused() == false) {
+					if (BackgroundMusic.isPaused() == false) {
 						BackgroundMusic.PlayCorrectAudioContinuously(Color.white);
 					}
 					mazePanel.repaint();
 					loadedMazeFileLocation = null;
 					UndoStructure.clearUndoStack();
 					RedoErasedLineStructure.ClearRedoStack();
+					ButtonFunctions.GetTracemap().clear();
+					mazePanel.repaint();
 					changesMade = false;
 				}
 			}
@@ -1048,7 +1082,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 				selected = 7;
 				SetSelectedButtonForegroundAndRemoveDecorationDeletEffectsIfNotSelected(enemiesButton,
 						verticalLineButton, startLocationButton, endLocationButton, freeDrawButton, eraserButton,
-						horizontalLineButton, addDecorationButton, deleteDecorationButton);
+						horizontalLineButton, addDecorationButton, deleteDecorationButton, traceButton);
 			}
 
 		});
@@ -1069,7 +1103,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 				BackgroundMusic.setPaused(true);
 			}
 		});
-		
+
 		SetImageToLabel images = new SetImageToLabel();
 		images.set_image_to_label(backgroundImageLabel, "/images/testBackground15.jpg");
 
@@ -1133,7 +1167,9 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 			JButton saveMazeButton, JButton horizontalLineButton, JButton verticalLineButton, JButton clearMazeButton,
 			JButton saveMazeAsImageButton, JComboBox<String> colorComboBox, JButton enemiesButton,
 			JButton setBackgroundButton, JComboBox<String> backgroundColorComboBox, JButton addDecorationButton,
-			JButton deleteDecorationButton, JButton undoButton, JButton redoButton, JRadioButton blackoutMazeRadioButton) {
+			JButton deleteDecorationButton, JButton undoButton, JButton redoButton,
+			JRadioButton blackoutMazeRadioButton, JButton traceButton, JRadioButton startAndStopRadioButton,
+			JRadioButton backgroundRadioButton, JRadioButton drawingWallsRadioButton, JRadioButton decorationsRadioButton) {
 
 		startLocationButton.setEnabled(false);
 		endLocationButton.setEnabled(false);
@@ -1157,6 +1193,11 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		undoButton.setEnabled(false);
 		redoButton.setEnabled(false);
 		blackoutMazeRadioButton.setEnabled(false);
+		traceButton.setEnabled(false);
+		startAndStopRadioButton.setEnabled(false);
+		backgroundRadioButton.setEnabled(false);
+		drawingWallsRadioButton.setEnabled(false);
+		decorationsRadioButton.setEnabled(false);
 	}
 
 	/**
@@ -1184,7 +1225,9 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 			JButton saveMazeButton, JButton horizontalLineButton, JButton verticalLineButton, JButton clearMazeButton,
 			JButton saveMazeAsImageButton, JComboBox<String> colorComboBox, JButton enemiesButton,
 			JButton setBackgroundButton, JComboBox<String> backgroundColorComboBox, JButton addDecorationButton,
-			JButton deleteDecorationButton, JButton undoButton, JButton redoButton, JRadioButton blackoutMazeRadioButton) {
+			JButton deleteDecorationButton, JButton undoButton, JButton redoButton,
+			JRadioButton blackoutMazeRadioButton, JButton traceButton, JRadioButton startAndStopRadioButton,
+			JRadioButton backgroundRadioButton, JRadioButton drawingWallsRadioButton, JRadioButton decorationsRadioButton) {
 
 		startLocationButton.setEnabled(true);
 		endLocationButton.setEnabled(true);
@@ -1208,6 +1251,11 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		undoButton.setEnabled(true);
 		redoButton.setEnabled(true);
 		blackoutMazeRadioButton.setEnabled(true);
+		traceButton.setEnabled(true);
+		startAndStopRadioButton.setEnabled(true);
+		backgroundRadioButton.setEnabled(true);
+		drawingWallsRadioButton.setEnabled(true);
+		decorationsRadioButton.setEnabled(true);
 	}
 
 	/**
@@ -1216,7 +1264,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 	 */
 	private void SetSelectedButtonForegroundAndRemoveDecorationDeletEffectsIfNotSelected(JButton selectedButton,
 			JButton button1, JButton button2, JButton button3, JButton button4, JButton button5, JButton button6,
-			JButton button7, JButton button8) {
+			JButton button7, JButton button8, JButton button9) {
 		selectedButton.setForeground(new Color(255, 69, 0));
 		button1.setForeground(Color.black);
 		button2.setForeground(Color.black);
@@ -1226,6 +1274,7 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 		button6.setForeground(Color.black);
 		button7.setForeground(Color.black);
 		button8.setForeground(Color.black);
+		button9.setForeground(Color.black);
 		if (selected != deleteDecorationSelected) {
 			ButtonFunctions.RemoveBordersFromDecorations(decorationList, mazePanel);
 			ButtonFunctions.RemoveMouseListenersFromDecorations(decorationList, mazePanel);
@@ -1380,6 +1429,10 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 			decorationList.add(decoration);
 			changesMade = true;
 		}
+		else if(selected == traceSelected) {
+			JPanel mazePanel = (JPanel) arg0.getComponent();
+			ButtonFunctions.DrawTraceMap(mazePanel, mazePanel.getMousePosition());
+		}
 	}
 
 	@Override
@@ -1433,6 +1486,9 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 			((MazePanel) mazePanel).SetDrawCoordinates(mazePanel.getMousePosition());
 			mazePanel.repaint();
 			changesMade = true;
+		}
+		else if(selected == traceSelected) {
+			ButtonFunctions.DrawTraceMap(mazePanel, mazePanel.getMousePosition());
 		}
 		// ADD COORDINATES TO xAndyDisplayCoordinates
 		SetCoordinatesToXAndYDisplayCoordinates(mazePanel);
@@ -1793,11 +1849,11 @@ public class MazeDesignMainGUI implements MouseMotionListener, MouseListener, Ke
 	public static void SetBlackoutMazeSetting(boolean setting) {
 		blackoutRadioButton.setSelected(setting);
 	}
-	
-	public boolean mazeActive() {
+
+	public static boolean mazeActive() {
 		return mazeStarted;
 	}
-	
+
 	public static void stopMaze() {
 		stopMazeButton.doClick();
 	}

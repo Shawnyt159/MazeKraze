@@ -27,22 +27,6 @@ public class MainMenuGUI {
 	private JTextField instagramField;
 	private JTextField websiteAddress;
 	private UpdatesAndNews updatesAndNews = new UpdatesAndNews();
-	
-//	/**
-//	 * Launch the application.
-//	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					MainMenuGUI window = new MainMenuGUI();
-//					window.frmMazekraze.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
 	/**
 	 * Create the application.
@@ -251,7 +235,7 @@ public class MainMenuGUI {
 			return false;
 		}
 		else {
-			return freeDrawMazeGUI.mazeActive();
+			return MazeDesignMainGUI.mazeActive();
 		}
 	}
 	

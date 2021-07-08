@@ -11,8 +11,10 @@
 /images/Grassland.jpg
 /images/Headache.jpeg
 /images/Little Yellow.jpeg
+/images/Trap.jpeg
 /images/the grid.jpeg
-/images/theGridE.jpeg
 /images/theGridEB.jpeg
+/images/MaroonLand.jpeg
 /images/Rainbow Curves 2.0.jpeg
 /images/multiMaze.jpg
+/images/Bubblegum.jpg
