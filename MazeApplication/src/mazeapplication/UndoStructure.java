@@ -19,8 +19,10 @@ public class UndoStructure {
 		if(!undoStack.isEmpty()) {
 			ArrayList<Point> newestLine = undoStack.pop();
 			for(int i = 0; i < newestLine.size(); i++) {
-				ButtonFunctions.GetCorrectQuadrantMap(newestLine.get(i)).remove(newestLine.get(i));
-				ButtonFunctions.GetWallColorMap().remove(newestLine.get(i));
+				if(ButtonFunctions.GetCorrectQuadrantMap(newestLine.get(i)) != null) {
+					ButtonFunctions.GetCorrectQuadrantMap(newestLine.get(i)).remove(newestLine.get(i));
+					ButtonFunctions.GetWallColorMap().remove(newestLine.get(i));
+				}
 			}
 			mazePanel.repaint();
 		}
