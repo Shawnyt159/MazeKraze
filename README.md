@@ -7,3 +7,5 @@
  3. You need the jsoup in the lib
  4. You can put all of the source files into your desired IDE and run it there
  5. Turn it into a .jar file and run it like that
+
+SplashScreen.java is the main method
