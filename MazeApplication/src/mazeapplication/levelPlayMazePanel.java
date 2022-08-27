@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -24,8 +25,8 @@ public class levelPlayMazePanel extends JPanel{
 			Point playerCenter = new Point(BlackoutMaze.getBlackoutPlayer().getX()+2, BlackoutMaze.getBlackoutPlayer().getY()+2);
 			HashSet<Point> visibleAreaMap = new HashSet<Point>();
 			
-			for(int x = -45; x < 45; x++) {
-				for(int y = -45; y < 45; y++) {
+			for(int x = -44; x < 45; x++) {
+				for(int y = -44; y < 45; y++) {
 					Point coordinates = new Point((int) playerCenter.getX()+x, (int) playerCenter.getY()+y);
 					visibleAreaMap.add(coordinates);
 				}
@@ -40,15 +41,14 @@ public class levelPlayMazePanel extends JPanel{
 				}
 			}
 			
+			Rectangle visibleAreaRectangle = new Rectangle((int) playerCenter.getX()-45, (int) playerCenter.getY()-45, 90, 90);
 			LinkedList<DecorationNode> decorationList = LevelPlayLoadedMazeAttributes.getDecorationList();
 			if(decorationList != null) {
 				ListIterator<DecorationNode> iterator = (ListIterator<DecorationNode>) decorationList.iterator();
 				while(iterator.hasNext()) {
 					JLabel decorationLabel = iterator.next().getDecorationNode();
-					int xAddition = decorationLabel.getHeight()/2;
-					int yAddition = decorationLabel.getWidth()/2;
-					Point decorationLocation = new Point(decorationLabel.getX()+xAddition, decorationLabel.getY()+yAddition);
-					if(visibleAreaMap.contains(decorationLocation)) {
+					Rectangle decorationBounds = decorationLabel.getBounds();
+					if(decorationBounds.intersects(visibleAreaRectangle) == true) {
 						decorationLabel.setVisible(true);
 					}
 					else {

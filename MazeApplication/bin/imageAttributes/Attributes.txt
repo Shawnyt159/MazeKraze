@@ -1,5 +1,5 @@
 # PLAYER & END POINT ATTRIBUTES #
-player
+original
 5
 5
 O.png
@@ -514,6 +514,30 @@ tree 3 L
 30
 30
 Plain/tree 3.png
+Tree 4 S
+10
+10
+Plain/Tree 4.png
+Tree 4 M
+20
+20
+Plain/Tree 4.png
+Tree 4 L
+30
+30
+Plain/Tree 4.png
+Tree 5 S
+10
+10
+Plain/Tree 5.png
+Tree 5 M
+20
+20
+Plain/Tree 5.png
+Tree 5 L
+30
+30
+Plain/Tree 5.png
 wizard 1 S
 10
 10
@@ -565,6 +589,19 @@ cloud L
 30
 30
 Sky Blue/cloud.png
+Grmpy Bird S
+10
+10
+Sky Blue/Grmpy Bird.png
+Grmpy Bird M
+20
+20
+Sky Blue/Grmpy Bird.png
+Grmpy Bird L
+30
+30
+Sky Blue/Grmpy Bird.png
+
 ################### END SKY BLUE ###################
 
 ################### START GLACIER ###################
@@ -1117,18 +1154,6 @@ missile 3 L
 30
 30
 Storm Gray/missile 3.png
-portal S
-10
-10
-Storm Gray/portal.png
-portal M
-20
-20
-Storm Gray/portal.png
-portal L
-30
-30
-Storm Gray/portal.png
 satellite 1 S
 10
 10
@@ -1639,6 +1664,162 @@ Swamp/thing.png
 ################### END SWAMP ###################
 
 ################### START MUD ###################
+Barn S
+10
+10
+Mud/Barn.png
+Barn M
+20
+20
+Mud/Barn.png
+Barn L
+30
+30
+Mud/Barn.png
+Home 2 S
+10
+10
+Mud/Home 2.png
+Home 2 M
+20
+20
+Mud/Home 2.png
+Home 2 L
+30
+30
+Mud/Home 2.png
+Home S
+10
+10
+Mud/Home.png
+Home M
+20
+20
+Mud/Home.png
+Home L
+30
+30
+Mud/Home.png
+Log S
+10
+10
+Mud/Log.png
+Log M
+20
+20
+Mud/Log.png
+Log L
+30
+30
+Mud/Log.png
+Mud Stone (1) S
+10
+10
+Mud/Mud Stone (1).png
+Mud Stone (1) M
+20
+20
+Mud/Mud Stone (1).png
+Mud Stone (1) L
+30
+30
+Mud/Mud Stone (1).png
+Mud Stone (2) S
+10
+10
+Mud/Mud Stone (2).png
+Mud Stone (2) M
+20
+20
+Mud/Mud Stone (2).png
+Mud Stone (2) L
+30
+30
+Mud/Mud Stone (2).png
+Mud Stone (3) S
+10
+10
+Mud/Mud Stone (3).png
+Mud Stone (3) M
+20
+20
+Mud/Mud Stone (3).png
+Mud Stone (3) L
+30
+30
+Mud/Mud Stone (3).png
+Mud Tile (1) S
+10
+10
+Mud/Mud Tile (1).png
+Mud Tile (1) M
+20
+20
+Mud/Mud Tile (1).png
+Mud Tile (1) L
+30
+30
+Mud/Mud Tile (1).png
+Mud Tile (2) S
+10
+10
+Mud/Mud Tile (2).png
+Mud Tile (2) M
+20
+20
+Mud/Mud Tile (2).png
+Mud Tile (2) L
+30
+30
+Mud/Mud Tile (2).png
+Mud Tile (3) S
+10
+10
+Mud/Mud Tile (3).png
+Mud Tile (3) M
+20
+20
+Mud/Mud Tile (3).png
+Mud Tile (3) L
+30
+30
+Mud/Mud Tile (3).png
+Mud Tile (4) S
+10
+10
+Mud/Mud Tile (4).png
+Mud Tile (4) M
+20
+20
+Mud/Mud Tile (4).png
+Mud Tile (4) L
+30
+30
+Mud/Mud Tile (4).png
+Mud Tile (5) S
+10
+10
+Mud/Mud Tile (5).png
+Mud Tile (5) M
+20
+20
+Mud/Mud Tile (5).png
+Mud Tile (5) L
+30
+30
+Mud/Mud Tile (5).png
+Mud Tile (6) S
+10
+10
+Mud/Mud Tile (6).png
+Mud Tile (6) M
+20
+20
+Mud/Mud Tile (6).png
+Mud Tile (6) L
+30
+30
+Mud/Mud Tile (6).png
 
 ################### END MUD ###################
 

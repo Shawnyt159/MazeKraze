@@ -18,6 +18,7 @@ public class SplashScreen {
 	private JFrame frmMazekrazeLauncher;
 	private boolean started = false;
 	private MainMenuGUI startScreen = null;
+	
 	/**
 	 * Launch the application.
 	 */

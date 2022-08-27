@@ -2,6 +2,7 @@ package mazeapplication;
 
 import java.awt.Point;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -13,6 +14,7 @@ public class EnemyButtonFunctions {
 	private static Enemy enemy3 = new Enemy();
 	private static int enemyControl = 0;
 	private static SetImageToLabel images = new SetImageToLabel();
+	private static ImageIcon optionImageIcon;
 
 	/**
 	 * ENEMY START LOCATION FUNCTIONS.
@@ -23,13 +25,15 @@ public class EnemyButtonFunctions {
 			enemy1.setStartLabel(new JLabel(""));
 			PlaceEnemyStartOnPanel(MazeDesignMainGUI.GetMazePanel(), enemy1.getStartLabel());
 			enemy1.SetSpeed(EnemyControls.GetEnemySpeed());
+			enemy1.setImagePath(EnemyControls.GetEnemyImagePath());
 		} else {
 			JPanel mazePanel = MazeDesignMainGUI.GetMazePanel();
 			Point coordinates = mazePanel.getMousePosition();
 			if (JOptionPane.showConfirmDialog(null,
-					"Are you sure you want to change enemy 1 start location?") == JOptionPane.YES_OPTION) {
+					"Are you sure you want to change enemy 1 start location?", "Change Location", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, optionImageIcon) == JOptionPane.YES_OPTION) {
 				ChangeEnemyStartLocation(mazePanel, enemy1.getStartLabel(), coordinates, enemy1);
 				enemy1.SetSpeed(EnemyControls.GetEnemySpeed());
+				enemy1.setImagePath(EnemyControls.GetEnemyImagePath());
 			}
 		}
 	}
@@ -39,13 +43,15 @@ public class EnemyButtonFunctions {
 			enemy2.setStartLabel(new JLabel(""));
 			PlaceEnemyStartOnPanel(MazeDesignMainGUI.GetMazePanel(), enemy2.getStartLabel());
 			enemy2.SetSpeed(EnemyControls.GetEnemySpeed());
+			enemy2.setImagePath(EnemyControls.GetEnemyImagePath());
 		} else {
 			JPanel mazePanel = MazeDesignMainGUI.GetMazePanel();
 			Point coordinates = mazePanel.getMousePosition();
 			if (JOptionPane.showConfirmDialog(null,
-					"Are you sure you want to change enemy 2 start location?") == JOptionPane.YES_OPTION) {
+					"Are you sure you want to change enemy 2 start location?", "Change Location", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, optionImageIcon) == JOptionPane.YES_OPTION) {
 				ChangeEnemyStartLocation(mazePanel, enemy2.getStartLabel(), coordinates, enemy2);
 				enemy2.SetSpeed(EnemyControls.GetEnemySpeed());
+				enemy2.setImagePath(EnemyControls.GetEnemyImagePath());
 			}
 		}
 	}
@@ -55,13 +61,15 @@ public class EnemyButtonFunctions {
 			enemy3.setStartLabel(new JLabel(""));
 			PlaceEnemyStartOnPanel(MazeDesignMainGUI.GetMazePanel(), enemy3.getStartLabel());
 			enemy3.SetSpeed(EnemyControls.GetEnemySpeed());
+			enemy3.setImagePath(EnemyControls.GetEnemyImagePath());
 		} else {
 			JPanel mazePanel = MazeDesignMainGUI.GetMazePanel();
 			Point coordinates = mazePanel.getMousePosition();
 			if (JOptionPane.showConfirmDialog(null,
-					"Are you sure you want to change enemy 3 start location?") == JOptionPane.YES_OPTION) {
+					"Are you sure you want to change enemy 3 start location?", "Change Location", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, optionImageIcon) == JOptionPane.YES_OPTION) {
 				ChangeEnemyStartLocation(mazePanel, enemy3.getStartLabel(), coordinates, enemy3);
 				enemy3.SetSpeed(EnemyControls.GetEnemySpeed());
+				enemy3.setImagePath(EnemyControls.GetEnemyImagePath());
 			}
 		}
 	}
@@ -107,7 +115,7 @@ public class EnemyButtonFunctions {
 				JPanel mazePanel = MazeDesignMainGUI.GetMazePanel();
 				Point coordinates = mazePanel.getMousePosition();
 				if (JOptionPane.showConfirmDialog(null,
-						"Are you sure you want to change enemy 1 end location?") == JOptionPane.YES_OPTION) {
+						"Are you sure you want to change enemy 1 end location?", "Change Location", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, optionImageIcon) == JOptionPane.YES_OPTION) {
 					ChangeEnemyEndLocation(mazePanel, enemy1.getEndLocation(), coordinates, enemy1.getStartLabel());
 				}
 			}
@@ -125,7 +133,7 @@ public class EnemyButtonFunctions {
 				JPanel mazePanel = MazeDesignMainGUI.GetMazePanel();
 				Point coordinates = mazePanel.getMousePosition();
 				if (JOptionPane.showConfirmDialog(null,
-						"Are you sure you want to change enemy 2 end location?") == JOptionPane.YES_OPTION) {
+						"Are you sure you want to change enemy 2 end location?", "Change Location", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, optionImageIcon) == JOptionPane.YES_OPTION) {
 					ChangeEnemyEndLocation(mazePanel, enemy2.getEndLocation(), coordinates, enemy2.getStartLabel());
 				}
 			}
@@ -143,7 +151,7 @@ public class EnemyButtonFunctions {
 				JPanel mazePanel = MazeDesignMainGUI.GetMazePanel();
 				Point coordinates = mazePanel.getMousePosition();
 				if (JOptionPane.showConfirmDialog(null,
-						"Are you sure you want to change enemy 3 end location?") == JOptionPane.YES_OPTION) {
+						"Are you sure you want to change enemy 3 end location?", "Change Location", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, optionImageIcon) == JOptionPane.YES_OPTION) {
 					ChangeEnemyEndLocation(mazePanel, enemy3.getEndLocation(), coordinates, enemy3.getStartLabel());
 				}
 			}
@@ -255,7 +263,13 @@ public class EnemyButtonFunctions {
 			enemy1.getStartLabel().setBounds(enemy1.getStartLabel().getX(), enemy1.getStartLabel().getY(),
 					EnemyControls.GetEnemyWidth(), EnemyControls.GetEnemyHeight());
 			enemy1.SetSpeed(EnemyControls.GetEnemySpeed());
-			images.set_image_to_label(enemy1.getStartLabel(), EnemyControls.GetEnemyImagePath());
+			if(enemy1.getImagePath() != null) {
+				images.set_image_to_label(enemy1.getStartLabel(), enemy1.getImagePath());
+			}
+			else {
+				images.set_image_to_label(enemy1.getStartLabel(), EnemyControls.GetEnemyImagePath());
+				enemy1.setImagePath(EnemyControls.GetEnemyImagePath());
+			}
 		}
 	}
 
@@ -264,7 +278,13 @@ public class EnemyButtonFunctions {
 			enemy2.getStartLabel().setBounds(enemy2.getStartLabel().getX(), enemy2.getStartLabel().getY(),
 					EnemyControls.GetEnemyWidth(), EnemyControls.GetEnemyHeight());
 			enemy2.SetSpeed(EnemyControls.GetEnemySpeed());
-			images.set_image_to_label(enemy2.getStartLabel(), EnemyControls.GetEnemyImagePath());
+			if(enemy2.getImagePath() != null) {
+				images.set_image_to_label(enemy2.getStartLabel(), enemy2.getImagePath());
+			}
+			else {
+				images.set_image_to_label(enemy2.getStartLabel(), EnemyControls.GetEnemyImagePath());
+				enemy2.setImagePath(EnemyControls.GetEnemyImagePath());
+			}
 		}
 	}
 
@@ -273,7 +293,13 @@ public class EnemyButtonFunctions {
 			enemy3.getStartLabel().setBounds(enemy3.getStartLabel().getX(), enemy3.getStartLabel().getY(),
 					EnemyControls.GetEnemyWidth(), EnemyControls.GetEnemyHeight());
 			enemy3.SetSpeed(EnemyControls.GetEnemySpeed());
-			images.set_image_to_label(enemy3.getStartLabel(), EnemyControls.GetEnemyImagePath());
+			if(enemy3.getImagePath() != null) {
+				images.set_image_to_label(enemy3.getStartLabel(), enemy3.getImagePath());
+			}
+			else {
+				images.set_image_to_label(enemy3.getStartLabel(), EnemyControls.GetEnemyImagePath());
+				enemy3.setImagePath(EnemyControls.GetEnemyImagePath());
+			}
 		}
 	}
 
@@ -400,5 +426,13 @@ public class EnemyButtonFunctions {
 
 	public static SetImageToLabel getImages() {
 		return images;
+	}
+
+	public static ImageIcon getOptionImageIcon() {
+		return optionImageIcon;
+	}
+
+	public static void setOptionImageIcon(ImageIcon optionImageIcon) {
+		EnemyButtonFunctions.optionImageIcon = optionImageIcon;
 	}
 }

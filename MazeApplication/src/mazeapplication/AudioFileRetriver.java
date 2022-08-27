@@ -9,7 +9,8 @@ public class AudioFileRetriver {
 	}
 	public URL GetAudioFileAsResourceStream(Color backgroundColor) {
 		if(backgroundColor.equals(Color.white)) {
-			return null;
+			URL musicStream = getClass().getResource("/music/Plain.wav");
+			return musicStream;
 		}
 		//Sky Blue
 		else if(backgroundColor.equals(new Color(135,206,235))) {
@@ -33,7 +34,8 @@ public class AudioFileRetriver {
 		}
 		//Glacier
 		else if(backgroundColor.equals(new Color(120,177,199))) {
-			return null;
+			URL musicStream = getClass().getResource("/music/Glacier.wav");
+			return musicStream;
 		}
 		//Swamp
 		else if(backgroundColor.equals(new Color(160,192,144))) {

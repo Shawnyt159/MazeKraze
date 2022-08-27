@@ -32,13 +32,13 @@ public class LevelMenu implements ActionListener{
 	private LoadSerMazeFromResources loadMaze = new LoadSerMazeFromResources();
 	private static MazeLevelPlayGUI mazeGUI;
 
-	public LevelMenu(){
+	public LevelMenu(JFrame frmMazeKraze){
 		// Loading the maze image paths to the mazeImages ArrayList.
 		LoadMazeImagesToArray();
-		initialize();
+		initialize(frmMazeKraze);
 	}
 
-	private void initialize() {
+	private void initialize(JFrame frmMazeKraze) {
 		frmMazekrazeLevelPlay = new JFrame();
 		frmMazekrazeLevelPlay.setIconImage(Toolkit.getDefaultToolkit().getImage(LevelMenu.class.getResource("/images/logo.png")));
 		frmMazekrazeLevelPlay.setTitle("MazeKraze Level Play");
@@ -47,6 +47,7 @@ public class LevelMenu implements ActionListener{
 		frmMazekrazeLevelPlay.setLocation(dim.width / 2 - frmMazekrazeLevelPlay.getSize().width / 2, dim.height / 2 - frmMazekrazeLevelPlay.getSize().height / 2);
 		frmMazekrazeLevelPlay.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmMazekrazeLevelPlay.getContentPane().setLayout(null);
+		frmMazekrazeLevelPlay.setResizable(false);
 		
 		JPanel levelPanel = new JPanel();
 		levelPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -172,6 +173,12 @@ public class LevelMenu implements ActionListener{
 		trapMazeButton.setBounds(200, 211, 85, 21);
 		levelPanel.add(trapMazeButton);
 		
+		JButton turqMazeButton = new JButton("Turq");
+		turqMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		turqMazeButton.setBackground(new Color(64, 224, 208));
+		turqMazeButton.setBounds(295, 211, 85, 21);
+		levelPanel.add(turqMazeButton);
+		
 		JLabel mediumMazesLabel = new JLabel("Medium Mazes:");
 		mediumMazesLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 		mediumMazesLabel.setBounds(10, 242, 164, 32);
@@ -205,6 +212,18 @@ public class LevelMenu implements ActionListener{
 		rainbowMazeButton.setBounds(295, 296, 85, 21);
 		levelPanel.add(rainbowMazeButton);
 		
+		JButton givingTreeMazeButton = new JButton("Giving Tree");
+		givingTreeMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		givingTreeMazeButton.setBackground(new Color(255, 165, 0));
+		givingTreeMazeButton.setBounds(390, 297, 85, 21);
+		levelPanel.add(givingTreeMazeButton);
+		
+		JButton twistyMazeButton = new JButton("Twisty");
+		twistyMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		twistyMazeButton.setBackground(new Color(255, 165, 0));
+		twistyMazeButton.setBounds(485, 297, 85, 21);
+		levelPanel.add(twistyMazeButton);
+		
 		JLabel hardMazesLabel = new JLabel("Hard Mazes:");
 		hardMazesLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 		hardMazesLabel.setBounds(10, 358, 164, 32);
@@ -216,13 +235,13 @@ public class LevelMenu implements ActionListener{
 		
 		JButton multiMazeButton = new JButton("Multi Maze");
 		multiMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		multiMazeButton.setBackground(Color.RED);
+		multiMazeButton.setBackground(new Color(255, 69, 0));
 		multiMazeButton.setBounds(10, 412, 85, 21);
 		levelPanel.add(multiMazeButton);
 		
 		JButton bubblegumMazeButton = new JButton("Bubblegum");
 		bubblegumMazeButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		bubblegumMazeButton.setBackground(Color.RED);
+		bubblegumMazeButton.setBackground(new Color(255, 69, 0));
 		bubblegumMazeButton.setBounds(105, 412, 85, 21);
 		levelPanel.add(bubblegumMazeButton);
 		
@@ -237,6 +256,20 @@ public class LevelMenu implements ActionListener{
 		playButton.setBackground(new Color(255, 215, 0));
 		playButton.setBounds(636, 0, 155, 39);
 		optionsPanel.add(playButton);
+		
+		JButton backToMainMenuButton = new JButton("Main Menu");
+		backToMainMenuButton.setBackground(new Color(0, 0, 255));
+		backToMainMenuButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 13));
+		backToMainMenuButton.setForeground(Color.white);
+		backToMainMenuButton.setBounds(0, 0, 155, 39);
+		backToMainMenuButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frmMazekrazeLevelPlay.setVisible(false);
+				frmMazeKraze.setVisible(true);
+			}
+		});
+		optionsPanel.add(backToMainMenuButton);
 		
 		JLabel backgroundImageLabel = new JLabel("");
 		backgroundImageLabel.setBounds(0, 0, 811, 563);
@@ -262,7 +295,7 @@ public class LevelMenu implements ActionListener{
 					LevelPlayLoadedMazeAttributes.resetEverything();
 					loadMaze.Load(currentSelectedMaze);
 					if(mazeGUI == null) {
-						mazeGUI = new MazeLevelPlayGUI();
+						mazeGUI = new MazeLevelPlayGUI(frmMazekrazeLevelPlay);
 					}
 					mazeGUI.setVisible();
 					mazeGUI.ResetMazeAttributes();

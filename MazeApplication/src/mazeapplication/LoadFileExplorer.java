@@ -30,10 +30,13 @@ public class LoadFileExplorer {
 	private static int backgroundColor = 10;
 	private static int decorationsList = 11;
 	private static int blackoutSetting = 12;
+	private static int portalLinkedList = 13;
+	private static int playerImageLocation = 14;
+	private static int winMessage = 15;
 	
 	
-	
-	public static void Load() throws EOFException {
+	public static boolean Load() throws EOFException {
+		boolean mazeLoaded = false;
 		LookAndFeel old = UIManager.getLookAndFeel();
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -49,6 +52,7 @@ public class LoadFileExplorer {
 	    int returnVal = chooser.showOpenDialog(chooser);
 	    if(returnVal == JFileChooser.APPROVE_OPTION) {
 	       LoadMaze(chooser.getSelectedFile().toString());
+	       mazeLoaded = true;
 	    }
 	    
 	    if(old != null) {
@@ -58,6 +62,7 @@ public class LoadFileExplorer {
 	 	    	e.printStackTrace();
 	 	    }
 	    }
+	    return mazeLoaded;
 	}
 	
 	private static void LoadMaze(String filePath) throws EOFException {
@@ -73,6 +78,17 @@ public class LoadFileExplorer {
 				EnemyControls.SetDisposed();
 			}
 			EnemyControls.ResetEnemies();
+			LinkedList<PortalNode> portalList = ButtonFunctions.getPortalNodeList();
+			for(int i = 0; i < portalList.size(); i++) {
+				PortalNode currentNode = portalList.get(i);
+				if(currentNode.getLinkStart() != null) {
+					MazeDesignMainGUI.GetMazePanel().remove(currentNode.getLinkStart());
+				}
+				if(currentNode.getLinkEnd() != null) {
+					MazeDesignMainGUI.GetMazePanel().remove(currentNode.getLinkEnd());
+				}
+			}
+			ButtonFunctions.getPortalNodeList().clear();
 			FileInputStream in = new FileInputStream(filePath);
 			ObjectInputStream objectIn = new ObjectInputStream(in);
 			JPanel mazePanel = MazeDesignMainGUI.GetMazePanel();
@@ -134,6 +150,15 @@ public class LoadFileExplorer {
 		}
 		else if(currentObject == blackoutSetting) {
 			MazeDesignMainGUI.SetBlackoutMazeSetting((boolean) object);
+		}
+		else if(currentObject == portalLinkedList) {
+			ButtonFunctions.setPortalNodeList((LinkedList<PortalNode>) object);
+		}
+		else if(currentObject == playerImageLocation) {
+			MazeDesignMainGUI.setPlayerImageLocation((String) object);
+		}
+		else if(currentObject == winMessage) {
+			ButtonFunctions.setWinMessage((String) object);
 		}
 	}
 }

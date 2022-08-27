@@ -5,8 +5,13 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -20,11 +25,15 @@ import javax.swing.JComboBox;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+
 import java.awt.Toolkit;
+import java.awt.Font;
+import java.awt.Image;
 
 public class EnemyControls {
 
-	private static JFrame frame;
+	private static JFrame frmEnemyControls;
 	private static ArrayList<String> enemies = new ArrayList<String>();
 	private static int currentNumberOfEnemies = 0;
 	private static JSlider widthSlider;
@@ -34,6 +43,7 @@ public class EnemyControls {
 	private static JComboBox<String> enemyComboBox;
 	private static JComboBox<String> enemyImageComboBox;
 	private SetImageToLabel images = new SetImageToLabel();
+	private ImageIcon optionImageIcon;
 	/**
 	 * Create the application.
 	 */
@@ -45,19 +55,77 @@ public class EnemyControls {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(EnemyControls.class.getResource("/images/logo.png")));
-		frame.getContentPane().setBackground(UIManager.getColor("InternalFrame.inactiveTitleGradient"));
-		frame.setBounds(100, 100, 462, 366);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setBackground(new Color(119,136,153));
-		
+		frmEnemyControls = new JFrame();
+		frmEnemyControls.setTitle("Enemy Controls");
+		frmEnemyControls.setIconImage(Toolkit.getDefaultToolkit().getImage(EnemyControls.class.getResource("/images/logo.png")));
+		frmEnemyControls.getContentPane().setBackground(UIManager.getColor("InternalFrame.inactiveTitleGradient"));
+		frmEnemyControls.setBounds(100, 100, 462, 366);
+		frmEnemyControls.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmEnemyControls.getContentPane().setLayout(null);
+		frmEnemyControls.setBackground(new Color(119,136,153));
+		frmEnemyControls.setResizable(false);
 		JPanel controlPanel = new JPanel();
-		controlPanel.setBackground(new Color(119,136,153));
-		controlPanel.setBounds(10, 10, 506, 309);
-		frame.getContentPane().add(controlPanel);
+		controlPanel.setBackground(new Color(120,177,199));
+		controlPanel.setBounds(10, 10, 430, 309);
+		frmEnemyControls.getContentPane().add(controlPanel);
 		controlPanel.setLayout(null);
+		frmEnemyControls.addWindowListener(new WindowListener() {
+
+			@Override
+			public void windowOpened(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowClosed(WindowEvent e) {
+				MazeDesignMainGUI.SetSelected(0);
+				
+			}
+
+			@Override
+			public void windowIconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowActivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		/*
+		 * Image Icon that is used for the menu items.
+		 */
+		BufferedImage optionImage = null;
+		try {
+			optionImage = ImageIO.read(getClass().getResource("/images/logo.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		Image optionImg = optionImage.getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+		optionImageIcon = new ImageIcon(optionImg);
 		
 		Border blackBorder = BorderFactory.createLineBorder(Color.black);
 		
@@ -157,6 +225,7 @@ public class EnemyControls {
 		particularEnemySettings.add(updateImageButton);
 		
 		enemyComboBox = new JComboBox<String>();
+		enemyComboBox.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		enemyComboBox.setToolTipText("Current enemy.");
 		enemyComboBox.setBounds(10, 2, 138, 42);
 		controlPanel.add(enemyComboBox);
@@ -184,7 +253,7 @@ public class EnemyControls {
 					AddEnemiesToComboBox(enemyComboBox);
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "You have the max number of enemies!");
+					JOptionPane.showMessageDialog(null, "You have the max number of enemies!", "Max Enemies", JOptionPane.INFORMATION_MESSAGE, optionImageIcon);
 				}
 				AddChangeListeners();
 			}
@@ -285,31 +354,33 @@ public class EnemyControls {
 
 			private void getSelectedEnemy() {
 				if(enemyComboBox.getSelectedItem() == null) {
-					
 				}
 				else if(enemyComboBox.getSelectedItem().equals("enemy 1")) {
 					Enemy enemy1 = EnemyButtonFunctions.GetEnemy1();
 					if(enemy1.getStartLabel() != null) {
 						images.set_image_to_label(enemy1.getStartLabel(), GetEnemyImagePath());
+						enemy1.setImagePath(GetEnemyImagePath());
 					}
 				}
 				else if(enemyComboBox.getSelectedItem().equals("enemy 2")) {
 					Enemy enemy2 = EnemyButtonFunctions.GetEnemy2();
 					if(enemy2.getStartLabel() != null) {
 						images.set_image_to_label(enemy2.getStartLabel(), GetEnemyImagePath());
+						enemy2.setImagePath(GetEnemyImagePath());
 					}
 				}
 				else if(enemyComboBox.getSelectedItem().equals("enemy 3")) {
 					Enemy enemy3 = EnemyButtonFunctions.GetEnemy3();
 					if(enemy3.getStartLabel() != null) {
 						images.set_image_to_label(enemy3.getStartLabel(), GetEnemyImagePath());
+						enemy3.setImagePath(GetEnemyImagePath());
 					}
 				}
 			}
 			
 		});
 		
-		frame.setVisible(true);
+		frmEnemyControls.setVisible(true);
 	}
 	
 	private void AddEnemiesToComboBox(JComboBox<String> enemyComboBox) {
@@ -564,11 +635,15 @@ public class EnemyControls {
 		return enemyComboBox;
 	}
 	
-	public void setVisible() {
-		frame.setVisible(true);
+	public void setVisible(boolean visible) {
+		frmEnemyControls.setVisible(visible);
 	}
 	
 	public static void SetDisposed() {
-		frame.setVisible(false);
+		frmEnemyControls.setVisible(false);
+	}
+	
+	public boolean isVisible() {
+		return frmEnemyControls.isVisible();
 	}
 }

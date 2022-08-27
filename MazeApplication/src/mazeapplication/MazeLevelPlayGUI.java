@@ -45,8 +45,8 @@ public class MazeLevelPlayGUI implements KeyListener{
 	 * @throws InstantiationException 
 	 * @throws ClassNotFoundException 
 	 */
-	public MazeLevelPlayGUI() {
-		initialize();
+	public MazeLevelPlayGUI(JFrame levelMenu) {
+		initialize(levelMenu);
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class MazeLevelPlayGUI implements KeyListener{
 	 * @throws InstantiationException 
 	 * @throws ClassNotFoundException 
 	 */
-	private void initialize() {
+	private void initialize(JFrame levelMenu) {
 		frame = new JFrame();
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MazeLevelPlayGUI.class.getResource("/images/logo.png")));
 		frame.setBounds(100, 100, 910, 701);
@@ -64,6 +64,7 @@ public class MazeLevelPlayGUI implements KeyListener{
 		frame.setLocation(dim.width / 2 - frame.getSize().width / 2, dim.height / 2 - frame.getSize().height / 2);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setResizable(false);
 		
 		frame.addWindowListener(new WindowListener() {
 
@@ -75,8 +76,7 @@ public class MazeLevelPlayGUI implements KeyListener{
 
 			@Override
 			public void windowClosed(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
+				BlackoutMaze.StopBlackout(mazePanel);				
 			}
 
 			@Override
@@ -86,6 +86,7 @@ public class MazeLevelPlayGUI implements KeyListener{
 				while(timerThread.isAlive()) {
 					
 				}
+				System.exit(0);
 			}
 
 			@Override
@@ -125,7 +126,7 @@ public class MazeLevelPlayGUI implements KeyListener{
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 215, 0));
-		panel.setBounds(728, 10, 150, 456);
+		panel.setBounds(728, 10, 150, 484);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -194,6 +195,25 @@ public class MazeLevelPlayGUI implements KeyListener{
 		elapsedTimeDisplay = new JLabel("");
 		elapsedTimeDisplay.setBounds(10, 421, 132, 13);
 		panel.add(elapsedTimeDisplay);
+		
+		JButton backButton = new JButton("Back");
+		backButton.setBackground(new Color(0, 0, 139));
+		backButton.setForeground(new Color(255, 255, 255));
+		backButton.setBounds(10, 445, 132, 21);
+		backButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BackgroundMusic.PlayCorrectAudioContinuously(Color.black);
+				keepTimerGoing = false;
+				while(timerThread.isAlive()) {
+					
+				}
+				BlackoutMaze.StopBlackout(mazePanel);
+				frame.setVisible(false);
+				levelMenu.setVisible(true);
+			}
+		});
+		panel.add(backButton);
 		
 		JLabel backgroundImageLabel = new JLabel("");
 		backgroundImageLabel.setBounds(0, 0, 896, 664);

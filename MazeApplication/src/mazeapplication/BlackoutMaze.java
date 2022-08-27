@@ -7,8 +7,8 @@ public class BlackoutMaze {
 	private static JLabel player;
 	private static boolean active = false;
 	
-	public static void InitiateBlackout(JLabel player, JPanel mazePanel) {
-		BlackoutMaze.player = player;
+	public static void InitiateBlackout(PlayerObject player, JPanel mazePanel) {
+		BlackoutMaze.player = player.getPlayer();
 		active = true;
 		mazePanel.repaint();
 	}
@@ -24,5 +24,11 @@ public class BlackoutMaze {
 	
 	public static boolean isActive() {
 		return active;
+	}
+	
+	public static void InitiateBlackout(JLabel player, JPanel mazePanel) {
+		BlackoutMaze.player = player;
+		active = true;
+		mazePanel.repaint();
 	}
 }

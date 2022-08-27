@@ -124,6 +124,12 @@ tree 2 L
 tree 3 S
 tree 3 M
 tree 3 L
+Tree 4 S
+Tree 4 M
+Tree 4 L
+Tree 5 S
+Tree 5 M
+Tree 5 L
 wizard 1 S
 wizard 1 M
 wizard 1 L

@@ -33,7 +33,6 @@ public class UpdatesAndNews {
 			return updates;
 		} catch (MalformedURLException e) {
 		} catch (IOException e) {
-			System.out.println("No Internet");
 		}
 		return null;
 	}

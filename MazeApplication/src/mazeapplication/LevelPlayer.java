@@ -129,28 +129,28 @@ public class LevelPlayer {
 				z = z-1;
 			}
 			else if(z == 3) {
-				z = z-1;
+				z = z-2;
 			}
 			else if(z == 4) {
-				z = z-2;
+				z = z-3;
 			}
 			else if (z == 5) {
-				z = z-2;
+				z = z-3;
 			}
 			else if(z == 6) {
-				z = z-3;
+				z = z-4;
 			}
 			else if(z == 7) {
-				z = z-3;
+				z = z-4;
 			}
 			else if(z == 8) {
-				z = z-4;
+				z = z-5;
 			}
 			else if(z == 9) {
-				z = z-4;
+				z = z-6;
 			}
 			else if(z == 10) {
-				z = z-5;
+				z = z-7;
 			}
 			else {
 				z = z-5;

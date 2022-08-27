@@ -12,6 +12,7 @@ public class Enemy implements Serializable{
 	private JLabel startLabel = null;
 	private JLabel endLocation = null;
 	private long speed;
+	private String imagePath;
 	
 	public Enemy(){
 	}
@@ -43,6 +44,14 @@ public class Enemy implements Serializable{
 	public int GetUserSpeed() {
 		long userSpeed = 100/this.speed;
 		return (int) userSpeed;
+	}
+	
+	public String getImagePath() {
+		return imagePath;
+	}
+	
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 	
 	

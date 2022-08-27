@@ -32,4 +32,52 @@ public class GetFileAttributes {
 			e.printStackTrace();
 		}
 	}
+	
+	public void GetAttributes(String itemName) {
+		InputStream stream = getClass().getResourceAsStream("/imageAttributes/Attributes.txt");
+		BufferedReader streamReader = new BufferedReader(new InputStreamReader(stream));
+		String currentLine = "";
+		try {
+			while(streamReader.ready()) {
+				currentLine = streamReader.readLine();
+				if(currentLine.equals(itemName)) {
+					currentLine = streamReader.readLine();
+					MazeDesignMainGUI.setDecorationHeight(Integer.parseInt(currentLine));
+					currentLine = streamReader.readLine();
+					MazeDesignMainGUI.setDeocrationWidth(Integer.parseInt(currentLine));
+					currentLine = streamReader.readLine();
+					MazeDesignMainGUI.setDecorationname(currentLine);
+					break;
+				}
+			}
+			stream.close();
+			streamReader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String GetItemFilePath(String itemName) {
+		InputStream stream = getClass().getResourceAsStream("/imageAttributes/Attributes.txt");
+		BufferedReader streamReader = new BufferedReader(new InputStreamReader(stream));
+		String currentLine = "";
+		try {
+			while(streamReader.ready()) {
+				currentLine = streamReader.readLine();
+				if(currentLine.equals(itemName)) {
+					currentLine = streamReader.readLine();
+					currentLine = streamReader.readLine();
+					currentLine = streamReader.readLine();
+					break;
+				}
+			}
+			stream.close();
+			streamReader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return currentLine;
+	}
+	
+	
 }

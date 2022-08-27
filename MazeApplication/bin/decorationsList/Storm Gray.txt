@@ -31,9 +31,6 @@ missile 2 L
 missile 3 S
 missile 3 M
 missile 3 L
-portal S
-portal M
-portal L
 satellite 1 S
 satellite 1 M
 satellite 1 L

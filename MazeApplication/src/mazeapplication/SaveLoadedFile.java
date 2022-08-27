@@ -25,6 +25,9 @@ public class SaveLoadedFile {
 			out.writeObject(MazeDesignMainGUI.GetMazePanel().getBackground());
 			out.writeObject(MazeDesignMainGUI.getDecorationList());
 			out.writeObject(MazeDesignMainGUI.GetBlackoutMazeSetting());
+			out.writeObject(ButtonFunctions.getPortalNodeList());
+			out.writeObject(MazeDesignMainGUI.getPlayerImageLocation());
+			out.writeObject(ButtonFunctions.getWinMessage().getMessage());
 			out.writeObject(null);
 			out.close();
 			fileOut.close();

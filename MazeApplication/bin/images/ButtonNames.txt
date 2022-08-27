@@ -1,0 +1,3 @@
+/images/Buttons/Start Location/
+/images/Buttons/End Location/
+/images/Buttons/Trace/

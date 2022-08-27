@@ -12,9 +12,12 @@
 /images/Headache.jpeg
 /images/Little Yellow.jpeg
 /images/Trap.jpeg
+/images/Turq.jpeg
 /images/the grid.jpeg
 /images/theGridEB.jpeg
 /images/MaroonLand.jpeg
 /images/Rainbow Curves 2.0.jpeg
+/images/GivingTree.jpeg
+/images/Twisty.jpeg
 /images/multiMaze.jpg
 /images/Bubblegum.jpg

@@ -2,31 +2,41 @@ package mazeapplication;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.Dimension;
 
+import javax.swing.Action;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Toolkit;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.text.DefaultEditorKit;
 import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.*;
 
 public class MainMenuGUI {
 
 	private JFrame frmMazekraze;
-	private JTextField emailTextBox;
 	private static MazeDesignMainGUI freeDrawMazeGUI = null;
 	private static LevelMenu levelMenu = null;
+	private static SurvivalMapDesignWindow collectionMapWindow = null;
 	private SetImageToLabel images = new SetImageToLabel();
-	private JTextField instagramField;
-	private JTextField websiteAddress;
 	private UpdatesAndNews updatesAndNews = new UpdatesAndNews();
+	private JTextField emailTextField;
+	private JTextField instagramTextField;
+	private JTextField websiteTextField;
 
 	/**
 	 * Create the application.
@@ -34,6 +44,9 @@ public class MainMenuGUI {
 	public MainMenuGUI() {
 		String updates = updatesAndNews.getUpdates();
 		initialize(updates);
+		if(updates != null && updates.contains("Update Available")) {
+			JOptionPane.showMessageDialog(null, "An update for MazeKraze is availible, new maze features won't load on your current version! Head to 'www.mazekraze.com' to learn how to update your version!");
+		}
 	}
 
 	/**
@@ -49,6 +62,7 @@ public class MainMenuGUI {
 		frmMazekraze.setLocation(dim.width / 2 - frmMazekraze.getSize().width / 2, dim.height / 2 - frmMazekraze.getSize().height / 2);
 		frmMazekraze.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMazekraze.getContentPane().setLayout(null);
+		frmMazekraze.setResizable(false);
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBounds(0, 0, 716, 623);
@@ -62,73 +76,37 @@ public class MainMenuGUI {
 		informationPanel.setBackground(new Color(255, 215, 0));
 		informationPanel.setLayout(null);
 		
-		JLabel emailLabel = new JLabel("Submit Mazes Email:");
-		emailLabel.setBounds(10, 10, 186, 44);
+		JLabel emailLabel = new JLabel("Email");
+		emailLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		emailLabel.setBackground(new Color(255, 225, 0));
+		emailLabel.setOpaque(true);
+		emailLabel.setBounds(10, 10, 307, 41);
 		informationPanel.add(emailLabel);
-		emailLabel.setFont(new Font("Rockwell", Font.PLAIN, 18));
+		emailLabel.setFont(new Font("Dialog", Font.BOLD, 18));
 		emailLabel.setForeground(new Color(0, 0, 0));
+		emailLabel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		
-		emailTextBox = new JTextField();
-		emailTextBox.setForeground(new Color(220, 20, 60));
-		emailTextBox.setBounds(10, 128, 307, 35);
-		informationPanel.add(emailTextBox);
-		emailTextBox.setBackground(new Color(255, 215, 0));
-		emailTextBox.setEditable(false);
-		emailTextBox.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-		emailTextBox.setText("mazekrazesubmit@gmail.com");
-		emailTextBox.setColumns(10);
-		
-		JLabel emailInformationlabel = new JLabel("<html>Email your completed mazes here for a chance to get them on the website! Or if you have any questions/ issues!</html>");
-		emailInformationlabel.setBounds(10, 57, 307, 61);
-		informationPanel.add(emailInformationlabel);
-		emailInformationlabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		emailInformationlabel.setForeground(new Color(0, 0, 0));
-		
-		JLabel instagramLabel = new JLabel("Follow our Instagram:");
-		instagramLabel.setBounds(382, 10, 190, 44);
+		JLabel instagramLabel = new JLabel("Instagram");
+		instagramLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		instagramLabel.setOpaque(true);
+		instagramLabel.setBackground(new Color(255, 215, 0));
+		instagramLabel.setBounds(6, 57, 311, 42);
 		informationPanel.add(instagramLabel);
 		instagramLabel.setForeground(new Color(0, 0, 0));
 		instagramLabel.setFont(new Font("Rockwell", Font.PLAIN, 18));
-		
-		instagramField = new JTextField();
-		instagramField.setForeground(new Color(220, 20, 60));
-		instagramField.setBounds(382, 57, 147, 37);
-		informationPanel.add(instagramField);
-		instagramField.setEditable(false);
-		instagramField.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-		instagramField.setText("@mazekraze");
-		instagramField.setBackground(new Color(255, 215, 0));
-		instagramField.setColumns(10);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBackground(new Color(0, 0, 0));
 		separator.setBounds(10, 52, 307, 2);
 		informationPanel.add(separator);
 		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBackground(new Color(0, 0, 0));
-		separator_1.setBounds(382, 52, 310, 2);
-		informationPanel.add(separator_1);
-		
-		JLabel lblNewLabel = new JLabel("More Info on the website:");
-		lblNewLabel.setFont(new Font("Rockwell", Font.PLAIN, 18));
-		lblNewLabel.setBounds(382, 95, 310, 29);
-		informationPanel.add(lblNewLabel);
-		
-		websiteAddress = new JTextField();
-		websiteAddress.setEditable(false);
-		websiteAddress.setForeground(new Color(220, 20, 60));
-		websiteAddress.setText("www.mazekraze.com");
-		websiteAddress.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
-		websiteAddress.setBackground(new Color(255, 215, 0));
-		websiteAddress.setBounds(382, 134, 310, 25);
-		informationPanel.add(websiteAddress);
-		websiteAddress.setColumns(10);
-		
-		JSeparator separator_2 = new JSeparator();
-		separator_2.setBackground(new Color(0, 0, 0));
-		separator_2.setBounds(382, 127, 310, 2);
-		informationPanel.add(separator_2);
+		JLabel websiteLabel = new JLabel("Website");
+		websiteLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		websiteLabel.setOpaque(true);
+		websiteLabel.setBackground(new Color(255, 215, 0));
+		websiteLabel.setFont(new Font("Rockwell", Font.PLAIN, 18));
+		websiteLabel.setBounds(10, 104, 307, 42);
+		informationPanel.add(websiteLabel);
 		
 		JLabel updatesLabel = new JLabel("");
 		updatesLabel.setForeground(new Color(220, 20, 60));
@@ -141,24 +119,89 @@ public class MainMenuGUI {
 		}
 		informationPanel.add(updatesLabel);
 		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBackground(Color.BLACK);
+		separator_1.setBounds(10, 99, 307, 2);
+		informationPanel.add(separator_1);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setBackground(Color.BLACK);
+		separator_2.setBounds(10, 147, 307, 2);
+		informationPanel.add(separator_2);
+		
+		JPanel specificInformationPanel = new JPanel();
+		specificInformationPanel.setOpaque(false);
+		specificInformationPanel.setBounds(327, 10, 365, 139);
+		informationPanel.add(specificInformationPanel);
+		specificInformationPanel.setLayout(null);
+		
+		JLabel websiteInformationLabel = new JLabel("<html> The website has everything MazeKraze on it. Check it<br/>out to download any maze drawn by designers all over<br/> the world. All mazes are printable and if you submit one<br/> it could end up on the website!</html>");
+		websiteInformationLabel.setFont(new Font("Dialog", Font.PLAIN, 14));
+		websiteInformationLabel.setVerticalAlignment(SwingConstants.TOP);
+		websiteInformationLabel.setBounds(10, 11, 350, 86);
+		
+		JPopupMenu menu = new JPopupMenu();
+		Action copy = new DefaultEditorKit.CopyAction();
+        copy.putValue(Action.NAME, "Copy");
+        copy.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control C"));
+        menu.add(copy);
+		
+		websiteTextField = new JTextField();
+		websiteTextField.setFont(new Font("Tahoma", Font.BOLD, 17));
+		websiteTextField.setText("www.mazekraze.com");
+		websiteTextField.setOpaque(false);
+		websiteTextField.setEditable(false);
+		websiteTextField.setBounds(10, 98, 345, 30);
+		websiteTextField.setColumns(10);
+		websiteTextField.setComponentPopupMenu(menu);
+		
+		JLabel instagramInformationLabel = new JLabel("<html>Follow our Instagram! If you get your maze on the<br/>website then your maze will be posted to our<br/>instagram with your credit if you want!</html>");
+		instagramInformationLabel.setFont(new Font("Dialog", Font.PLAIN, 14));
+		instagramInformationLabel.setVerticalAlignment(SwingConstants.TOP);
+		instagramInformationLabel.setBounds(10, 11, 345, 65);
+		
+		instagramTextField = new JTextField();
+		instagramTextField.setEditable(false);
+		instagramTextField.setOpaque(false);
+		instagramTextField.setFont(new Font("Tahoma", Font.BOLD, 17));
+		instagramTextField.setText("@mazekraze");
+		instagramTextField.setBounds(10, 87, 345, 30);
+		instagramTextField.setColumns(10);
+		instagramTextField.setComponentPopupMenu(menu);
+		
+		JLabel emailInformationLabel = new JLabel("<html>Email all your completed mazes here for a chance<br/>to get them on the wbsite! Or email us here if you <br/>have anyquestions and our software engineer will get <br/>in touch with you as quickly as possible!</html>");
+		emailInformationLabel.setFont(new Font("Dialog", Font.PLAIN, 14));
+		emailInformationLabel.setVerticalAlignment(SwingConstants.TOP);
+		emailInformationLabel.setBounds(10, 11, 345, 76);
+		specificInformationPanel.add(emailInformationLabel);
+		
+		emailTextField = new JTextField();
+		emailTextField.setEditable(false);
+		emailTextField.setOpaque(false);
+		emailTextField.setText("mazekrazesubmit@gmail.com");
+		emailTextField.setFont(new Font("Tahoma", Font.BOLD, 17));
+		emailTextField.setBounds(10, 98, 345, 30);
+		emailTextField.setColumns(10);
+		emailTextField.setComponentPopupMenu(menu);
+		specificInformationPanel.add(emailTextField);
+		
 		JPanel modeButtonPanel = new JPanel();
 		modeButtonPanel.setOpaque(false);
 		modeButtonPanel.setBounds(6, 441, 705, 182);
 		mainPanel.add(modeButtonPanel);
 		modeButtonPanel.setLayout(null);
 		
-		
 		JButton freeDrawButton = new JButton("Maze Design");
-		freeDrawButton.setFont(new Font("Papyrus", Font.BOLD, 30));
+		freeDrawButton.setFont(new Font("Dialog", Font.BOLD, 25));
 		freeDrawButton.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		freeDrawButton.setBounds(0, 95, 705, 82);
+		freeDrawButton.setBounds(0, 67, 705, 57);
 		modeButtonPanel.add(freeDrawButton);
 		freeDrawButton.setBackground(new Color(255, 215, 0));
 		
 		JButton LevelPlayButton = new JButton("Level Play");
-		LevelPlayButton.setFont(new Font("Papyrus", Font.BOLD, 30));
+		LevelPlayButton.setFont(new Font("Dialog", Font.BOLD, 25));
 		LevelPlayButton.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		LevelPlayButton.setBounds(0, 10, 705, 80);
+		LevelPlayButton.setBounds(0, 10, 705, 57);
 		modeButtonPanel.add(LevelPlayButton);
 		LevelPlayButton.setBackground(new Color(255, 215, 0));
 		
@@ -172,13 +215,22 @@ public class MainMenuGUI {
 		blackSeperator1.setBounds(0, 5, 705, 5);
 		modeButtonPanel.add(blackSeperator1);
 		
+		JButton collectionModeButton = new JButton("Survival Map Design");
+		collectionModeButton.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		collectionModeButton.setBackground(new Color(255, 215, 0));
+		collectionModeButton.setFont(new Font("Dialog", Font.BOLD, 25));
+		collectionModeButton.setBounds(0, 124, 705, 57);
+		modeButtonPanel.add(collectionModeButton);
+		
 		LevelPlayButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(levelMenu == null) {
-					levelMenu = new LevelMenu();
+					levelMenu = new LevelMenu(frmMazekraze);
+					frmMazekraze.setVisible(false);
 				}
 				levelMenu.setVisible(true);
+				frmMazekraze.setVisible(false);
 			}
 			
 		});
@@ -203,17 +255,104 @@ public class MainMenuGUI {
 		
 		images.set_image_to_label(imageLabel, "/images/theGridBackgroundGlacier.jpeg");
 		
+		JLabel[] optionsArray = new JLabel[] {emailLabel, instagramLabel, websiteLabel};
+		
 		//Button Actions.
 		freeDrawButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(freeDrawMazeGUI == null) {
-					freeDrawMazeGUI = new MazeDesignMainGUI();
+					freeDrawMazeGUI = new MazeDesignMainGUI(frmMazekraze);
+					frmMazekraze.setVisible(false);
 				}
 				freeDrawMazeGUI.setVisible(true);
+				frmMazekraze.setVisible(false);
 			}
-			
 		});
+		
+		collectionModeButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(collectionMapWindow == null) {
+					collectionMapWindow = new SurvivalMapDesignWindow(frmMazekraze);
+					frmMazekraze.setVisible(false);
+				}
+				else {
+					collectionMapWindow.setVisible(true);
+					frmMazekraze.setVisible(false);
+				}
+			}
+		});
+		
+		MouseListener mainMenuOptionsListener = new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				for(int i = 0; i < optionsArray.length; i++) {
+					if(e.getComponent().equals(optionsArray[i])) {
+						optionsArray[i].setFont(new Font("Rockwell", Font.BOLD, 18));
+						optionsArray[i].setBackground(new Color(255,225,0));
+						optionsArray[i].setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+					}
+					else {
+						optionsArray[i].setFont(new Font("Rockwell", Font.PLAIN, 18));
+						optionsArray[i].setBackground(new Color(255,215,0));
+						optionsArray[i].setBorder(null);
+					}
+				}
+				if(e.getComponent().equals(emailLabel)) {
+					specificInformationPanel.removeAll();
+					
+					specificInformationPanel.add(emailInformationLabel);
+					specificInformationPanel.add(emailTextField);
+					
+					specificInformationPanel.revalidate();
+					specificInformationPanel.repaint();
+				}
+				else if(e.getComponent().equals(instagramLabel)) {
+					specificInformationPanel.removeAll();
+					
+					specificInformationPanel.add(instagramInformationLabel);
+					specificInformationPanel.add(instagramTextField);
+					
+					specificInformationPanel.revalidate();
+					specificInformationPanel.repaint();
+				}
+				else if(e.getComponent().equals(websiteLabel)) {
+					specificInformationPanel.removeAll();
+					
+					specificInformationPanel.add(websiteInformationLabel);
+					specificInformationPanel.add(websiteTextField);
+					
+					specificInformationPanel.revalidate();
+					specificInformationPanel.repaint();
+				}
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				
+			}
+		};
+		for(int i = 0; i < optionsArray.length; i++) {
+			optionsArray[i].addMouseListener(mainMenuOptionsListener);
+		}
 	}
 	
 	public static boolean isLevelMazeActive() {
