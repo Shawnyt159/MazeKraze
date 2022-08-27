@@ -132,7 +132,7 @@ public class SurvivalMapEnemy {
 	private void CheckHitsPlayer(Rectangle bounds) {
 		if(bounds.intersects(SurvivalMapPlayer.getPlayerLabel().getBounds())) {
 			SurvivalMapDesignWindow.EndMap();
-			JOptionPane.showMessageDialog(null, "You died bitch");
+			JOptionPane.showMessageDialog(null, "You died");
 		}
 	}
 	
